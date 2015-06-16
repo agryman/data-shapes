@@ -1,0 +1,27 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:oslc="http://open-services.net/ns/core#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#" > 
+  <rdf:Description rdf:about="http://example.org/shapes/contact">
+    <oslc:property rdf:resource="http://example.org/shapes/contact#knows"/>
+    <oslc:property rdf:resource="http://example.org/shapes/contact#name"/>
+    <oslc:describes rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <rdf:type rdf:resource="http://open-services.net/ns/core#ResourceShape"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/shapes/contact#name">
+    <oslc:valueType rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <oslc:propertyDefinition rdf:resource="http://xmlns.com/foaf/0.1/name"/>
+    <oslc:occurs rdf:resource="http://open-services.net/ns/core#Exactly-one"/>
+    <oslc:name>name</oslc:name>
+    <rdf:type rdf:resource="http://open-services.net/ns/core#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/shapes/contact#knows">
+    <oslc:valueShape rdf:resource="http://example.org/shapes/associate"/>
+    <oslc:range rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <oslc:propertyDefinition rdf:resource="http://xmlns.com/foaf/0.1/knows"/>
+    <oslc:occurs rdf:resource="http://open-services.net/ns/core#Zero-or-many"/>
+    <oslc:name>knows</oslc:name>
+    <rdf:type rdf:resource="http://open-services.net/ns/core#Property"/>
+  </rdf:Description>
+</rdf:RDF>

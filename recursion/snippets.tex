@@ -1,0 +1,108 @@
+\section{Cardinalities}
+
+It is common to place conditions on the number of nodes in a set of values.
+Let $x \in TERM$ be a node, let $q \in Path$ be a path, and let $n \in \nat$ be a natural number.
+Let $minCount(x,q,n)$ be the set of graphs $g$ in which $values(x,q,g)$ has at least $n$ nodes.
+\begin{axdef}
+minCount: ParameterizedConstraint[TERM \cross PathEx \cross \nat]
+\where
+minCount = (\lambda x: TERM; q: PathEx; n: \nat @ \\
+\t1	\{~ g: Graph | \# (values(g,x,q)) \geq n ~\})
+\end{axdef}
+
+Similarly, $maxCount(x,q,n)$ is the set of graphs $g$ in which $values(x,q,g)$ has at most $n$ nodes.
+\begin{axdef}
+maxCount: ParameterizedConstraint[TERM \cross PathEx \cross \nat]
+\where
+maxCount = (\lambda x: TERM; q: PathEx; n: \nat @ \\
+\t1	\{~ g: Graph | \# (values(g,x,q)) \leq n ~\})
+\end{axdef}
+
+\section{The OSLC Resource Shape Language}
+
+The OSLC Resource Shape specification defines an RDF-based shape language and the interpretation of this language as graph constraints. This document provides a formal specification of the interpretation of the OSLC shape language.
+
+The shape language expresses several kinds of constraint.
+Each kind of constraint may be optionally used in any given shape instance.
+Optional values are modelled as sets that contain either zero or one member.
+\begin{zed}
+OPTIONAL[X] == \{~ x: \finset X | \# x \leq 1 ~\}
+\end{zed}
+
+The shape language is capable of expressing constraints on the
+set of values associated with a path from a given node.
+A path shape consists of optional min and max value occurrence constraints, and an optional reference to a resource shape that constrains the values.
+\begin{schema}{PathShape}
+minOccurs: OPTIONAL[\nat] \\
+maxOccurs: OPTIONAL[\nat] \\
+shape: OPTIONAL[IRI]
+\end{schema}
+
+The shape language is capable of expressing constraints associated with a given resource.
+A resource shape consists of a finite set of paths and for each path, a path shape.
+A resource shape refers to a finite, possibly empty, set of resource shapes.
+\begin{schema}{ResourceShape}
+lookup: PathEx \pfun PathShape
+\also
+paths: \finset PathEx \\
+shapes: \finset IRI
+\where
+paths = \dom lookup
+\also
+shapes = \bigcup \{~ q: paths @ (lookup~q).shape ~\}
+\end{schema}
+\begin{itemize}
+\item Each path has an associated path shape.
+\item The set of resource shapes referred to by this resource shape is the union of the resource shapes referred to
+by its path shapes.
+\end{itemize}
+
+Let $GraphShape$ denote the OSLC shape language. 
+A sentence in the language consists of a starting node $node$, the name of the
+starting resource shape $shape$, and a finite lookup table $lookup$ that maps names to resource shapes.
+\begin{schema}{GraphShape}
+node: TERM \\
+shape: IRI \\
+lookup: IRI \pfun ResourceShape
+\also
+shapes: \finset IRI
+\where
+node \notin Literal
+\also
+shapes = \dom lookup
+\also
+shape \in shapes
+\also
+\forall r: shapes @ (lookup~r).shapes \subseteq shapes
+\end{schema}
+\begin{itemize}
+\item The starting node is not a literal.
+\item The set of all resource shape names in the lookup table is $shapes$.
+\item The starting resource shape is in the lookup table.
+\item The lookup table contains all referenced resource shapes.
+\end{itemize}
+
+\section{Interpretation of the OSLC Resource Shape Language as Constraints}
+
+Given an instance $gs \in GraphShape$ of the OSLC resource shape language, its interpretation as a graph
+constraint is given by $matches(gs)$.
+\begin{axdef}
+matches: ParameterizedConstraint[GraphShape]
+\end{axdef}
+
+The definition of $matches(gs)$ is given in terms of the interpretations of the resource and path shapes contained in $gs$.
+This definition is necessarily recursive because a path shape may refer to a resource shape.
+Therefore, $matches$ will be defined axiomatically and we will show that the definition defines $matches$ uniquely.
+
+\begin{axdef}
+matchesMinOccurs: ParameterizedConstraint[TERM \cross PathEx \cross PathShape]
+\where
+\forall x: TERM; q: PathEx; ps: PathShape | \\
+\t1	ps.minOccurs = \emptyset @ \\
+\t2		matchesMinOccurs(x,q,ps) = Graph
+\also
+\forall x: TERM; q: PathEx; ps: PathShape | \\
+\t1	ps.minOccurs = \emptyset @ \\
+\t2		matchesMinOccurs(x,q,ps) = Graph
+\end{axdef}
+

@@ -1,0 +1,16 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/" > 
+  <rdf:Description rdf:about="http://example.org/contacts/alice#me">
+    <foaf:name>Alice</foaf:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/contacts/charlie#me">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/contacts/bob#me">
+    <foaf:knows rdf:resource="http://example.org/contacts/charlie#me"/>
+    <foaf:knows rdf:resource="http://example.org/contacts/alice#me"/>
+    <foaf:name>Bob</foaf:name>
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+  </rdf:Description>
+</rdf:RDF>

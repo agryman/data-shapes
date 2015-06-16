@@ -1,0 +1,2284 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type"
+	content="text/html; charset=utf-8" />
+<meta name="author" content="Arthur Ryman" />
+<meta name="keywords"
+	content="linked data, W3C, semantice web, RDF, constraints, validation" />
+<title>Resource Shape 2.0</title>
+<!-- Changed by: , 11-Mar-2014 -->
+<style type="text/css">
+.sample {
+	border: thin black solid
+}
+
+div.source {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	color: black;
+	background-color: #efeff5;
+	border-top-style: double;
+	border-top-color: #d3d3d3;
+	border-bottom-width: 1px;
+	border-bottom-style: double;
+	border-bottom-color: #d3d3d3;
+	padding: 4px;
+}
+
+dt {
+	padding-top: 0.5em;
+}
+
+h2.req {
+	font-size: 85%
+}
+
+li.toc {
+	list-style-type: none
+}
+
+div.rule {
+	padding-top: 1em;
+}
+
+h1,h2,h3,h4,h5 {
+	text-align: left;
+	font-family: sans-serif;
+	font-weight: normal;
+	color: #005a9c;
+	margin-left: 0
+}
+
+dl.vocabulary {
+	background-color: #efeff5;
+	padding: 1em;
+	border: 1px solid #d3d3d3;
+}
+
+.shape {
+	width: 100%;
+	margin-top: 25px;
+	border-collapse: collapse;
+}
+
+.shape caption {
+	margin-top: 10px;
+	text-align: left;
+	caption-side: bottom;
+}
+
+.shape td,.shape th {
+	font-size: 1.1em;
+	border: 1px solid #d3d3d3;
+	padding: 3px 7px 2px 7px;
+}
+
+.shape th {
+	text-transform: uppercase;
+	text-align: left;
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background: #005a9c;
+	color: white;
+}
+
+.shape tr:nth-of-type(even) {
+	background-color: white;
+}
+
+.shape tr:nth-of-type(odd) {
+	background-color: rgba(0, 90, 156, .1); /* #005a9c */
+}
+</style>
+<link rel="stylesheet" type="text/css"
+	href="http://www.w3.org/StyleSheets/TR/W3C-Member-SUBM" />
+</head>
+
+<body>
+	<div class="head">
+		<p>
+			<a href="http://www.w3.org/"><img height="48" width="72"
+				alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a> <a
+				href="http://www.w3.org/Submission/"> <img height="48"
+				width="211" alt="W3C Member Submission"
+				src="http://www.w3.org/Icons/member_subm" /></a>
+		</p>
+
+		<h1 id="title">Resource Shape 2.0</h1>
+		<h2 id="W3C-doctype">W3C Member Submission 11 February 2014</h2>
+
+		<dl>
+			<dt>This Version:</dt>
+			<dd>
+				<a href="http://www.w3.org/Submission/2014/SUBM-shapes-20140211/">http://www.w3.org/Submission/2014/SUBM-shapes-20140211/</a>
+			</dd>
+			<dt>Latest Version:</dt>
+			<dd>
+				<a href="http://www.w3.org/Submission/shapes/">http://www.w3.org/Submission/shapes/</a>
+			</dd>
+			<dt>Author:</dt>
+			<dd>Arthur Ryman, IBM Corporation</dd>
+		</dl>
+
+		<p class="copyright">
+			Copyright © IBM Corporation 2014. This document is available under
+			the <a href="http://www.w3.org/Consortium/Legal/copyright-documents">W3C
+				Document License</a>. See the <a
+				href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">W3C
+				Intellectual Rights Notice and Legal Disclaimers</a> for additional
+			information.
+		</p>
+
+	</div>
+	<hr />
+
+	<h2 id="abstract">Abstract</h2>
+	<div>
+		<p>
+			This document defines a high-level RDF vocabulary for specifying the
+			<em>shape</em> of RDF resources. The shape of an RDF resource is a
+			description of the set of triples it is expected to contain and the
+			integrity constraints those triples are required to satisfy.
+			Applications of shapes include validating RDF data, documenting RDF
+			APIs, and providing metadata to tools, such as form and query
+			builders, that handle RDF data.
+		</p>
+	</div>
+
+	<h2 id="status">Status of This Document</h2>
+	<div>
+		<p>
+			<em>This section describes the status of this document at the
+				time of its publication. Other documents may supersede this
+				document. A list of current W3C publications can be found in the </em><a
+				href="http://www.w3.org/TR/"><i>W3C technical reports index</i></a><em>
+				at http://www.w3.org/TR/.</em>
+		</p>
+
+		<p>
+			This document describes the Resource Shape specification which
+			originated at Open Services for Lifecycle Collaboration [<a
+				href="#OSLC">OSLC</a>]. It is also related to the Linked Data Basic
+			Profile [<a href="#LDBP">LDBP</a>] which also originated at OSLC.
+			This document describes the "as-is" OSLC Resource Shape 2.0 [<a
+				href="#OSLC-Resource-Shape-2.0">OSLC Resource Shape 2.0</a>]
+			specification, and recommends some extensions. It is being submitted
+			to W3C so that it can inform the development of a future W3C Shape
+			specification.
+		</p>
+
+		<p>
+			By publishing this document, W3C acknowledges that the <a
+				href="http://www.w3.org/Submission/2014/01/">Submitting Members</a>
+			have made a formal Submission request to W3C for discussion.
+			Publication of this document by W3C indicates no endorsement of its
+			content by W3C, nor that W3C has, is, or will be allocating any
+			resources to the issues addressed by it. This document is not the
+			product of a chartered W3C group, but is published as potential input
+			to the <a href="http://www.w3.org/Consortium/Process">W3C Process</a>.
+			A <a href="http://www.w3.org/Submission/2014/01/Comment/">W3C
+				Team Comment</a> has been published in conjunction with this Member
+			Submission. Publication of acknowledged Member Submissions at the W3C
+			site is one of the benefits of <a
+				href="http://www.w3.org/Consortium/Prospectus/Joining">W3C
+				Membership</a>. Please consult the requirements associated with Member
+			Submissions of <a
+				href="http://www.w3.org/Consortium/Patent-Policy-20030520.html#sec-submissions">section
+				3.3 of the W3C Patent Policy</a>. Please consult the complete <a
+				href="http://www.w3.org/Submission">list of acknowledged W3C
+				Member Submissions</a>.
+		</p>
+	</div>
+
+	<h2 id="toc">Table of Contents</h2>
+	<div>
+
+		<ul>
+			<li class="toc">1. <a href="#intro">Introduction</a>
+			</li>
+			<li class="toc">2. <a href="#uses-cases">Use Cases</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">2.1 <a
+				href="#describing-apis">Describing RDF APIs</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">2.2 <a
+				href="#describing-datasets">Describing RDF Datasets</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">2.3 <a
+				href="#describing-indexable-data">Describing Indexable Data</a>
+			</li>
+			<li class="toc">3. <a href="#requirements">Requirements</a>
+			</li>
+			<li class="toc">4. <a href="#conformance">Conformance</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">4.1 <a
+				href="#conventions">Conventions Used in This Document</a>
+			</li>
+			<li class="toc">5. <a href="#shape-resources">Shape
+					Resources</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">5.1 <a
+				href="#overview">Overview</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">5.2 <a
+				href="#associating-and-applying-shapes">Associating and Applying
+					Shapes</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">5.3 <a
+				href="#examples">A Running Example of Shape Resources</a>
+			</li>
+			<li class="toc">6. <a href="#vocabulary">Vocabulary</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.1 <a
+				href="#terminology">Terminology</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.2 <a
+				href="#property-tables">Property Tables</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.3 <a
+				href="#instanceShape">oslc:instanceShape Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.4 <a
+				href="#resourceShape">oslc:resourceShape Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.5 <a
+				href="#dcterms:description">dcterms:description Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.6 <a
+				href="#dcterms:title">dcterms:title Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.7 <a
+				href="#ResourceShape">oslc:ResourceShape Class</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.8 <a
+				href="#describes">oslc:describes Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.9 <a
+				href="#property">oslc:property Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.10 <a
+				href="#Property">oslc:Property Class</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.11 <a
+				href="#allowedValue">oslc:allowedValue Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.12 <a
+				href="#allowedValues">oslc:allowedValues Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.13 <a
+				href="#defaultValue">oslc:defaultValue Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.14 <a href="#hidden">oslc:hidden
+					Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.15 <a
+				href="#isMemberProperty">oslc:isMemberProperty Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.16 <a href="#name">oslc:name
+					Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.17 <a
+				href="#maxSize">oslc:maxSize Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.18 <a href="#occurs">oslc:occurs
+					Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.19 <a
+				href="#propertyDefinition">oslc:propertyDefinition Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.20 <a href="#range">oslc:range
+					Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.21 <a
+				href="#readOnly">oslc:readOnly Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.22 <a
+				href="#representation">oslc:representation Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.23 <a
+				href="#valueShape">oslc:valueShape Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.24 <a
+				href="#valueType">oslc:valueType Property</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">6.25 <a
+				href="#AllowedValues">oslc:AllowedValues Class</a>
+			</li>
+			<li class="toc">7. <a href="#recommended-extensions">Recommended
+					Extensions</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">7.1 <a
+				href="#ext-vocabulary">ext: Extensions Vocabulary</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">7.2 <a
+				href="#inverse-properties">Inverse Properties</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">7.3 <a
+				href="#disconnected-graphs">Disconnected Graphs</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">7.4 <a
+				href="#datatype-facets">Datatype Facets</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">7.5 <a
+				href="#extending-shapes">Extending Shapes</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">7.6 <a
+				href="#ldp-containers">Linked Data Platform Containers</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">7.7 <a
+				href="#sparql-semantics">SPARQL Semantics</a>
+			</li>
+			<li class="toc">A. <a href="#refs">References</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">A.1 <a
+				href="#normative_refs">Normative References</a>
+			</li>
+			<li class="toc" style="margin-left: .5in">A.2 <a
+				href="#informative_refs">Informative References</a>
+			</li>
+			<li class="toc">B. <a href="#acks">Acknowledgements</a>
+			</li>
+		</ul>
+	</div>
+
+	<h1 id="intro">1. Introduction</h1>
+	<div>
+
+		<p>
+			Linked Data has proved to be an effective way to look up and navigate
+			information at web scale. It is also emerging as a compelling
+			architectural basis for web applications [<a href="#RW-Linked-Data">RW
+				Linked Data</a>]. The principles for designing Linked Data web
+			applications are currently being elaborated by the W3C Linked Data
+			Platform Working Group [<a href="#LDPWG">LDPWG</a>].
+		</p>
+
+		<p>
+			RDF is at the core of Linked Data. The design principles for Linked
+			Data [<a href="#Linked-Data-Design-Issues">Linked Data Design
+				Issues</a>] include the following rule:
+		</p>
+		<blockquote>When someone looks up a URI, provide useful
+			information, using the standards (RDF*, SPARQL)
+		</blockquote>
+
+		<p>
+			This emergence of RDF as an important application development
+			technology for Linked Data and other domains has brought to light a
+			serious gap in the associated technology stack, namely the absence of
+			a way to describe the integrity constraints imposed by an application
+			on the RDF documents it processes. Here the term <q>integrity
+				constraint</q> denotes any characteristic of data required by or
+			enforced by an application. Common examples of integrity constraints
+			include the mandatory presence of properties, the cardinality of
+			relations, and restrictions on the allowed values of properties.
+		</p>
+
+		<p>Well-established programming technologies such as relational
+			databases, object-oriented programming languages, and XML provide
+			schemas or type definitions that encode integrity constraints.
+			Programmers coming to RDF expect a similar mechanism, and frequently
+			start to use RDFS or OWL for this purpose. However, this is a
+			misapplication of those technologies.</p>
+
+		<p>It is well-known that the semantics of RDFS and OWL are defined
+			in terms of inference rules, not constraints. Reasoners will infer
+			new triples in an attempt to satisfy RDFS or OWL ontologies.
+			Sometimes this is exactly what a programmer wants, but if errors are
+			present in the data, then the inferred triples will be nonsense and,
+			worse, they may mask the presence of errors.</p>
+
+		<p>
+			This document describes the Resource Shape specification, a
+			high-level RDF vocabulary for describing the <em>shape</em> of RDF
+			resources. Here the term <q>RDF resource</q> is used to denote a
+			resource that has an RDF document among its set of available
+			representations. The term <q>shape</q> is used because it is often
+			useful to visualize an RDF document as a topological object, namely
+			as a graph consisting of nodes interconnected by arcs. Throughout
+			this document the terms <q>RDF resource</q>, <q>RDF document</q>, and
+			<q>RDF graph</q> are used more or less interchangeably albeit
+			somewhat imprecisely.
+		</p>
+
+		<p>The shape of an RDF graph includes both a description of its
+			expected contents (properties, types) within some operational context
+			(e.g. GET, POST) and the integrity constraints that must be satisfied
+			by the contents in that context.</p>
+
+		<p>This document begins with a brief discussion of the use cases
+			and requirements that the Resource Shape specification addresses. It
+			then describes all aspects of the current specification in detail.
+			Finally, it concludes with some recommendations for extensions based
+			on implementation experience.</p>
+	</div>
+
+	<h1 id="uses-cases">2. Use Cases</h1>
+	<div>
+		<p>
+			This section briefly describes the main use cases for an RDF graph
+			shape language. For a more complete discussion of this topic, refer
+			to the W3C RDF Validation Workshop [<a href="#RDF-VAL">RDF-VAL</a>].
+		</p>
+
+		<h2 id="describing-apis">2.1 Describing RDF APIs</h2>
+		<div>
+			<p>Any application that provides programmatic services should
+				also provide application programming interface (API) documentation
+				to programmers so that they can consume those services. Applications
+				that process RDF, including Linked Data web applications, are no
+				different than other applications in this respect.</p>
+
+			<p>Although API documentation is normally directed towards human
+				programmers, there are also important use cases where other programs
+				need to understand the API. For example, consider a generic
+				form-building tool that can generate a user interface for creating
+				or updating resources. Such a tool needs to understand the expected
+				contents of the resource so it can generate a user interface. It
+				also needs to understand the applicable integrity constraints so it
+				can validate user input before sending it to the service provider.
+				Furthermore, the service provide may apply different constraints for
+				creation versus update operations.</p>
+		</div>
+
+		<h2 id="describing-datasets">2.2 Describing RDF Datasets</h2>
+		<div>
+			<p>Users must understand the contents of an RDF dataset in order
+				to write SPARQL queries. Understanding the integrity constraints can
+				help users write better SPARQL queries. For example, if a property
+				is known to always be present, then there is no need to wrap it in
+				an OPTIONAL clause.</p>
+
+			<p>Query building tools can take advantage of shape information.
+				For example, consider a query builder that allows the user to define
+				a query that filters results by selecting allowed values from a
+				list. In principle, the query builder could dynamically query the
+				dataset to determine the list of values present. However, such a
+				query could be slow if the dataset was large. In addition, only
+				those values present at the time of the query would appear in the
+				list. In contrast, if the query builder had access to shape
+				information, then it could avoid the potentially expensive query and
+				present the user with the complete list of allowed values, whether
+				or not they were actually present in the dataset at that time.</p>
+		</div>
+
+		<h2 id="describing-indexable-data">2.3 Describing Indexable Data</h2>
+		<div>
+			<p>Resource indexers may be looking for certain types of
+				structured data. For example, a web crawler might be indexing
+				product descriptions and pricing for a marketplace application. The
+				web crawler could provide a shape to describe the data it is looking
+				for. Web application developers would then be able to provide that
+				information in the web pages of their commerce site and thereby have
+				their sites included in the index.</p>
+		</div>
+	</div>
+
+	<h1 id="requirements">3. Requirements</h1>
+	<div>
+		<p>This section describes some high-level requirements for an RDF
+			resource shape language. For simplicity, members of a shape language
+			are referred to as shape resources. It is to be understood that the
+			validity and meaning of a shape resource depends on any other shape
+			resources it is linked to.</p>
+		<ul>
+			<li>A shape language must be able to express the most commonly
+				occurring aspects of RDF resources in high-level terms, using
+				concepts that are familiar to developers. Developers must be able to
+				both understand existing shapes and author new ones.</li>
+			<li>A shape resource must be processable using readily available
+				RDF technologies. These include RDF parsers and SPARQL processors.</li>
+			<li>The constraints defined by a shape resource must be
+				verifiable using commonly available technologies, with acceptable
+				performance. The performance criteria depend on the use case. For
+				example, a tool checking user input must respond quickly. A tool
+				validating an entire dataset may run as a batch job, but should
+				complete within a reasonable amount of time (e.g. hours, not years).</li>
+			<li>A shape language must be extensible so that
+				application-specific aspects of resources can be expressed. A
+				trade-off of expressiveness at the expense of ease-of-understanding
+				is acceptable.</li>
+		</ul>
+	</div>
+
+	<h1 id="conformance">4. Conformance</h1>
+	<div>
+
+		<p>
+			Conformance is defined in accordance with the use of the words <span
+				class="rfc2119">MUST</span>, <span class="rfc2119">MUST NOT</span>,
+			<span class="rfc2119">SHOULD</span>, <span class="rfc2119">SHOULD
+				NOT</span>, <span class="rfc2119">MAY</span> and <span class="rfc2119">RECOMMENDED</span>
+			as described in RFC 2119 [<a href="#RFC2119">RFC 2119</a>].
+		</p>
+
+		<h2 id="conventions">4.1 Conventions Used in This Document</h2>
+		<div>
+			<p>
+				Sample resource representations are provided in
+				<code>text/turtle</code>
+				format [<a href="#TURTLE">TURTLE</a>].
+			</p>
+			<p>The following common URI prefixes are used throughout this
+				specification:</p>
+			<figure>
+			<div class="source">
+				<pre>@prefix dcterms: &lt;http://purl.org/dc/terms/&gt;.
+@prefix ex:      &lt;http://example.org/&gt;.
+@prefix ext:     &lt;http://example.org/extension#&gt;.
+@prefix ldp:     &lt;http://www.w3.org/ns/ldp#&gt;.
+@prefix oslc:    &lt;http://open-services.net/ns/core#&gt;.
+@prefix oslc_cm: &lt;http://open-services.net/ns/cm#&gt;.
+@prefix rdf:     &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;.
+@prefix rdfs:    &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
+@prefix xsd:     &lt;http://www.w3.org/2001/XMLSchema#&gt;.</pre>
+			</div>
+			<figcaption>Listing 1. Commonly used URI prefixes.</figcaption> </figure>
+		</div>
+	</div>
+
+	<h1 id="shape-resources">5. Shape Resources</h1>
+	<div>
+		<p>
+			This section describes the Resource Shape 2.0 specification [<a
+				href="#OSLC-Resource-Shape-2.0">OSLC Resource Shape 2.0</a>] (aka
+			the <em>Shapes</em> specification) which is part of the OSLC Core 2.0
+			specification [<a href="#OSLC-Core-2.0">OSLC Core 2.0</a>]. The
+			Shapes specification defines:
+		</p>
+		<ul>
+			<li>the contents and meaning of shape resources, and</li>
+			<li>how to associate shape resources with resources and services</li>
+		</ul>
+
+		<h2 id="overview">5.1 Overview</h2>
+		<div>
+			<p>
+				A resource shape is a resource that describes the contents of, and
+				constraints on, the RDF representation of other resources. A shape
+				resource itself has an RDF representation which uses the terms
+				defined by the oslc: vocabulary. The term <q>shape resource</q> or
+				simply <q>shape</q> is sometimes used as shorthand for the more
+				verbose phrase <q>the RDF representation of a shape resource</q>
+				where this can lead to no confusion. The following sections describe
+				all of the RDF vocabulary terms used in shape resources.
+			</p>
+
+			<p>
+				The Shapes specification is based on a simple conceptual model of
+				resources that works well in practice, but is somewhat biased
+				towards the view that the RDF representation of a resource looks
+				like a set of property-value pairs on that resource. The Shapes
+				specification works well when the resource being described appears
+				as a subject node in its RDF graph and all other nodes are connected
+				to the resource node by a path consisting of one or more properties.
+				Each property-value pair is represented by a triple in which the
+				subject is the resource, the predicate is the property, and the
+				object is the value. The value may be either a literal or a
+				resource. When the object is a resource, that resource may itself be
+				described by another shape. Thus the Shapes specification is
+				powerful enough to describe complex graphs. Although the Shapes
+				specification works well in practice, it cannot describe arbritary
+				RDF graphs. This limitation is discussed below in <a
+					href="#recommended-extensions">Recommended Extensions</a>.
+			</p>
+
+			<p>The following diagram summarizes the main concepts and
+				relations used in this specification:</p>
+			<figure> <img src="shapes-overview.png" width="640"
+				height="305" /> <figcaption>Figure 1. Diagram of main
+			concepts and relations.</figcaption> </figure>
+			<p>In this diagram the boxes represent resource types and the
+				arrows represent the relations between them that are defined by the
+				Shapes specification. The two boxes on the left represent external
+				types of resources that use shapes. The other three boxes represent
+				the resource types that are defined by the Shapes specification.</p>
+			<p>
+				The box labelled <q>Resource Shape</q> represents a shape. A shape
+				is a resource of rdf:type <a href="#ResourceShape">oslc:ResourceShape</a>.
+				A shape describes a set of resources. A shape is basically a set of
+				defined properties that any resource of that shape is expected to
+				contain. A shape contains one or more defined properties.
+			</p>
+
+			<p>
+				The box labelled <q>Property</q> represents a defined property. A
+				defined property is resource of rdf:type <a href="#Property">oslc:Property</a>.
+				The arrow labelled <q>property</q> represents the containment
+				relation between a shape and its defined properties. The predicate
+				of this relation is <a href="#property">oslc:property</a>.
+			</p>
+			<p>
+				Each <a href="#Property">oslc:Property</a> resource has a set of
+				properties that describe the defined property and the constraints on
+				its use within any resource of the given shape. These include a
+				description of the values of the defined property and its occurrence
+				within the resource. The value of a defined property may be a
+				literal, a resource, or either. If the value of a defined property
+				is a resource, then defined property may refer to another <a
+					href="#ResourceShape">oslc:ResourceShape</a> resource that
+				describes the value resource. This relation is depicted by the arrow
+				labelled <q>valueShape</q>. The predicate of this relation is <a
+					href="#valueShape">oslc:valueShape</a>.
+			</p>
+			<p>
+				The value of a defined property may be constrained to take one of an
+				allowed set of values. In some cases, the allowed set of values may
+				be large and be used in many shapes. In this case it is useful to
+				put the allowed values in a separate resource so they can be easily
+				reused. The box labelled <q>Allowed Values</q> represents a resource
+				of rdf:type <a href="#AllowedValues">oslc:AllowedValues</a>. The
+				arrow labelled <q>allowedValues</q> represents the relation between
+				a defined property and its set of allowed values. The predicate of
+				this relation is <a href="#allowedValues">oslc:allowedValues</a>.
+			</p>
+			<p>
+				A REST [<a href="#REST">REST</a>] service may describe aspects of
+				its interface contract using shapes. For example, a REST service may
+				provide a URI where new resources can be created via HTTP POST. This
+				service could describe the expected contents of POST request bodies
+				using shapes. Similarly, a REST service may provide a URI that
+				represents a container of resources and could describe those
+				resources using shapes. The box labelled <q>any service</q>
+				represents any REST service description. The arrow labelled <q>resourceShape</q>
+				represents the predicate <a href="#resourceShape">oslc:resourceShape</a>
+				which is a property of the service description resource.
+			</p>
+			<p>
+				Similarly, any resource can describe its own contents by linking to
+				a shape resource. The box labelled <q>any resource</q> represents
+				any resource. The arrow labelled <q>instanceShape</q> represents the
+				predicate <a href="#instanceShape">oslc:instanceShape</a> which is a
+				property of the resource.
+			</p>
+
+		</div>
+
+		<h2 id="associating-and-applying-shapes">5.2 Associating and
+			Applying Shapes</h2>
+		<div>
+			<p>
+				This specification defines three ways to associate shapes with a
+				resource, namely using <a href="#instanceShape">oslc:instanceShape</a>,
+				<a href="#resourceShape">oslc:resourceShape</a>, and <a
+					href="#valueShape">oslc:valueShape</a>. Other specifications <span
+					class="rfc2119">MAY</span> define additional mechanisms. In
+				general, the relation between shapes and resources is many-to-many.
+				Given a resource R there <span class="rfc2119">MAY</span> be zero or
+				more shapes S associated with it.
+			</p>
+			<p>
+				Not all shapes associated with a resource are necessarily applicable
+				to it. Let S be associated with R. S is said to <em>apply</em> to R
+				in the following two cases:
+			</p>
+			<dl>
+				<dt>Case 1: Generic Shape</dt>
+				<dd>
+					S applies to R when S has no <a href="#describes">oslc:describes</a>
+					properties, in which case it is a generic shape and applies to any
+					associated resource.
+				</dd>
+				<dt>Case 2: Typed Shape</dt>
+				<dd>
+					S applies to R when S is linked via <a href="#describes">oslc:describes</a>
+					to a rdf:type T and R has rdf:type T.
+				</dd>
+			</dl>
+			<p>If no shapes are associated with a resource then there are no
+				implied constraints on that resource.</p>
+			<p>
+				If one or more shapes are associated with a resource then at least
+				one of those <span class="rfc2119">SHOULD</span> be applicable to
+				that resource. If no associated shape applies to a resource then
+				this <span class="rfc2119">SHOULD</span> normally be interpreted as
+				an error condition.
+			</p>
+			<p>
+				If exactly one shape applies to a resource then that resource <span
+					class="rfc2119">SHOULD</span> satisfy all the constraints defined
+				by that shape.
+			</p>
+			<p>
+				If more than one shape applies to a resource then that resource <span
+					class="rfc2119">SHOULD</span> satisfy all the constraints defined
+				by all the shapes (AND semantics). However, the specification for a
+				service description <span class="rfc2119">MAY</span> define
+				alternate semantics. For example, a service <span class="rfc2119">MAY</span>
+				require that the resource satisfy the constraints defined by at
+				least one of the shapes (OR semantics).
+			</p>
+		</div>
+
+		<h2 id="examples">5.3 A Running Example of Shape Resources</h2>
+		<div>
+			<p>
+				This section presents a simple running example to illustrate the
+				Shapes specification. For more examples, refer to [<a
+					href="#LinkedDataInterfaces">Linked Data Interfaces</a>], [<a
+					href="#Shapes-LDOW2013">Shapes-LDOW2013]</a>, and [<a
+					href="#Shapes-RDF-VAL">Shapes-RDF-VAL</a>].
+			</p>
+
+			<p>
+				Consider a simple bug tracking service in which each bug has just
+				two properties: a summary and status. The summary is required, but
+				the status is optional. The summary is given by the property <a
+					href="#dcterms:title">dcterms:title</a>, and the status by
+				oslc_cm:status. The oslc_cm:status is constrained to take one of the
+				values <q>Submitted</q>, <q>InProgress</q>, or <q>Done</q>. The RDF
+				type of a bug is oslc_cm:ChangeRequest.
+			</p>
+
+			<h3 id="ex_bug1">5.3.1 Example of a Valid Bug</h3>
+			<div>
+				<p>
+					The following listing shows the RDF representation of the bug
+					<code>http://example.com/bugs/1</code>
+					which satisfies the constraints defined by the bug tracking
+					service:
+				</p>
+				<figure>
+				<div class="source">
+					<pre>@prefix dcterms: &lt;http://purl.org/dc/terms/> .
+@prefix oslc: &lt;http://open-services.net/ns/core#> .
+@prefix oslc_cm: &lt;http://open-services.net/ns/cm#> .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+&lt;http://example.com/bugs/1> a oslc_cm:ChangeRequest ;
+	dcterms:title "Null pointer exception in web ui"^^rdf:XMLLiteral ;
+	oslc_cm:status "Submitted" ;
+	oslc:instanceShape &lt;http://example.com/shape/oslc-change-request&gt; .</pre>
+				</div>
+				<figcaption>Listing 2. <code>http://example.com/bugs/1</code></figcaption>
+				</figure>
+			</div>
+
+			<h3 id="ex_bug2">5.3.2 Example of an Invalid Bug</h3>
+			<div>
+				<p>
+					The following listing shows the RDF representation of the bug
+					<code>http://example.com/bugs/2</code>
+					which violates the constraints since its oslc_cm:status property
+					has two values:
+				</p>
+
+				<figure>
+				<div class="source">
+					<pre>@prefix dcterms: &lt;http://purl.org/dc/terms/> .
+@prefix oslc: &lt;http://open-services.net/ns/core#> .
+@prefix oslc_cm: &lt;http://open-services.net/ns/cm#> .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+&lt;http://example.com/bugs/2> a oslc_cm:ChangeRequest ;
+	dcterms:title "Wrong arguments"^^rdf:XMLLiteral ;
+	oslc_cm:status "Submitted", "InProgress" ;
+	oslc:instanceShape &lt;http://example.com/shape/oslc-change-request&gt; .</pre>
+				</div>
+				<figcaption>Listing 3. <code>http://example.com/bugs/2</code></figcaption>
+				</figure>
+			</div>
+
+			<h3 id="ex_change_req">5.3.3 Example of a Shape for Bugs</h3>
+			<div>
+				<p>
+					We can represent the constraints defined by the bug tracking
+					service using the shape resource
+					<code>http://example.com/shape/oslc-change-request</code>
+					which has the following RDF representation:
+				</p>
+				<figure>
+				<div class="source">
+					<pre>@prefix dcterms: &lt;http://purl.org/dc/terms/> .
+@prefix oslc: &lt;http://open-services.net/ns/core#> .
+@prefix oslc_cm: &lt;http://open-services.net/ns/cm#> .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+@base &lt;http://example.com/shape/> .
+
+&lt;oslc-change-request> a oslc:ResourceShape ;
+	dcterms:title "Creation shape of OSLC Change Request"^^rdf:XMLLiteral ;
+	oslc:describes oslc_cm:ChangeRequest ;
+	oslc:property
+		&lt;oslc-change-request#dcterms-title> ,
+		&lt;oslc-change-request#oslc_cm-status> .
+
+&lt;oslc-change-request#dcterms-title> a oslc:Property ;
+	oslc:propertyDefinition dcterms:title ;
+	oslc:name "title" ;
+	oslc:occurs oslc:Exactly-one .
+
+&lt;oslc-change-request#oslc_cm-status> a oslc:Property ;
+	oslc:propertyDefinition oslc_cm:status ;
+	oslc:name "status" ;
+	oslc:occurs oslc:Zero-or-one ;
+	oslc:allowedValues &lt;status-allowed-values> .</pre>
+				</div>
+				<figcaption>Listing 4. <code>http://example.com/shape/oslc-change-request</code></figcaption>
+				</figure>
+
+				<p>
+					The RDF representation contains one <a href="#ResourceShape">oslc:ResourceShape</a>
+					resource and two <a href="#Property">oslc:Property</a> resources.
+					The <a href="#ResourceShape">oslc:ResourceShape</a> resource
+					contains a short description of the shape using <a
+						href="#dcterms:title">dcterms:title</a>, gives the RDF type of the
+					resource being described using <a href="#describes">oslc:describes</a>,
+					and lists the two properties contained in the resource being
+					described using <a href="#property">oslc:property</a>.
+				</p>
+
+				<p>
+					The contained properties, <a href="#dcterms:title">dcterms:title</a>
+					and oslc_cm:status are described in <a href="#Property">oslc:Property</a>
+					resources. Each <a href="#Property">oslc:Property</a> resource
+					specifies the URI of the RDF property it is defining using <a
+						href="#propertyDefinition">oslc:propertyDefinition</a>, and the
+					occurrence of that property using <a href="#occurs">oslc:occurs</a>.
+					The occurrence of each property is specified using the terms <a
+						href="#Exactly-one">oslc:Exactly-one</a> and <a
+						href="#Zero-or-one">oslc:Zero-or-one</a> which indicate that the
+					properties are both single-valued. <a href="#dcterms:title">dcterms:title</a>
+					is required and oslc_cm:status is optional.
+				</p>
+
+				<p>In this example, only the occurrence and allowed values
+					constraints are used. The Shapes specification provides for
+					properties to be constrained by value type, range, and several
+					other aspects.</p>
+			</div>
+
+			<h3 id="ex_status_vals">5.3.4 Example of Allowed Values for
+				Status</h3>
+			<div>
+				<p>
+					The definition of oslc_cm:status refers to
+					<code>http://example.com/shape/status-allowed-values</code>
+					using <a href="#allowedValues">oslc:allowedValues</a>. That
+					resource has the rdf:type <a href="#AllowedValues">oslc:AllowedValues</a>.
+					It specifies the allowed values of the oslc_cm:status property. It
+					has the following RDF representation:
+				</p>
+
+				<figure>
+				<div class="source">
+					<pre>@prefix oslc: &lt;http://open-services.net/ns/core#> .
+
+&lt;http://example.com/shape/status-allowed-values> a oslc:AllowedValues ;
+	oslc:allowedValue "Done" , "InProgress" , "Submitted" .
+	</pre>
+				</div>
+				<figcaption>Listing 5. <code>http://example.com/shape/status-allowed-values</code></figcaption>
+				</figure>
+			</div>
+		</div>
+	</div>
+
+	<h1 id="vocabulary">6. Vocabulary</h1>
+	<div>
+		<p>The Shapes vocabulary consists of the following terms defined
+			by the oslc: vocabulary:</p>
+
+		<dl class="vocabulary">
+			<dt>Classes</dt>
+			<dd>
+				<a href="#AllowedValues">AllowedValues</a> | <a href="#Property">Property</a>
+				| <a href="#ResourceShape">ResourceShape</a>
+			</dd>
+
+
+			<dt>Properties</dt>
+			<dd>
+				<a href="#allowedValue">allowedValue</a> | <a href="#allowedValues">allowedValues</a>
+				| <a href="#defaultValue">defaultValue</a> | <a href="#describes">describes</a>
+				| <a href="#hidden">hidden</a> | <a href="#instanceShape">instanceShape</a>
+				| <a href="#isMemberProperty">isMemberProperty</a> | <a href="#name">name</a>
+				| <a href="#maxSize">maxSize</a> | <a href="#occurs">occurs</a> | <a
+					href="#property">property</a> | <a href="#propertyDefinition">propertyDefinition</a>
+				| <a href="#readOnly">readOnly</a> | <a href="#representation">representation</a>
+				| <a href="#resourceShape">resourceShape</a> | <a href="#valueShape">valueShape</a>
+				| <a href="#valueType">valueType</a>
+			</dd>
+
+			<dt>Individuals</dt>
+			<dd>
+				<a href="#Any">Any</a> | <a href="#AnyResource">AnyResource</a> | <a
+					href="#Either">Either</a> | <a href="#Exactly-one">Exactly-one</a>
+				| <a href="#Inline">Inline</a> | <a href="#LocalResource">LocalResource</a>
+				| <a href="#One-or-many">One-or-many</a> | <a href="#Reference">Reference</a>
+				| <a href="#Resource">Resource</a> | <a href="#Zero-or-many">Zero-or-many</a>
+				| <a href="#Zero-or-one">Zero-or-one</a>
+			</dd>
+		</dl>
+
+		<p>
+			In addition, shape resources use the following terms from Dublin Core
+			[<a href="#DublinCore">Dublin Core</a>]: <a
+				href="#dcterms:description">dcterms:description</a> and <a
+				href="#dcterms:title">dcterms:title</a>.
+		</p>
+
+		<h2 id="terminology">6.1 Terminology</h2>
+		<div>
+			<p>This specification uses the following terminology:</p>
+			<dl>
+				<dt>applicability</dt>
+				<dd>
+					Given a set of shapes that are associated with a described resource
+					in a given context, only those shapes that match the type of the
+					described resource are applicable to it. Refer to the description
+					of the property <a href="#describes">oslc:describes</a> for the
+					type matching rules.
+				</dd>
+
+				<dt>association</dt>
+				<dd>
+					This specification defines two contexts in which a shape may become
+					associated with a described resource. The described resource itself
+					may link to a shape using the property <a href="#instanceShape">oslc:instanceShape</a>,
+					or the described resource may be the request to or response from a
+					REST service whose service description links to a shape using the
+					property <a href="#resourceShape">oslc:resourceShape</a>. More than
+					one shape may become associated with a described resource in a
+					given context. Not all the associated shapes are necessarily
+					applicable. Refer to the definition of applicability above.
+				</dd>
+
+				<dt>datatype property</dt>
+				<dd>A datatype property is a defined property that takes
+					literal values.</dd>
+
+				<dt>defined property</dt>
+				<dd>
+					A defined property is a property, such as dcterm:description or
+					oslc_cm:status, of a described resource that is defined by some
+					shape applicable to the described resource in a given context. A
+					shape is linked to its defined properties using the property <a
+						href="#property">oslc:property</a>. A described resource type
+					might have a given defined property in some contexts but not in
+					others. For example, the body of a POST request might have fewer
+					defined properties than the created resource.
+				</dd>
+
+				<dt>described resource</dt>
+				<dd>A described resource is the resource whose RDF graph is
+					being described by a shape.</dd>
+
+				<dt>document</dt>
+				<dd>A representation of a resource. For example, an RDF
+					document may represent a resource.</dd>
+
+				<dt>graph</dt>
+				<dd>An RDF document may be regarded as a directed, labelled
+					multigraph, or, simply, a graph, in which each triple of the
+					document corresponds to an arc of the graph. The source of the arc
+					is the subject its triple The target of the arc is the object of
+					its triple. The label of the arc is the predicate of its triple.</dd>
+
+				<dt>object property</dt>
+				<dd>An object property is a defined property that links to a
+					resource, referred to as the object resource.</dd>
+
+				<dt>object resource</dt>
+				<dd>The object resource is the resource that is linked to by an
+					object property.</dd>
+
+				<dt>shape</dt>
+				<dd>
+					A resource of type <a href="#ResourceShape">oslc:ResourceShape</a>
+					that describes the contents of and constraints on some set of
+					described resources.
+				</dd>
+			</dl>
+		</div>
+
+		<h2 id="property-tables">6.2 Property Tables</h2>
+		<div>
+			<p>
+				Property tables are used below to describe the resources defined by
+				the Shapes specification, namely <a href="#ResourceShape">oslc:ResourceShape</a>,
+				<a href="#Property">oslc:Property</a>, and <a href="#AllowedValues">oslc:AllowedValues</a>.
+				A property table is a tabular depiction of a subset of the
+				information that can be specified using shapes. Each table describes
+				one type of resource. Each row describes one property of the
+				resource. Each column describes some aspect of the properties. The
+				columns have the following meanings:
+			</p>
+			<dl>
+				<dt>Property</dt>
+				<dd>
+					The compact IRI [<a href="#IRI">IRI</a>] of the defined property
+					being described in the current row of the table. This corresponds
+					to the <a href="#propertyDefinition">oslc:propertyDefinition</a>
+					property.
+				</dd>
+
+				<dt>Occurs</dt>
+				<dd>
+					The number of times the defined property may occur. This
+					corresponds to the <a href="#occurs">oslc:occurs</a> property. This
+					property may have one of the values <q>1</q>, <q>1 or many</q>, <q>0
+						or many</q>, or <q>0 or 1</q>. These values correspond to <a
+						href="#Exactly-one">oslc:Exactly-one</a>, <a href="#One-or-many">oslc:One-or-many</a>,
+					<a href="#Zero-or-many">oslc:Zero-or-many</a>, and <a
+						href="#Zero-or-one">oslc:Zero-or-one</a>.
+				</dd>
+
+				<dt>Type</dt>
+				<dd>
+					The type of the values of the defined property. This corresponds to
+					the <a href="#valueType">oslc:valueType</a> property. A defined
+					property that takes literal values is called a <em>datatype
+						property</em>. A defined property that links to another resource is
+					called an <em>object property</em>. The resource linked to is
+					called the <em>object resource</em>. For datatype properties, this
+					property gives the datatype URI of the literal values. For object
+					properties, this property specifies whether the object resource has
+					a URI (Resource), is a blank node (LocalResource), or is any
+					resource (AnyResource). These values correspond to <a
+						href="#Resource">oslc:Resource</a>, <a href="#LocalResource">oslc:LocalResource</a>,
+					and <a href="#AnyResource">oslc:AnyResource</a>.
+				</dd>
+
+				<dt>Representation</dt>
+				<dd>
+					For object properties, the location of the representation of the
+					object resource. This corresponds to the <a href="#representation">oslc:representation</a>
+					property. The representation of the object resource may be
+					contained in the same document as the described resource (Inline),
+					or it may be contained in a remote document (Reference), or it may
+					be either (Either). These values correspond to <a href="#Inline">oslc:Inline</a>,
+					<a href="#Reference">oslc:Reference</a>, and <a href="#Either">oslc:Either</a>.
+				</dd>
+
+				<dt>Range</dt>
+				<dd>
+					For object properties, the allowed rdf:type(s) of the object
+					resources. This corresponds to the <a href="#range">oslc:range</a>
+					property. This value may be Any if any type is allowed. The value
+					Any corresponds to <a href="#Any">oslc:Any</a>.
+				</dd>
+
+				<dt>Summary</dt>
+				<dd>
+					The summary of the defined property. This corresponds to the <a
+						href="#dcterms:title">dcterms:title</a> property.
+				</dd>
+			</dl>
+		</div>
+
+		<h2 id="instanceShape">6.3 oslc:instanceShape Property</h2>
+		<div>
+			<p>The oslc:instanceShape property is used to link any described
+				resource with a shape resource that describes its contents.</p>
+		</div>
+
+		<h2 id="resourceShape">6.4 oslc:resourceShape Property</h2>
+		<div>
+			<p>
+				The oslc:resourceShape property is used to link an application
+				service description with a shape resource that describes some aspect
+				of the service's API contract. A service description <span
+					class="rfc2119">MAY</span> be linked with zero or more shapes.
+			</p>
+
+			<p>
+				For example, in OSLC a resource that accepts POST requests to create
+				new resources is referred to as a <em>creation factory</em>. The
+				service description for a creation factory may link to one or more
+				shape resources that describe the bodies of POST requests.
+			</p>
+		</div>
+
+		<h2 id="dcterms:description">6.5 dcterms:description Property</h2>
+		<div>
+			<p>
+				dcterms:description is used to provide a description of <a
+					href="#Property">oslc:Property</a> resources. Its value <span
+					class="rfc2119">SHOULD</span> be a literal of type rdf:XMLLiteral
+				that is valid content for an XHTML
+				<code>&lt;div&gt;</code>
+				element. If the value contains no XML markup then it <span
+					class="rfc2119">MAY</span> be represented as a plain text literal
+				or xsd:string.
+			</p>
+		</div>
+
+		<h2 id="dcterms:title">6.6 dcterms:title Property</h2>
+		<div>
+			<p>
+				dcterms:title is used to provide a summary of <a
+					href="#ResourceShape">oslc:ResourceShape</a> and <a
+					href="#Property">oslc:Property</a> resources. Its value <span
+					class="rfc2119">SHOULD</span> be a literal of type rdf:XMLLiteral
+				that is valid content for an XHTML
+				<code>&lt;span&gt;</code>
+				element. If the value contains no XML markup then it <span
+					class="rfc2119">MAY</span> be represented as a plain text literal
+				or xsd:string.
+			</p>
+		</div>
+
+		<h2 id="ResourceShape">6.7 oslc:ResourceShape Class</h2>
+		<div>
+			<p>
+				oslc:ResourceShape is the rdf:type of shape resources. A shape
+				resource describes the contents of and constraints on some set of
+				described resources. The set of described resources described by a
+				shape may be defined directly via an <a href="#instanceShape">oslc:instanceShape</a>
+				link, indirectly via an <a href="#resourceShape">oslc:resourceShape</a>
+				link, or by some other mechanism. The following table summarizes the
+				properties of shape resources:
+			</p>
+
+			<table class="shape">
+				<caption>Table 1: oslc:ResourceShape Properties</caption>
+				<tr>
+					<th>Property</th>
+					<th>Occurs</th>
+					<th>Type</th>
+					<th>Rep.</th>
+					<th>Range</th>
+					<th>Summary</th>
+				</tr>
+				<tr>
+					<td><a href="#dcterms:title">dcterms:title</a></td>
+					<td>0 or 1</td>
+					<td>XMLLiteral</td>
+					<td>n/a</td>
+					<td>n/a</td>
+					<td>The summary of this shape.</td>
+				</tr>
+				<tr>
+					<td><a href="#describes">oslc:describes</a></td>
+					<td>0 or many</td>
+					<td>Resource</td>
+					<td>Reference</td>
+					<td>n/a</td>
+					<td>The described resource types that this shape applies to.</td>
+				</tr>
+				<tr>
+					<td><a href="#property">oslc:property</a></td>
+					<td>0 or many</td>
+					<td>Resource</td>
+					<td>Inline</td>
+					<td><a href="#Property">oslc:Property</a></td>
+					<td>The defined properties that are expected to be contained
+						in the described resources associated with this shape.</td>
+				</tr>
+			</table>
+		</div>
+
+		<h2 id="describes">6.8 oslc:describes Property</h2>
+		<div>
+			<p>
+				oslc:describes is used to list the types of the described resources
+				associated with this shape. Suppose that shape S is associated with
+				described resource R, e.g. via an <a href="#resourceShape">oslc:resourceShape</a>
+				or <a href="#instanceShape">oslc:instanceShape</a> link. If shape S
+				describes type T and described resource R has type T then S
+				describes the contents of and constraints on R.
+			</p>
+
+			<p>
+				For example, a creation factory may be able to create many different
+				types of resources. The description of a given type of resource is
+				specified by the associated shape resources that contain an <a
+					href="#describes">oslc:describes</a> link to that type.
+			</p>
+		</div>
+
+		<h2 id="property">6.9 oslc:property Property</h2>
+		<div>
+			<p>
+				oslc:property is used to list the defined properties that are
+				expected to be contained in described resources associated with this
+				shape. The object of this property <span class="rfc2119">MUST</span>
+				be an <a href="#Property">oslc:Property</a> resource whose
+				representation is contained in the shape document.
+			</p>
+
+			<p>
+				If a described resource contains a property described by some <a
+					href="#Property">oslc:Property</a> resource, then a REST service is
+				expected to process that property in some useful way as defined by
+				the service's API contract. If there is no matching <a
+					href="#Property">oslc:Property</a> resource then the behavior of
+				the service is undefined.
+			</p>
+		</div>
+
+		<h2 id="Property">6.10 oslc:Property Class</h2>
+		<div>
+			<p>An oslc:Property resource describes a defined property. It
+				specifies the name, description, summary, occurrence, value type,
+				allowed values, and several other aspects of the defined property.</p>
+
+			<p>
+				A service <span class="rfc2119">MUST</span> honor all the
+				constraints specified by the applicable shapes. For example, any GET
+				response must satisfy all the constraints expressed in the
+				applicable shapes. However, a service <span class="rfc2119">MAY</span>
+				impose additional constraints. For example, some constraints may not
+				be expressible using the shape vocabulary, in which case POST or PUT
+				requests may still fail even though all the constraints expressed in
+				the applicable shapes are satisfied.
+			</p>
+
+			<table class="shape">
+				<caption>Table 2: oslc:Property Properties</caption>
+				<tr>
+					<th>Property</th>
+					<th>Occurs</th>
+					<th>Type</th>
+					<th>Rep.</th>
+					<th>Range</th>
+					<th>Summary</th>
+				</tr>
+				<tr>
+					<td><a href="#dcterms:description">dcterms:description</a></td>
+					<td>0 or 1</td>
+					<td>XMLLiteral</td>
+					<td>n/a</td>
+					<td>n/a</td>
+					<td>The description of the defined property.</td>
+				</tr>
+
+				<tr>
+					<td><a href="#dcterms:title">dcterms:title</a></td>
+					<td>0 or 1</td>
+					<td>XMLLiteral</td>
+					<td>n/a</td>
+					<td>n/a</td>
+					<td>The summary of the defined property.</td>
+				</tr>
+
+				<tr>
+					<td><a href="#allowedValue">oslc:allowedValue</a></td>
+					<td>0 or many</td>
+					<td>specifed by <a href="#valueType">oslc:valueType</a></td>
+					<td>n/a</td>
+					<td>n/a</td>
+					<td>An allowed value of the defined property.</td>
+				</tr>
+
+				<tr>
+					<td><a href="#allowedValues">oslc:allowedValues</a></td>
+					<td>0 or 1</td>
+					<td>Resource</td>
+					<td>Reference</td>
+					<td><a href="#AllowedValues">oslc:AllowedValues</a></td>
+					<td>The resource containing a set of allowed values of the
+						defined property.</td>
+				</tr>
+
+				<tr>
+					<td><a href="#defaultValue">oslc:defaultValue</a></td>
+					<td>0 or 1</td>
+					<td>specified by <a href="#valueType">oslc:valueType</a></td>
+					<td>n/a</td>
+					<td>n/a</td>
+					<td>The default value of the defined property.</td>
+				</tr>
+
+				<tr>
+					<td><a href="#hidden">oslc:hidden</a></td>
+					<td>0 or 1</td>
+					<td>Boolean</td>
+					<td>n/a</td>
+					<td>n/a</td>
+					<td>A hint that the defined property is not normally displayed
+						by a user interface.</td>
+				</tr>
+
+				<tr>
+					<td><a href="#isMemberProperty">oslc:isMemberProperty</a></td>
+					<td>0 or 1</td>
+					<td>Boolean</td>
+					<td>n/a</td>
+					<td>n/a</td>
+					<td>If true then the described resource is a container and the
+						defined property is used for container membership.</td>
+				</tr>
+
+				<tr>
+					<td><a href="#name">oslc:name</a></td>
+					<td>1</td>
+					<td>String</td>
+					<td>n/a</td>
+					<td>n/a</td>
+					<td>The local name of the defined property.</td>
+				</tr>
+				<tr>
+					<td><a href="#maxSize">oslc:maxSize</a></td>
+					<td>0 or 1</td>
+					<td>Integer</td>
+					<td>n/a</td>
+					<td>n/a</td>
+					<td>For string datatype properties, the maximum number of
+						characters.</td>
+				</tr>
+
+				<tr>
+					<td><a href="#occurs">oslc:occurs</a></td>
+					<td>1</td>
+					<td>Resource</td>
+					<td>Reference</td>
+					<td>n/a</td>
+					<td>The number of times the defined property may occur.</td>
+				</tr>
+
+				<tr>
+					<td><a href="#propertyDefinition">oslc:propertyDefinition</a></td>
+					<td>1</td>
+					<td>Resource</td>
+					<td>Reference</td>
+					<td>n/a</td>
+					<td>The URI of the defined property.</td>
+				</tr>
+				<tr>
+					<td><a href="#range">oslc:range</a></td>
+					<td>0 or many</td>
+					<td>Resource</td>
+					<td>Reference</td>
+					<td>n/a</td>
+					<td>For object properties, an allowed object resource type.</td>
+				</tr>
+
+				<tr>
+					<td><a href="#readOnly">oslc:readOnly</a></td>
+					<td>0 or 1</td>
+					<td>Boolean</td>
+					<td>n/a</td>
+					<td>n/a</td>
+					<td>If true then the defined property cannot be directly
+						writen by clients.</td>
+				</tr>
+
+				<tr>
+					<td><a href="#representation">oslc:representation</a></td>
+					<td>0 or 1</td>
+					<td>Resource</td>
+					<td>Reference</td>
+					<td>n/a</td>
+					<td>For object properties, how the object resource is
+						represented in the representation of the described resource.</td>
+				</tr>
+
+				<tr>
+					<td><a href="#valueShape">oslc:valueShape</a></td>
+					<td>0 or many</td>
+					<td>Resource</td>
+					<td>Reference</td>
+					<td><a href="#ResourceShape">oslc:ResourceShape</a></td>
+					<td>For object properties, the URI of a shape resource that
+						describes the object resource.</td>
+				</tr>
+
+				<tr>
+					<td><a href="#valueType">oslc:valueType</a></td>
+					<td>0 or 1</td>
+					<td>Resource</td>
+					<td>Reference</td>
+					<td>n/a</td>
+					<td>The type of values of the defined property.</td>
+				</tr>
+			</table>
+		</div>
+
+		<h2 id="allowedValue">6.11 oslc:allowedValue Property</h2>
+		<div>
+			<p>
+				oslc:allowedValue is used to specify an allowed value of the defined
+				property. The object of this property <span class="rfc2119">SHOULD</span>
+				be compatible with the type specified by the <a href="#valueType">oslc:valueType</a>
+				property if present. An <a href="#Property">oslc:Property</a>
+				resource <span class="rfc2119">MAY</span> contain one or more
+				oslc:allowedValue properties and an optional <a
+					href="#allowedValues">oslc:allowedValues</a> property which links
+				to an <a href="#AllowedValues">oslc:AllowedValues</a> resource. The
+				complete set of allowed values is the union of all the values
+				specified directly in the <a href="#Property">oslc:Property</a>
+				resource and the linked <a href="#AllowedValues">oslc:AllowedValues</a>
+				resource.
+			</p>
+		</div>
+
+		<h2 id="allowedValues">6.12 oslc:allowedValues Property</h2>
+		<div>
+			<p>
+				oslc:allowedValues specifies a link to an <a href="#AllowedValues">oslc:AllowedValues</a>
+				resource which defines a set of allowed values for the defined
+				property. See <a href="#allowedValue">oslc:allowedValue</a> for a
+				description of how the complete set of allowed values is defined.
+			</p>
+		</div>
+
+		<h2 id="defaultValue">6.13 oslc:defaultValue Property</h2>
+		<div>
+			<p>
+				oslc:defaultValue specifies the default value for the defined
+				property. The object of this property <span class="rfc2119">SHOULD</span>
+				be compatible with the type specified by the <a href="#valueType">oslc:valueType</a>
+				property if present.
+			</p>
+			<p>
+				A default value is normally used when creating resources. A service
+				<span class="rfc2119">SHOULD</span> use the default value to provide
+				a value for a property if none is provided in the creation request.
+			</p>
+			<p>
+				A default value <span class="rfc2119">MAY</span> be used by
+				consumers of a described resource if the defined property is not
+				present in the representation of the described resource. This
+				mechanism is useful if a service introduces a new defined property
+				but does not update all pre-existing described resources.
+			</p>
+		</div>
+
+		<h2 id="hidden">6.14 oslc:hidden Property</h2>
+		<div>
+			<p>
+				If present and true, oslc:hidden is used to indicate that the
+				defined property is not normally presented to users. A consumer of
+				the described resource <span class="rfc2119">SHOULD NOT</span>
+				display hidden defined properties to normal users. It <span
+					class="rfc2119">MAY</span> display hidden defined properties to
+				administrative users.
+			</p>
+		</div>
+
+		<h2 id="isMemberProperty">6.15 oslc:isMemberProperty Property</h2>
+		<div>
+			<p>If the oslc:isMemberProperty is present and true then the
+				defined property is a container membership property similar to
+				rdfs:member. The described resource is the container and the object
+				resources are its members.</p>
+			<p>For example, OSLC Query Capabilities are query services that
+				behave like containers for other resources. A defined property for
+				which oslc:isMemberProperty is true links the container to its
+				member resources.</p>
+			<p>
+				The recent Linked Data Platform specification [<a href="#LDP">LDP</a>]
+				elaborates the concept of resource container. It is therefore
+				desirable to evolve the Shapes specification to align with the LDP
+				concept of container membership. This topic is discussed below in <a
+					href="#ldp-containers">Linked Data Platform Containers</a>.
+			</p>
+		</div>
+
+		<h2 id="name">6.16 oslc:name Property</h2>
+		<div>
+			<p>
+				oslc:name is used to specify the local name of the defined property.
+				This is normally the portion of the defined property URI (see <a
+					href="#propertyDefinition">oslc:propertyDefinition</a>) that
+				follows the last hash (#) or slash (/).
+			</p>
+		</div>
+
+		<h2 id="maxSize">6.17 oslc:maxSize Property</h2>
+		<div>
+			<p>For datatype properties whose type is xsd:string, oslc:maxSize
+				specifies the maximum number of characters in the defined property
+				value. The absence of oslc:maxSize indicates that either there is no
+				maximum size or that the maximum size is specified some other way.</p>
+		</div>
+
+		<h2 id="occurs">6.18 oslc:occurs Property</h2>
+		<div>
+			<p>
+				oslc:occurs is used to specify the number of times that the defined
+				property may occur. The value of this property <span class="rfc2119">MUST</span>
+				be one of the following individuals:
+			</p>
+
+			<dl>
+				<dt id="Exactly-one">oslc:Exactly-one</dt>
+				<dd>
+					The defined property <span class="rfc2119">MUST</span> occur
+					exactly once. It is required and single-valued.
+				</dd>
+				<dt id="One-or-many">oslc:One-or-many</dt>
+				<dd>
+					The defined property <span class="rfc2119">MUST</span> occur at
+					least once. It is required and multi-valued.
+				</dd>
+				<dt id="Zero-or-many">oslc:Zero-or-many</dt>
+				<dd>
+					The defined property <span class="rfc2119">MAY</span> occur any
+					number of times. It is optional and multi-valued.
+				</dd>
+				<dt id="Zero-or-one">oslc:Zero-or-one</dt>
+				<dd>
+					The defined property <span class="rfc2119">MUST</span> occur no
+					more than once. It is optional and single-valued.
+				</dd>
+			</dl>
+		</div>
+
+		<h2 id="propertyDefinition">6.19 oslc:propertyDefinition Property</h2>
+		<div>
+			<p>oslc:propertyDefinition is used to specify the URI of the the
+				defined property.</p>
+		</div>
+
+		<h2 id="range">6.20 oslc:range Property</h2>
+		<div>
+			<p>
+				oslc:range <span class="rfc2119">MUST NOT</span> be used with
+				datatype properties. It <span class="rfc2119">MAY</span> be used
+				with object properties. For object properties, oslc:range is used to
+				specify an allowed rdf:type of the object resource. The value of
+				this property <span class="rfc2119">MAY</span> be any rdf:type URI
+				or the following individual:
+			</p>
+			<dl>
+				<dt id="Any">oslc:Any</dt>
+				<dd>This value specifies that there is no constraint on the
+					type of the object resource.</dd>
+			</dl>
+		</div>
+
+		<h2 id="readOnly">6.21 oslc:readOnly Property</h2>
+		<div>
+			<p>
+				If present and true, oslc:readOnly is used to specify that the value
+				of defined property is managed by the service, i.e. that it is
+				read-only. It cannot be directly modified by consumers of the
+				service. Services <span class="rfc2119">SHOULD</span> ignore
+				attempts to modify read-only properties, but <span class="rfc2119">MAY</span>
+				fail such requests. If a service ignores an attempt to modify a
+				read-only property then it <span class="rfc2119">SHOULD NOT</span>
+				do so silently. A service <span class="rfc2119">MAY</span> use the
+				HTTP Warning header or some other means to indicate that the attempt
+				to modify a read-only property has been ignored.
+			</p>
+			<p>
+				In this context, modification means a change in any object of the
+				triples associated with the defined property. For example, a GET
+				request followed by a PUT request would not modify the triples. A
+				service <span class="rfc2119">MUST NOT</span> interpret a PUT
+				request that does not modify the triples associated with the defined
+				property as a violation of the oslc:readOnly constraint.
+			</p>
+			<p>Examples of read-only properties include creation and
+				modification timestamps, the identity of who created or modified the
+				described resource, and properties computed from the values of other
+				properties.</p>
+			<p>When modifying a resource, it is natural for a consumer to
+				first retrieve its current representation using a GET request. This
+				request will return read-only properties along with read-write
+				properties. If a service fails PUT requests that contain read-only
+				properties then consumers will have to remove all read-only
+				properties before submitting PUT requests. The behavior of ignoring
+				read-only properties in PUT requests is therefore more convenient
+				for consumers. Similarly, when copying a resource, a consumer would
+				GET it first. It is therefore more convenient for consumers if the
+				service ignores read-only properties also in POST requests.</p>
+		</div>
+
+		<h2 id="representation">6.22 oslc:representation Property</h2>
+		<div>
+			<p>
+				For object properties, oslc:representation is used to specify how
+				the object resource is represented. The value of oslc:representation
+				<span class="rfc2119">MUST</span> be one of the following
+				individuals:
+			</p>
+			<dl>
+				<dt id="Either">oslc:Either</dt>
+				<dd>There is no constraint on the representation of the object
+					resource.</dd>
+				<dt id="Inline">oslc:Inline</dt>
+				<dd>
+					The representation of the object resource <span class="rfc2119">MUST</span>
+					be present in the representation of the described resource.
+				</dd>
+				<dt id="Reference">oslc:Reference</dt>
+				<dd>
+					The representaton of the object resource <span class="rfc2119">MUST
+						NOT</span> be present in the representation of the described resource.
+				</dd>
+			</dl>
+		</div>
+
+		<h2 id="valueShape">6.23 oslc:valueShape Property</h2>
+		<div>
+			<p>For object properties, oslc:valueShape is used to specify a
+				link to resource shape that describes the object resource.</p>
+		</div>
+
+		<h2 id="valueType">6.24 oslc:valueType Property</h2>
+		<div>
+			<h3 id="literal-value-types">6.23.1 Literal Value Types</h3>
+			<div>
+				<p>
+					For datatype properties, oslc:valueType specifies the literal value
+					type. It <span class="rfc2119">MUST</span> be one of the following
+					individuals:
+				</p>
+
+				<dl>
+					<dt>rdf:XMLLiteral</dt>
+					<dd>An XML fragment.</dd>
+					<dt>xsd:boolean</dt>
+					<dd>A boolean.</dd>
+					<dt>xsd:dateTime</dt>
+					<dd>A date-time.</dd>
+					<dt>xsd:decimal</dt>
+					<dd>A decimal number.</dd>
+					<dt>xsd:double</dt>
+					<dd>A double precision floating point number.</dd>
+					<dt>xsd:float</dt>
+					<dd>A single precision floating point number.</dd>
+					<dt>xsd:integer</dt>
+					<dd>An integer.</dd>
+					<dt>xsd:string</dt>
+					<dd>A string.</dd>
+				</dl>
+			</div>
+
+			<h3 id="resource-value-types">6.24.1 Resource Value Types</h3>
+			<div>
+				<p>
+					For object properties, oslc:valueType specifies how the object
+					resource is identified. It <span class="rfc2119">MUST</span> be one
+					of the following individuals:
+				</p>
+				<dl>
+					<dt id="AnyResource">oslc:AnyResource</dt>
+					<dd>
+						The object resource <span class="rfc2119">MUST</span> be
+						identified with either a URI or a blank node.
+					</dd>
+					<dt id="LocalResource">oslc:LocalResource</dt>
+					<dd>
+						The object resource <span class="rfc2119">MUST</span> be
+						identified with a blank node. The term <q>local resource</q> is
+						used because the scope of identifier is local to the
+						representation.
+					</dd>
+					<dt id="Resource">oslc:Resource</dt>
+					<dd>
+						The object resource <span class="rfc2119">MUST</span> be
+						identified with a URI.
+					</dd>
+				</dl>
+			</div>
+		</div>
+
+		<h2 id="AllowedValues">6.25 oslc:AllowedValues Class</h2>
+		<div>
+			<p>An oslc:AllowedValues resource defines a set of allowed values
+				for a defined property. This type of resource is useful when defined
+				properties take values in large sets of standard values that are
+				used in multiple types of resources. For example, a list of standard
+				country codes could be stored in an oslc:AllowedValues resource.</p>
+
+			<table class="shape">
+				<caption>Table 3: oslc:AllowedValues Properties</caption>
+				<tr>
+					<th>Property</th>
+					<th>Occurs</th>
+					<th>Type</th>
+					<th>Rep.</th>
+					<th>Range</th>
+					<th>Summary</th>
+				</tr>
+				<tr>
+					<td><a href="#allowedValue">oslc:allowedValue</a></td>
+					<td>1 or many</td>
+					<td>specified by <a href="#valueType">oslc:valueType</a></td>
+					<td>n/a</td>
+					<td>n/a</td>
+					<td>An allowed value of a defined property.</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<h1 id="recommended-extensions">7. Recommended Extensions</h1>
+	<div>
+		<p>This section describes some recommended extensions that have
+			been identified through experience gained with using the Shapes
+			specification in practice.</p>
+
+		<h2 id="ext-vocabulary">7.1 ext: Extensions Vocabulary</h2>
+		<div>
+			<p>In the following sections the prefix ext: denotes the
+				vocabulary URI for extensions. An actual vocabulary URI has not been
+				assigned yet since it is anticipated that the future development of
+				this specification will take place at W3C.</p>
+		</div>
+
+		<p>The implicit assumption that the described resource appears as
+			a subject node works well when the described resource is implemented
+			using common programming technologies. Most programming languages
+			have the concept of a structure, record, or class which naturally
+			maps to a resource. The fields of the structure, record, or class
+			naturally map to property-value pairs which become triples in RDF.
+			However, this assumption fails to capture the full generality of RDF
+			in two important cases: inverse properties and disconnected graphs.
+			The following section describes the inverse property case. The
+			section after that describes the disconnected graph case.</p>
+
+		<h2 id="inverse-properties">7.2 Inverse Properties</h2>
+		<div>
+
+			<p>In some cases the best RDF representation of a property-value
+				pair may reuse a pre-existing property in which the described
+				resource is the object and the property value is the subject. The
+				reuse of properties is a best practice for enabling data
+				interoperability. The fact that a pre-existing property might have
+				the opposite direction should not be used as a justification for the
+				creation of a new inverse property. In fact, the existence of both
+				inverse and direct properties makes writing efficient queries more
+				difficult since both the inverse and the direct property must be
+				included in the query.</p>
+
+			<p>For example, suppose we are describing test cases and want to
+				express the relations between test cases and the requirements that
+				they validate. Further suppose that there is a pre-existing
+				vocabulary for requirements that defines the property
+				ex:isValidatedBy which asserts that the subject is validated by the
+				object. In this case there is no need to define the inverse property
+				ex:validates. Instead the representation of test case resources
+				should use ex:isValidatedBy with the test case as the object and the
+				requirement as the subject. This situation cannot be described by
+				the current Shapes specification.</p>
+
+			<h3 id="isInverseProperty">7.2.1 ext:isInverseProperty Property</h3>
+			<div>
+				<p>
+					A simple fix for this limitation is to introduce a new optional,
+					single-valued, boolean datatype property on <a href="#Property">oslc:Property</a>
+					resources, e.g. ext:isInverseProperty. If present and true then the
+					defined property is used in the opposite direction, i.e. the
+					described resource is the object and the object resource is the
+					subject.
+				</p>
+			</div>
+		</div>
+
+		<h2 id="disconnected-graphs">7.3 Disconnected Graphs</h2>
+		<div>
+			<p>
+				There is no requirement for a resource to be present as either the
+				subject or object of any triple in its RDF representation. In
+				practice the resource will appear as the subject in triples that
+				describe the metadata of the resource, e.g. using terms from the
+				Dublin Core [<a href="#DublinCore">DublinCore</a>] vocabulary.
+				However, the resource may include other triples that are unrelated
+				to the resource.
+			</p>
+			<p>For example, consider birth certificates. A birth certificate
+				is an information resource that contains statements about real-world
+				objects, namely people. Consider a birth certificate for John Doe,
+				and suppose that the URI of the birth certificate is
+				http://example.org/birthcerticate/johndoe. Further suppose that John
+				Doe is identified by the URI http://example.org/id/person/johndoe.
+				John Doe's birth certification might contain the following triples:</p>
+			<figure>
+			<div class="source">
+				<pre>&lt;http://example.org/birthcertificate&gt; dcterms:created "2013-10-31T10:42Z"^^xsd:dateTime .
+&lt;http://example.org/id/person/johndoe&gt; a foaf:Person ;
+	foaf:name "John Doe" ,
+	foaf:birthday "10-29" .</pre>
+			</div>
+			<figcaption>Listing 6. A disconnected graph.</figcaption> </figure>
+			<p>The current Shapes specification is incapable of describing
+				the birth certificate resource since the node for the person
+				http://example.org/id/person/johndoe is disconnected from the node
+				for birth certificate http://example.org/birthcertificate/johndoe.
+				To work around this limitation, a resource designer is forced to
+				introduce another triple as follows:</p>
+
+			<figure>
+			<div class="source">
+				<pre>&lt;http://example.org/birthcertificate&gt; dcterms:created "2013-10-31T10:42Z"^^xsd:dateTime ;
+	foaf:primaryTopic &lt;http://example.org/id/person/johndoe&gt; .
+&lt;http://example.org/id/person/johndoe&gt; a foaf:Person ;
+	foaf:name "John Doe" ,
+	foaf:birthday "10-29" .</pre>
+			</div>
+			<figcaption>Listing 7. A connected graph.</figcaption></figure>
+
+			<p>Adding another triple to connect the graph works in this
+				simple example, and, arguably, might be a better design. However,
+				this approach may not scale to more complex graphs. Furthermore, the
+				shape author may not have the ability to modify the resource design.
+				It is therefore desirable to remove this limitation.</p>
+
+			<h3 id="NodeShape">7.3.1 ext:NodeShape Class</h3>
+			<div>
+				<p>One design for handling disconnected nodes is to introduce
+					new resources that describe them. Let ext:NodeShape be the rdf:type
+					of a described node within the graph. The object of an
+					oslc:valueShape property could be a resource of rdf:type either
+					oslc:ResourceShape or ext:NodeShape.</p>
+			</div>
+
+			<h3 id="nodeShape">7.3.2 ext:nodeShape Property</h3>
+			<div>
+				<p>Let ext:nodeShape define the containment relation between a
+					resource of rdf:type oslc:ResourceShape and a resource of rdf:type
+					ext:NodeShape. A resource of rdf:type ext:NodeShape would itself be
+					a shape except that it would not have ext:nodeShape properties,
+					i.e. all disconnected nodes would be described at the top level of
+					the graph.</p>
+			</div>
+		</div>
+
+		<h2 id="datatype-facets">7.4 Datatype Facets</h2>
+		<div>
+			<p>
+				The current specification only allows the use of a small number of
+				XML Schema datatypes. In practice, it is often necessary to further
+				limit the set of allowed values. The XML Schema Datatypes
+				specification [<a href="#XML-Schema-Datatypes">XML Schema
+					Datatypes</a>] defines a set of constraining facets which can be used
+				to further restrict datatypes.
+			</p>
+			<p>For example, suppose it is required to restrict the decimal
+				property ex:price to two digits of fractional precision. In XML
+				Schema, this requirement can be satified through the use of the
+				xsd:fractionDigits facet as follows:</p>
+			<figure>
+			<div class="source">
+				<pre>&lt;xsd:element name="price">
+	&lt;xsd:simpleType>
+		&lt;xsd:restriction base="xsd:decimal">
+			&lt;xsd:fractionDigits value="2" />
+		&lt;/xsd:restriction>
+	&lt;/xsd:simpleType>
+&lt;/xsd:element></pre>
+			</div>
+			<figcaption>Listing 8. XML Schema xsd:fractionDigits
+			facet.</figcaption></figure>
+
+			<p>
+				A straightforward way to extend the current Shapes specification is
+				to allow XML Schema constraining facets as properties of datatype
+				properties. The presence of a facet property would be defined as
+				being semantically equivalent to using a restriction of the base
+				datatype specified by <a href="#valueType">oslc:valueType</a>. The
+				above ex:price example would be expressed as follows:
+			</p>
+			<figure>
+			<div class="source">
+				<pre>&lt;#ex-price> a oslc:Property ;
+	oslc:propertyDefinition ex:price ;
+	oslc:name "price" ;
+	oslc:occurs oslc:Exactly-one ;
+	oslc:valueType xsd:decimal ;
+	xsd:fractionDigits 2 .</pre>
+			</div>
+			<figcaption>Listing 9. ex:price restricted using the
+			xsd:fractionDigits facet.</figcaption></figure>
+
+			<p>
+				Here is the complete list of XML Schema constraining facets as
+				defined in <cite>4.3 Constraining Facets</cite> [<a
+					href="#XML-Schema-Datatypes">XML Schema Datatypes</a>]:
+			</p>
+			<dl>
+				<dt>xsd:length</dt>
+				<dd>
+					Specifies the exact number of characters in a string value. The
+					string value <span class="rfc2119">MUST</span> contain the
+					specified exact number of characters.
+				</dd>
+				<dt>xsd:minLength</dt>
+				<dd>
+					Specifies the minimum number of characters in a string value. The
+					string value <span class="rfc2119">MUST</span> contain at least the
+					specified minimum number of characters.
+				</dd>
+				<dt>xsd:maxLength</dt>
+				<dd>
+					Specifies the maximum number of characters in a string value. The
+					string value <span class="rfc2119">MUST</span> contain at most the
+					specified maximum number of characters. Equivalent to using <a
+						href="#maxSize">oslc:maxSize</a>.
+				</dd>
+				<dt>xsd:pattern</dt>
+				<dd>
+					Specifies a regular expression for a string value. The string value
+					<span class="rfc2119">MUST</span> match the regular expression.
+					<p>
+						This facet bears further discussion. First, is XSD regular
+						expression language identical to that used in the SPARQL regex()
+						function? SPARQL uses the fn:matches() function which is defined
+						in XQuery 1.0 and XPath 2.0 [<a href="#XQuery-and-XPath">XQuery
+							and XPath</a>]. Second, the SPARQL regex() function accepts flags as
+						an optional third argument. An additional property,
+						ext:patternFlags, should be used to specify these flags.
+					</p>
+
+				</dd>
+				<dt>xsd:enumeration</dt>
+				<dd>
+					Specifies set of allowed values. The value <span class="rfc2119">MUST</span>
+					be contained in the specified set of allowed values. Not suitable
+					for Shapes since it introduces complex XSD syntax and is redundant
+					with <a href="#allowedValue">oslc:allowedValue</a>. Use <a
+						href="#allowedValue">oslc:allowedValue</a> instead.
+				</dd>
+				<dt>xsd:whiteSpace</dt>
+				<dd>Constrains how whitespace is handled in a string value. Not
+					applicable to Shapes.</dd>
+				<dt>xsd:maxInclusive</dt>
+				<dd>Specifies the inclusive maximum for a numeric value. The
+					numeric value must be less than or equal to the specified maximum
+					value.</dd>
+				<dt>xsd:maxExclusive</dt>
+				<dd>Specifies the exclusive maximum value for a numeric value.
+					The numeric value must be less than the specified maximum value.</dd>
+				<dt>xsd:minExclusive</dt>
+				<dd>Specifies the exclusive minimum value for a numeric value.
+					The numeric value must be greater than the specified minimum value.</dd>
+				<dt>xsd:minInclusive</dt>
+				<dd>Specifies the inclusive minimum value for a numeric value.
+					The numeric value must be greater than or equal to the specified
+					minimum value.</dd>
+				<dt>xsd:totalDigits</dt>
+				<dd>
+					Specifies the total number of digits in a decimal value. The
+					decimal value <span class="rfc2119">MUST</span> contain at most the
+					specified total number of digits.
+				</dd>
+				<dt>xsd:fractionDigits</dt>
+				<dd>
+					Specifies the number of digits in the fractional part of a decimal
+					value. The decimal value <span class="rfc2119">MUST</span> contain
+					at most the specified number of digits in its fractional part.
+				</dd>
+			</dl>
+		</div>
+
+		<h2 id="extending-shapes">7.5 Extending Shapes</h2>
+		<div>
+			<p>RDF specifications often support an open content model. For
+				example, a bug tracking specification may define some base
+				properties, such as severity and priority, but allow implementations
+				to add custom properties, such as security impact and estimate cost
+				to fix.</p>
+
+			<p>Now suppose an implementation of some base specification
+				provides a shape resource that describes the extended resource
+				design. With the current Shapes specification, all of the defined
+				properties of the base shape would have to be copied into the
+				extended shape. Clearly, it would simplify maintenance of shapes if
+				the extended shape could link to the base shape and only define the
+				custom properties.</p>
+
+			<h3 id="extendsShape">7.5.1 ext:extendsShape Property</h3>
+			<div>
+				<p>
+					The ext:extendsShape property links an extended shape to a base
+					shape, e.g. a base specification shape. The meaning of this link is
+					that all of the content of the base shape is effectively copied
+					into the extended shape. The explicit content of the extended shape
+					would override the copied content of the base shape. However, can
+					should be taken to avoid violating the integrity constraints of the
+					base shape. Any resource that is valid with respect to the extended
+					shape <span class="rfc2119">SHOULD</span> also be valid with
+					respect to the base shape. Validation with respect to the base
+					shape <span class="rfc2119">SHOULD</span> ignore the custom
+					properties.
+				</p>
+			</div>
+
+			<h2 id="ldp-containers">7.6 Linked Data Platform Containers</h2>
+			<div>
+				<p>
+					The recent Linked Data Platform [<a href="#LDP">LDP</a>]
+					specification defines resource containers. A resource container can
+					describe itself using several properties, including
+					ldp:membershipPredicate which identifies the property used for
+					container membership.
+
+				</p>
+				<p>The oslc:isMemberProperty property was introduced for the
+					benefit of query building tools and has little to do with RDF
+					validation. Given that the LDP specification now serves the purpose
+					of describing containers, it seems reasonable to deprecate the use
+					of oslc:isMemberProperty.</p>
+			</div>
+
+			<h2 id="sparql-semantics">7.7 SPARQL Semantics</h2>
+			<div>
+				<p>
+					This specification uses natural language to define the semantics of
+					shape resources. In many cases, the semantics could be expressed
+					using SPARQL queries [<a href="#SPARQL-1.1">SPARQL 1.1</a>]. Using
+					SPARQL would both improve the precision of the specification and
+					provide a starting point for reference implementations and test
+					suites. The use of SPARQL in this context does not imply any
+					restriction on the choice of other implementation technologies.
+				</p>
+
+				<p>Given a shape and a described resource, it is of interest to
+					determine if the described resource satisfies the constraints
+					defined by the shape. Each constraint must be checked. If any
+					fails, then the described resource does not satisify the shape.</p>
+				<p>
+					Many of the constraints can be expressed as SPARQL ASK queries.
+					These queries return a true/false result. A query that returns true
+					if the constraint is satisfied is called an <em>assertion</em>. A
+					query that returns false if a constraint is satisfied is called an
+					<em>exception</em>. Depending on the constraint it may be easier to
+					express it one way or another. In addition, if a constraint is
+					violated, then it is of interest to know how it is violated. A
+					query that explains why a query is violated is called a <em>diagnostic</em>.
+					Diagnostics can be expressed as SPARQL SELECT or SPARQL CONSTRUCT
+					queries. If all assertions return true, all exceptions return
+					false, and all diagnostics return nothing, then the described
+					resource satisifies the constraints.
+				</p>
+
+				<p>For example, suppose we create an RDF dataset for the simple
+					bug tracking described above. Each bug is stored as a named graph
+					in the dataset. Consider the occurrence constraint on the
+					oslc_cm:status property. This constraint states that the
+					oslc_cm:status property occurs at most once in each bug. The
+					following listing contains a SPARQL diagnostic query that returns
+					all bugs that violate this occurrence constraint, along with the
+					actual occurrence count:</p>
+
+				<figure>
+				<div class="source">
+					<pre>prefix oslc_cm: &lt;http://open-services.net/ns/cm#>
+
+select ?bug (count(?status) as ?status_count)
+where {
+	graph ?bug {
+		?bug a oslc_cm:ChangeRequest ;
+			oslc_cm:status ?status
+	}
+}
+group by ?bug
+having (?status_count > 1)</pre>
+				</div>
+				<figcaption>Listing 10. A diagnostic SPARQL query for an
+				<a href="#Zero-or-one">oslc:Zero-or-one</a> occurrence constraint.</figcaption> </figure>
+			</div>
+		</div>
+	</div>
+
+
+
+	<h1 id="refs">A. References</h1>
+	<div>
+
+		<h2 id="normative_refs">A.1 Normative References</h2>
+		<div>
+			<dl>
+
+				<dt id="CURIE">CURIE</dt>
+				<dd>
+					<cite><a href="http://www.w3.org/TR/curie/">CURIE Syntax
+							1.0</a></cite>, Mark Birbeck and Shane McCarron, W3C Working Group Note, 16
+					December 2010.
+				</dd>
+
+				<dt id="DublinCore">Dublin Core</dt>
+				<dd>
+					<cite><a href="http://dublincore.org/documents/dcmi-terms/">DCMI
+							Metadata Terms</a></cite>, Dublin Core Metadata Initiative.
+				</dd>
+
+				<dt id="IRI">IRI</dt>
+				<dd>
+					<cite><a href="http://tools.ietf.org/html/rfc3987">RFC
+							3987: Internationalized Resource Identifiers (IRIs)</a>, M. Duerst
+						and M. Suignard, IETF, January 2005.</cite>
+				</dd>
+
+				<dt id="LDBP">LDBP</dt>
+				<dd>
+					<cite><a href="http://www.w3.org/Submission/ldbp/">Linked
+							Data Basic Profile 1.0</a></cite>, Martin Nally, Steve Speicher, John Arwe,
+					and Arnaud Le Hors, W3C Member Submission, 26 March 2012.
+				</dd>
+
+				<dt id="LDP">LDP</dt>
+				<dd>
+					<cite><a href="http://www.w3.org/TR/ldp/">Linked Data
+							Platform 1.0</a></cite>, Steve Speicher, John Arwe, and Ashok Malhotra, W3C
+					Last Call Working Draft, 30 July 2013.
+				</dd>
+
+				<dt id="OSLC-Core-2.0">OSLC Core 2.0</dt>
+				<dd>
+					<cite><a
+						href="http://open-services.net/bin/view/Main/OslcCoreSpecification">Open
+							Services for Lifecycle Collaboration Core Specification Version
+							2.0</a></cite>, Dave Johnson and Steve Speicher, OSLC, 2010.
+				</dd>
+
+				<dt id="OSLC-Resource-Shape-2.0">OSLC Resource Shape 2.0</dt>
+				<dd>
+					<cite><a
+						href="http://open-services.net/bin/view/Main/OSLCCoreSpecAppendixA#oslc_ResourceShape_Resource">Open
+							Services for Lifecycle Collaboration Core Specification Version
+							2.0 Appendix A: Common Properties, oslc:ResourceShape Resource</a></cite>,
+					Dave Johnson, OSLC, 2010.
+				</dd>
+
+				<dt id="RFC2119">RFC 2119</dt>
+				<dd>
+					<cite> <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC
+							2119: Key words for use in RFCs to Indicate Requirement Levels </a></cite>,
+					S. Bradner, IETF, March 1997.
+				</dd>
+
+				<dt id="SPARQL-1.1">SPARQL 1.1</dt>
+				<dd>
+					<cite><a href="http://www.w3.org/TR/sparql11-query/">SPARQL
+							1.1 Query Language</a>, Steve Harris and Andy Seaborne, W3C
+						Recommendation, 21 March 2013.</cite>
+				</dd>
+
+				<dt id="TURTLE">TURTLE</dt>
+				<dd>
+					<cite> <a href="http://www.w3.org/TR/turtle/">Turtle -
+							Terse RDF Triple Language </a></cite>, David Beckett, Tim Berners-Lee, Eric
+					Prud'hommeaux, and Gavin Carothers, W3C Candidate Recommendation,
+					19 February 2013.
+				</dd>
+
+				<dt id="XML-Schema-Datatypes">XML Schema Datatypes</dt>
+				<dd>
+					<cite><a href="http://www.w3.org/TR/xmlschema-2/">XML
+							Schema Part 2: Datatypes Second Edition</a></cite>, Paul V. Biron and Ashok
+					Malhotra, W3C Recommendation, 28 October 2004.
+				</dd>
+
+				<dt id="XQuery-and-XPath">XQuery and XPath</dt>
+				<dd>
+					<cite><a href="http://www.w3.org/TR/xpath-functions/">XQuery
+							1.0 and XPath 2.0 Functions and Operators (Second Edition)</a></cite>, Ashok
+					Malhotra, Jim Melton, Norman Walsh, and Michael Kay, W3C
+					Recommendation, 14 December 2010.
+				</dd>
+			</dl>
+		</div>
+
+		<h2 id="informative_refs">A.2 Informative References</h2>
+		<div>
+			<dl>
+				<dt id="LDPWG">LDPWG</dt>
+				<dd>
+					<cite><a href="http://www.w3.org/2012/ldp">Linked Data
+							Platform Working Group</a>, W3C.</cite>
+				</dd>
+
+				<dt id="Linked-Data-Design-Issues">Linked Data Design Issues</dt>
+				<dd>
+					<cite> <a
+						href="http://www.w3.org/DesignIssues/LinkedData.html">Linked
+							Data Design Issues</a></cite>, Tim Berners-Lee, W3C, 27 July 2006.
+				</dd>
+
+				<dt id="LinkedDataInterfaces">Linked Data Interfaces</dt>
+				<dd>
+					<cite><a
+						href="http://www.ibm.com/developerworks/rational/library/linked-data-oslc-resource-shapes/">Linked
+							Data Interfaces: Define REST API contracts for RDF resource
+							representations</a></cite>, Arthur Ryman, IBM developerWorks, 19 March 2013.
+				</dd>
+
+				<dt id="OSLC">OSLC</dt>
+				<dd>
+					<cite><a href="http://open-services.net">Open Services
+							for Lifecycle Collaboration</a></cite>.
+				</dd>
+
+				<dt id="RDF-VAL">RDF-VAL</dt>
+				<dd>
+					<cite> <a href="http://www.w3.org/2012/12/rdf-val/">W3C
+							RDF Validation Workshop</a></cite>, Cambridge, MA, USA, 10-11 September
+					2013.
+				</dd>
+
+				<dt id="REST">REST</dt>
+				<dd>
+					<cite> <a
+						href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">
+							Representational State Transfer (REST)</a></cite>, Chapter 5 of
+					Architectural Styles and the Design of Network-based Software
+					Architectures, Ph. D. Dissertation, University of California,
+					Irvine, Roy Thomas Fielding, 2000.
+				</dd>
+
+
+				<dt id="RW-Linked-Data">RW Linked Data</dt>
+				<dd>
+					<cite><a
+						href="http://www.w3.org/DesignIssues/ReadWriteLinkedData.html">Read-Write
+							Linked Data</a></cite>, Berners-Lee, W3C, August 2009.
+				</dd>
+
+				<dt id="Shapes-LDOW2013">Shapes-LDOW2013</dt>
+				<dd>
+					<cite><a
+						href="http://events.linkeddata.org/ldow2013/papers/ldow2013-paper-02.pdf">OSLC
+							Resource Shape: A language for defining constraints on Linked
+							Data</a></cite>, Arthur G. Ryman, Arnaud J. Le Hors, and Steve Speicher,
+					Linked Data on the Web (LDOW2103), Rio de Janeiro, 14 May 2013.
+					Brazil.
+				</dd>
+
+				<dt id="Shapes-RDF-VAL">Shapes-RDF-VAL</dt>
+				<dd>
+					<cite><a
+						href="http://www.w3.org/2001/sw/wiki/images/b/b7/RDFVal_Fokuoe_Ryman.pdf">OSLC
+							Resource Shape: A Linked Data Constraint Language</a></cite>, Achille Fokoue
+					and Arthur Ryman, W3C RDF Validation Workshop, Cambridge, MA, USA,
+					11 September 2013.
+				</dd>
+
+			</dl>
+		</div>
+	</div>
+
+	<h1 id="acks">B. Acknowledgements</h1>
+	<div>
+		<p>Additional Contributors:</p>
+		<p style="margin: 2em;">The OSLC Resource Shape specification was
+			initially developed by the OSLC Reporting Workgroup under the
+			leadership of Tack Tong (IBM), with major contributions from Arthur
+			Ryman (IBM) and Martin Nally (IBM). Members of OSLC workgroups found
+			shapes to be applicable to other aspects of OSLC and so the
+			specification was subsequently integrated into the OSLC Core
+			specification by Dave Johnson (IBM).</p>
+
+		<p style="margin: 2em;">
+			Anamitra Bhattacharyya (IBM) provided valuable feedback based on
+			implementation experience and raised the requirement for <a
+				href="#datatype-facets">Datatype Facets</a>. Steve Speicher (IBM)
+			and John Arwe (IBM) raised the requirement for <a
+				href="#extending-shapes">Extending Shapes</a>.
+		</p>
+
+		<p>Reviewers:</p>
+		<div style="margin: 2em;">
+			<p>The following people carefully reviewed drafts of this document,
+			provided corrections, and suggested many valuable improvements:</p>
+			<ul>
+				<li>John Arwe (IBM)</li>
+				<li>Nick Crossley (IBM)</li>
+				<li>Miguel Esteban Gutiérrez (Universidad Politécnica de
+					Madrid)</li>
+				<li>Arnaud Le Hors (IBM)</li>
+				<li>Eric Prud'hommeaux (W3C)</li>
+				<li>Steve Speicher (IBM)</li>
+			</ul>
+		</div>
+	</div>
+
+</body>
+</html>
