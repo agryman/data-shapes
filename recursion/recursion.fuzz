@@ -1,2115 +1,2117 @@
-(GIVEN 104
+(GIVEN 116
   (LIST
     (NAME "TERM" "")))
 
-(AXDEF 108
-  (BODY 109
+(AXDEF 120
+  (BODY 121
     (LIST
-      (DECL 109
+      (DECL 121
         (LIST
           (NAME "IRI" "")
           (NAME "BNode" "")
           (NAME "Literal" ""))
-        (POWER 109
-          (REF 109 (NAME "TERM" "") ()))))
+        (POWER 121
+          (REF 121 (NAME "TERM" "") ()))))
     (LIST
-      (INREL 111
+      (INREL 123
         (NAME "\partition" "")
-        (SEQ 111
+        (SEQ 123
           (LIST
-            (REF 111 (NAME "IRI" "") ())
-            (REF 111 (NAME "BNode" "") ())
-            (REF 111 (NAME "Literal" "") ())))
-        (REF 111 (NAME "TERM" "") ())))))
+            (REF 123 (NAME "IRI" "") ())
+            (REF 123 (NAME "BNode" "") ())
+            (REF 123 (NAME "Literal" "") ())))
+        (REF 123 (NAME "TERM" "") ())))))
 
-(AXDEF 116
-  (BODY 117
+(AXDEF 128
+  (BODY 129
     (LIST
-      (DECL 117
+      (DECL 129
         (LIST
           (NAME "Alice" "")
           (NAME "Bob" "")
           (NAME "Charlie" ""))
-        (REF 117 (NAME "Literal" "") ())))
+        (REF 129 (NAME "Literal" "") ())))
     (LIST
-      (PREREL 119
+      (PREREL 131
         (NAME "\disjoint" "")
-        (SEQ 119
+        (SEQ 131
           (LIST
-            (EXT 119
+            (EXT 131
               (LIST
-                (REF 119 (NAME "Alice" "") ())))
-            (EXT 119
+                (REF 131 (NAME "Alice" "") ())))
+            (EXT 131
               (LIST
-                (REF 119 (NAME "Bob" "") ())))
-            (EXT 119
+                (REF 131 (NAME "Bob" "") ())))
+            (EXT 131
               (LIST
-                (REF 119 (NAME "Charlie" "") ())))))))))
+                (REF 131 (NAME "Charlie" "") ())))))))))
 
-(AXDEF 124
-  (BODY 125
+(AXDEF 136
+  (BODY 137
     (LIST
-      (DECL 125
+      (DECL 137
         (LIST
           (NAME "alice" "")
           (NAME "bob" "")
           (NAME "charlie" ""))
-        (REF 125 (NAME "IRI" "") ()))
-      (DECL 126
+        (REF 137 (NAME "IRI" "") ()))
+      (DECL 138
         (LIST
           (NAME "rdf\_type" ""))
-        (REF 126 (NAME "IRI" "") ()))
-      (DECL 127
+        (REF 138 (NAME "IRI" "") ()))
+      (DECL 139
         (LIST
           (NAME "foaf\_Person" "")
           (NAME "foaf\_name" "")
           (NAME "foaf\_knows" ""))
-        (REF 127 (NAME "IRI" "") ())))
+        (REF 139 (NAME "IRI" "") ())))
     (LIST
-      (PREREL 129
+      (PREREL 141
         (NAME "\disjoint" "")
-        (SEQ 129
+        (SEQ 141
           (LIST
-            (EXT 129
+            (EXT 141
               (LIST
-                (REF 129 (NAME "alice" "") ())))
-            (EXT 129
+                (REF 141 (NAME "alice" "") ())))
+            (EXT 141
               (LIST
-                (REF 129 (NAME "bob" "") ())))
-            (EXT 129
+                (REF 141 (NAME "bob" "") ())))
+            (EXT 141
               (LIST
-                (REF 129 (NAME "charlie" "") ())))
-            (EXT 129
+                (REF 141 (NAME "charlie" "") ())))
+            (EXT 141
               (LIST
-                (REF 129 (NAME "rdf\_type" "") ())))
-            (EXT 130
+                (REF 141 (NAME "rdf\_type" "") ())))
+            (EXT 142
               (LIST
-                (REF 130 (NAME "foaf\_Person" "") ())))
-            (EXT 130
+                (REF 142 (NAME "foaf\_Person" "") ())))
+            (EXT 142
               (LIST
-                (REF 130 (NAME "foaf\_name" "") ())))
-            (EXT 130
+                (REF 142 (NAME "foaf\_name" "") ())))
+            (EXT 142
               (LIST
-                (REF 130 (NAME "foaf\_knows" "") ())))))))))
+                (REF 142 (NAME "foaf\_knows" "") ())))))))))
 
-(EQEQ 137
-  (LHS 137
+(EQEQ 149
+  (LHS 149
     (NAME "Triple" "")
     ())
-  (COMP 137
-    (BODY 137
+  (COMP 149
+    (BODY 149
       (LIST
-        (DECL 137
+        (DECL 149
           (LIST
             (NAME "s" "")
             (NAME "p" "")
             (NAME "o" ""))
-          (REF 137 (NAME "TERM" "") ())))
+          (REF 149 (NAME "TERM" "") ())))
       (LIST
-        (AND 137
-          (INREL 137
+        (AND 149
+          (INREL 149
             (NAME "\notin" "")
-            (REF 137 (NAME "s" "") ())
-            (REF 137 (NAME "Literal" "") ()))
-          (MEMBER 137
-            (REF 137 (NAME "p" "") ())
-            (REF 137 (NAME "IRI" "") ())))))
+            (REF 149 (NAME "s" "") ())
+            (REF 149 (NAME "Literal" "") ()))
+          (MEMBER 149
+            (REF 149 (NAME "p" "") ())
+            (REF 149 (NAME "IRI" "") ())))))
     (NOTHING 0)))
 
-(PRED 149
-  (MEMBER 149
-    (TUPLE 149
+(PRED 161
+  (MEMBER 161
+    (TUPLE 161
       (LIST
-        (REF 149 (NAME "alice" "") ())
-        (REF 149 (NAME "rdf\_type" "") ())
-        (REF 149 (NAME "foaf\_Person" "") ())))
-    (REF 149 (NAME "Triple" "") ())))
+        (REF 161 (NAME "alice" "") ())
+        (REF 161 (NAME "rdf\_type" "") ())
+        (REF 161 (NAME "foaf\_Person" "") ())))
+    (REF 161 (NAME "Triple" "") ())))
 
-(EQEQ 160
-  (LHS 160
+(EQEQ 172
+  (LHS 172
     (NAME "Graph" "")
     ())
-  (PREGEN 160
+  (PREGEN 172
     (NAME "\finset" "")
-    (REF 160 (NAME "Triple" "") ())))
+    (REF 172 (NAME "Triple" "") ())))
 
-(AXDEF 164
-  (BODY 165
+(AXDEF 176
+  (BODY 177
     (LIST
-      (DECL 165
+      (DECL 177
         (LIST
           (NAME "alice\_graph" ""))
-        (REF 165 (NAME "Graph" "") ())))
+        (REF 177 (NAME "Graph" "") ())))
     (LIST
-      (EQUAL 167
-        (REF 167 (NAME "alice\_graph" "") ())
-        (EXT 168
+      (EQUAL 179
+        (REF 179 (NAME "alice\_graph" "") ())
+        (EXT 180
           (LIST
-            (TUPLE 168
-              (LIST
-                (REF 168 (NAME "alice" "") ())
-                (REF 168 (NAME "rdf\_type" "") ())
-                (REF 168 (NAME "foaf\_Person" "") ())))
-            (TUPLE 169
-              (LIST
-                (REF 169 (NAME "alice" "") ())
-                (REF 169 (NAME "foaf\_name" "") ())
-                (REF 169 (NAME "Alice" "") ())))
-            (TUPLE 170
-              (LIST
-                (REF 170 (NAME "alice" "") ())
-                (REF 170 (NAME "foaf\_knows" "") ())
-                (REF 170 (NAME "bob" "") ())))
-            (TUPLE 171
-              (LIST
-                (REF 171 (NAME "alice" "") ())
-                (REF 171 (NAME "foaf\_knows" "") ())
-                (REF 171 (NAME "charlie" "") ())))
-            (TUPLE 172
-              (LIST
-                (REF 172 (NAME "bob" "") ())
-                (REF 172 (NAME "rdf\_type" "") ())
-                (REF 172 (NAME "foaf\_Person" "") ())))
-            (TUPLE 173
-              (LIST
-                (REF 173 (NAME "bob" "") ())
-                (REF 173 (NAME "foaf\_name" "") ())
-                (REF 173 (NAME "Bob" "") ())))
-            (TUPLE 174
-              (LIST
-                (REF 174 (NAME "charlie" "") ())
-                (REF 174 (NAME "rdf\_type" "") ())
-                (REF 174 (NAME "foaf\_Person" "") ())))
-            (TUPLE 175
-              (LIST
-                (REF 175 (NAME "charlie" "") ())
-                (REF 175 (NAME "foaf\_name" "") ())
-                (REF 175 (NAME "Charlie" "") ())))))))))
-
-(EQEQ 180
-  (LHS 180
-    (NAME "subjects" "")
-    ())
-  (LAMBDA 180
-    (BODY 180
-      (LIST
-        (DECL 180
-          (LIST
-            (NAME "g" ""))
-          (REF 180 (NAME "Graph" "") ())))
-      ())
-    (COMP 180
-      (BODY 180
-        (LIST
-          (DECL 180
-            (LIST
-              (NAME "s" "")
-              (NAME "p" "")
-              (NAME "o" ""))
-            (REF 180 (NAME "TERM" "") ())))
-        (LIST
-          (MEMBER 180
             (TUPLE 180
               (LIST
-                (REF 180 (NAME "s" "") ())
-                (REF 180 (NAME "p" "") ())
-                (REF 180 (NAME "o" "") ())))
-            (REF 180 (NAME "g" "") ()))))
-      (JUST 180
-        (REF 180 (NAME "s" "") ())))))
-
-(EQEQ 182
-  (LHS 182
-    (NAME "predicates" "")
-    ())
-  (LAMBDA 182
-    (BODY 182
-      (LIST
-        (DECL 182
-          (LIST
-            (NAME "g" ""))
-          (REF 182 (NAME "Graph" "") ())))
-      ())
-    (COMP 182
-      (BODY 182
-        (LIST
-          (DECL 182
-            (LIST
-              (NAME "s" "")
-              (NAME "p" "")
-              (NAME "o" ""))
-            (REF 182 (NAME "TERM" "") ())))
-        (LIST
-          (MEMBER 182
+                (REF 180 (NAME "alice" "") ())
+                (REF 180 (NAME "rdf\_type" "") ())
+                (REF 180 (NAME "foaf\_Person" "") ())))
+            (TUPLE 181
+              (LIST
+                (REF 181 (NAME "alice" "") ())
+                (REF 181 (NAME "foaf\_name" "") ())
+                (REF 181 (NAME "Alice" "") ())))
             (TUPLE 182
               (LIST
-                (REF 182 (NAME "s" "") ())
-                (REF 182 (NAME "p" "") ())
-                (REF 182 (NAME "o" "") ())))
-            (REF 182 (NAME "g" "") ()))))
-      (JUST 182
-        (REF 182 (NAME "p" "") ())))))
+                (REF 182 (NAME "alice" "") ())
+                (REF 182 (NAME "foaf\_knows" "") ())
+                (REF 182 (NAME "bob" "") ())))
+            (TUPLE 183
+              (LIST
+                (REF 183 (NAME "alice" "") ())
+                (REF 183 (NAME "foaf\_knows" "") ())
+                (REF 183 (NAME "charlie" "") ())))
+            (TUPLE 184
+              (LIST
+                (REF 184 (NAME "bob" "") ())
+                (REF 184 (NAME "rdf\_type" "") ())
+                (REF 184 (NAME "foaf\_Person" "") ())))
+            (TUPLE 185
+              (LIST
+                (REF 185 (NAME "bob" "") ())
+                (REF 185 (NAME "foaf\_name" "") ())
+                (REF 185 (NAME "Bob" "") ())))
+            (TUPLE 186
+              (LIST
+                (REF 186 (NAME "charlie" "") ())
+                (REF 186 (NAME "rdf\_type" "") ())
+                (REF 186 (NAME "foaf\_Person" "") ())))
+            (TUPLE 187
+              (LIST
+                (REF 187 (NAME "charlie" "") ())
+                (REF 187 (NAME "foaf\_name" "") ())
+                (REF 187 (NAME "Charlie" "") ())))))))))
 
-(EQEQ 184
-  (LHS 184
-    (NAME "objects" "")
+(EQEQ 192
+  (LHS 192
+    (NAME "subjects" "")
     ())
-  (LAMBDA 184
-    (BODY 184
+  (LAMBDA 192
+    (BODY 192
       (LIST
-        (DECL 184
+        (DECL 192
           (LIST
             (NAME "g" ""))
-          (REF 184 (NAME "Graph" "") ())))
+          (REF 192 (NAME "Graph" "") ())))
       ())
-    (COMP 184
-      (BODY 184
+    (COMP 192
+      (BODY 192
         (LIST
-          (DECL 184
+          (DECL 192
             (LIST
               (NAME "s" "")
               (NAME "p" "")
               (NAME "o" ""))
-            (REF 184 (NAME "TERM" "") ())))
+            (REF 192 (NAME "TERM" "") ())))
         (LIST
-          (MEMBER 184
-            (TUPLE 184
+          (MEMBER 192
+            (TUPLE 192
               (LIST
-                (REF 184 (NAME "s" "") ())
-                (REF 184 (NAME "p" "") ())
-                (REF 184 (NAME "o" "") ())))
-            (REF 184 (NAME "g" "") ()))))
-      (JUST 184
-        (REF 184 (NAME "o" "") ())))))
+                (REF 192 (NAME "s" "") ())
+                (REF 192 (NAME "p" "") ())
+                (REF 192 (NAME "o" "") ())))
+            (REF 192 (NAME "g" "") ()))))
+      (JUST 192
+        (REF 192 (NAME "s" "") ())))))
 
-(PRED 193
-  (EQUAL 193
-    (APPLY 193
-      (REF 193 (NAME "predicates" "") ())
-      (REF 193 (NAME "alice\_graph" "") ()))
-    (EXT 194
-      (LIST
-        (REF 194 (NAME "rdf\_type" "") ())
-        (REF 194 (NAME "foaf\_name" "") ())
-        (REF 194 (NAME "foaf\_knows" "") ())))))
-
-(EQEQ 199
-  (LHS 199
-    (NAME "nodes" "")
+(EQEQ 194
+  (LHS 194
+    (NAME "predicates" "")
     ())
-  (LAMBDA 199
-    (BODY 199
+  (LAMBDA 194
+    (BODY 194
       (LIST
-        (DECL 199
+        (DECL 194
           (LIST
             (NAME "g" ""))
-          (REF 199 (NAME "Graph" "") ())))
+          (REF 194 (NAME "Graph" "") ())))
       ())
-    (INOP 199
-      (NAME "\cup" "")
-      (APPLY 199
-        (REF 199 (NAME "subjects" "") ())
-        (REF 199 (NAME "g" "") ()))
-      (APPLY 199
-        (REF 199 (NAME "objects" "") ())
-        (REF 199 (NAME "g" "") ())))))
+    (COMP 194
+      (BODY 194
+        (LIST
+          (DECL 194
+            (LIST
+              (NAME "s" "")
+              (NAME "p" "")
+              (NAME "o" ""))
+            (REF 194 (NAME "TERM" "") ())))
+        (LIST
+          (MEMBER 194
+            (TUPLE 194
+              (LIST
+                (REF 194 (NAME "s" "") ())
+                (REF 194 (NAME "p" "") ())
+                (REF 194 (NAME "o" "") ())))
+            (REF 194 (NAME "g" "") ()))))
+      (JUST 194
+        (REF 194 (NAME "p" "") ())))))
 
-(PRED 208
-  (EQUAL 208
-    (APPLY 208
-      (REF 208 (NAME "nodes" "") ())
-      (REF 208 (NAME "alice\_graph" "") ()))
-    (EXT 209
+(EQEQ 196
+  (LHS 196
+    (NAME "objects" "")
+    ())
+  (LAMBDA 196
+    (BODY 196
       (LIST
-        (REF 209 (NAME "alice" "") ())
-        (REF 209 (NAME "bob" "") ())
-        (REF 209 (NAME "charlie" "") ())
-        (REF 209 (NAME "Alice" "") ())
-        (REF 209 (NAME "Bob" "") ())
-        (REF 209 (NAME "Charlie" "") ())
-        (REF 209 (NAME "foaf\_Person" "") ())))))
+        (DECL 196
+          (LIST
+            (NAME "g" ""))
+          (REF 196 (NAME "Graph" "") ())))
+      ())
+    (COMP 196
+      (BODY 196
+        (LIST
+          (DECL 196
+            (LIST
+              (NAME "s" "")
+              (NAME "p" "")
+              (NAME "o" ""))
+            (REF 196 (NAME "TERM" "") ())))
+        (LIST
+          (MEMBER 196
+            (TUPLE 196
+              (LIST
+                (REF 196 (NAME "s" "") ())
+                (REF 196 (NAME "p" "") ())
+                (REF 196 (NAME "o" "") ())))
+            (REF 196 (NAME "g" "") ()))))
+      (JUST 196
+        (REF 196 (NAME "o" "") ())))))
 
-(SDEF 213
-  (SHEAD 213
+(PRED 205
+  (EQUAL 205
+    (APPLY 205
+      (REF 205 (NAME "predicates" "") ())
+      (REF 205 (NAME "alice\_graph" "") ()))
+    (EXT 206
+      (LIST
+        (REF 206 (NAME "rdf\_type" "") ())
+        (REF 206 (NAME "foaf\_name" "") ())
+        (REF 206 (NAME "foaf\_knows" "") ())))))
+
+(EQEQ 211
+  (LHS 211
+    (NAME "nodes" "")
+    ())
+  (LAMBDA 211
+    (BODY 211
+      (LIST
+        (DECL 211
+          (LIST
+            (NAME "g" ""))
+          (REF 211 (NAME "Graph" "") ())))
+      ())
+    (INOP 211
+      (NAME "\cup" "")
+      (APPLY 211
+        (REF 211 (NAME "subjects" "") ())
+        (REF 211 (NAME "g" "") ()))
+      (APPLY 211
+        (REF 211 (NAME "objects" "") ())
+        (REF 211 (NAME "g" "") ())))))
+
+(PRED 220
+  (EQUAL 220
+    (APPLY 220
+      (REF 220 (NAME "nodes" "") ())
+      (REF 220 (NAME "alice\_graph" "") ()))
+    (EXT 221
+      (LIST
+        (REF 221 (NAME "alice" "") ())
+        (REF 221 (NAME "bob" "") ())
+        (REF 221 (NAME "charlie" "") ())
+        (REF 221 (NAME "Alice" "") ())
+        (REF 221 (NAME "Bob" "") ())
+        (REF 221 (NAME "Charlie" "") ())
+        (REF 221 (NAME "foaf\_Person" "") ())))))
+
+(SDEF 225
+  (SHEAD 225
     "PointedGraph"
     ())
-  (BODY 214
+  (BODY 226
     (LIST
-      (DECL 214
+      (DECL 226
         (LIST
           (NAME "graph" ""))
-        (REF 214 (NAME "Graph" "") ()))
-      (DECL 215
-        (LIST
-          (NAME "baseNode" ""))
-        (REF 215 (NAME "TERM" "") ())))
-    (LIST
-      (MEMBER 217
-        (REF 217 (NAME "baseNode" "") ())
-        (APPLY 217
-          (REF 217 (NAME "nodes" "") ())
-          (REF 217 (NAME "graph" "") ()))))))
-
-(AXDEF 226
-  (BODY 227
-    (LIST
+        (REF 226 (NAME "Graph" "") ()))
       (DECL 227
         (LIST
-          (NAME "alice\_pg" ""))
-        (SEXPR 227
-          (SREF 227 "PointedGraph" "" () ()))))
-    (LIST
-      (EQUAL 229
-        (SELECT 229
-          (REF 229 (NAME "alice\_pg" "") ())
-          (NAME "graph" ""))
-        (REF 229 (NAME "alice\_graph" "") ()))
-      (EQUAL 231
-        (SELECT 231
-          (REF 231 (NAME "alice\_pg" "") ())
           (NAME "baseNode" ""))
-        (REF 231 (NAME "alice" "") ())))))
-
-(AXDEF 252
-  (BODY 253
+        (REF 227 (NAME "TERM" "") ())))
     (LIST
-      (DECL 253
+      (MEMBER 229
+        (REF 229 (NAME "baseNode" "") ())
+        (APPLY 229
+          (REF 229 (NAME "nodes" "") ())
+          (REF 229 (NAME "graph" "") ()))))))
+
+(AXDEF 238
+  (BODY 239
+    (LIST
+      (DECL 239
+        (LIST
+          (NAME "alice\_pg" ""))
+        (SEXPR 239
+          (SREF 239 "PointedGraph" "" () ()))))
+    (LIST
+      (EQUAL 241
+        (SELECT 241
+          (REF 241 (NAME "alice\_pg" "") ())
+          (NAME "graph" ""))
+        (REF 241 (NAME "alice\_graph" "") ()))
+      (EQUAL 243
+        (SELECT 243
+          (REF 243 (NAME "alice\_pg" "") ())
+          (NAME "baseNode" ""))
+        (REF 243 (NAME "alice" "") ())))))
+
+(AXDEF 264
+  (BODY 265
+    (LIST
+      (DECL 265
         (LIST
           (NAME "Neighbour" ""))
-        (POWER 253
-          (INGEN 253
+        (POWER 265
+          (INGEN 265
             (NAME "\fun" "")
-            (REF 253 (NAME "Graph" "") ())
-            (INGEN 253
+            (REF 265 (NAME "Graph" "") ())
+            (INGEN 265
               (NAME "\rel" "")
-              (REF 253 (NAME "TERM" "") ())
-              (REF 253 (NAME "TERM" "") ()))))))
+              (REF 265 (NAME "TERM" "") ())
+              (REF 265 (NAME "TERM" "") ()))))))
     (LIST
-      (EQUAL 255
-        (REF 255 (NAME "Neighbour" "") ())
-        (COMP 256
-          (BODY 256
+      (EQUAL 267
+        (REF 267 (NAME "Neighbour" "") ())
+        (COMP 268
+          (BODY 268
             (LIST
-              (DECL 256
+              (DECL 268
                 (LIST
                   (NAME "q" ""))
-                (INGEN 256
+                (INGEN 268
                   (NAME "\fun" "")
-                  (REF 256 (NAME "Graph" "") ())
-                  (INGEN 256
+                  (REF 268 (NAME "Graph" "") ())
+                  (INGEN 268
                     (NAME "\rel" "")
-                    (REF 256 (NAME "TERM" "") ())
-                    (REF 256 (NAME "TERM" "") ())))))
+                    (REF 268 (NAME "TERM" "") ())
+                    (REF 268 (NAME "TERM" "") ())))))
             (LIST
-              (FORALL 257
-                (BODY 257
+              (FORALL 269
+                (BODY 269
                   (LIST
-                    (DECL 257
+                    (DECL 269
                       (LIST
                         (NAME "g" ""))
-                      (REF 257 (NAME "Graph" "") ())))
+                      (REF 269 (NAME "Graph" "") ())))
                   ())
-                (INREL 257
+                (INREL 269
                   (NAME "\subseteq" "")
-                  (APPLY 257
-                    (REF 257 (NAME "q" "") ())
-                    (REF 257 (NAME "g" "") ()))
-                  (COMP 257
-                    (BODY 257
+                  (APPLY 269
+                    (REF 269 (NAME "q" "") ())
+                    (REF 269 (NAME "g" "") ()))
+                  (COMP 269
+                    (BODY 269
                       (LIST
-                        (DECL 257
+                        (DECL 269
                           (LIST
                             (NAME "x" "")
                             (NAME "y" ""))
-                          (APPLY 257
-                            (REF 257 (NAME "nodes" "") ())
-                            (REF 257 (NAME "g" "") ()))))
+                          (APPLY 269
+                            (REF 269 (NAME "nodes" "") ())
+                            (REF 269 (NAME "g" "") ()))))
                       ())
                     (NOTHING 0))))))
           (NOTHING 0))))))
 
-(AXDEF 271
-  (BODY 272
+(AXDEF 283
+  (BODY 284
     (LIST
-      (DECL 272
+      (DECL 284
         (LIST
           (NAME "forward" ""))
-        (INGEN 272
+        (INGEN 284
           (NAME "\fun" "")
-          (REF 272 (NAME "IRI" "") ())
-          (REF 272 (NAME "Neighbour" "") ()))))
+          (REF 284 (NAME "IRI" "") ())
+          (REF 284 (NAME "Neighbour" "") ()))))
     (LIST
-      (FORALL 274
-        (BODY 274
+      (FORALL 286
+        (BODY 286
           (LIST
-            (DECL 274
+            (DECL 286
               (LIST
                 (NAME "p" ""))
-              (REF 274 (NAME "IRI" "") ()))
-            (DECL 274
+              (REF 286 (NAME "IRI" "") ()))
+            (DECL 286
               (LIST
                 (NAME "g" ""))
-              (REF 274 (NAME "Graph" "") ())))
+              (REF 286 (NAME "Graph" "") ())))
           ())
-        (EQUAL 275
-          (APPLY 275
-            (APPLY 275
-              (REF 275 (NAME "forward" "") ())
-              (REF 275 (NAME "p" "") ()))
-            (REF 275 (NAME "g" "") ()))
-          (COMP 276
-            (BODY 276
+        (EQUAL 287
+          (APPLY 287
+            (APPLY 287
+              (REF 287 (NAME "forward" "") ())
+              (REF 287 (NAME "p" "") ()))
+            (REF 287 (NAME "g" "") ()))
+          (COMP 288
+            (BODY 288
               (LIST
-                (DECL 276
+                (DECL 288
                   (LIST
                     (NAME "s" "")
                     (NAME "o" ""))
-                  (APPLY 276
-                    (REF 276 (NAME "nodes" "") ())
-                    (REF 276 (NAME "g" "") ()))))
+                  (APPLY 288
+                    (REF 288 (NAME "nodes" "") ())
+                    (REF 288 (NAME "g" "") ()))))
               (LIST
-                (MEMBER 276
-                  (TUPLE 276
+                (MEMBER 288
+                  (TUPLE 288
                     (LIST
-                      (REF 276 (NAME "s" "") ())
-                      (REF 276 (NAME "p" "") ())
-                      (REF 276 (NAME "o" "") ())))
-                  (REF 276 (NAME "g" "") ()))))
+                      (REF 288 (NAME "s" "") ())
+                      (REF 288 (NAME "p" "") ())
+                      (REF 288 (NAME "o" "") ())))
+                  (REF 288 (NAME "g" "") ()))))
             (NOTHING 0)))))))
 
-(EQEQ 284
-  (LHS 284
+(EQEQ 296
+  (LHS 296
     (NAME "has\_type" "")
     ())
-  (APPLY 284
-    (REF 284 (NAME "forward" "") ())
-    (REF 284 (NAME "rdf\_type" "") ())))
+  (APPLY 296
+    (REF 296 (NAME "forward" "") ())
+    (REF 296 (NAME "rdf\_type" "") ())))
 
-(EQEQ 286
-  (LHS 286
+(EQEQ 298
+  (LHS 298
     (NAME "has\_name" "")
     ())
-  (APPLY 286
-    (REF 286 (NAME "forward" "") ())
-    (REF 286 (NAME "foaf\_name" "") ())))
+  (APPLY 298
+    (REF 298 (NAME "forward" "") ())
+    (REF 298 (NAME "foaf\_name" "") ())))
 
-(EQEQ 288
-  (LHS 288
+(EQEQ 300
+  (LHS 300
     (NAME "knows" "")
     ())
-  (APPLY 288
-    (REF 288 (NAME "forward" "") ())
-    (REF 288 (NAME "foaf\_knows" "") ())))
+  (APPLY 300
+    (REF 300 (NAME "forward" "") ())
+    (REF 300 (NAME "foaf\_knows" "") ())))
 
-(PRED 299
-  (EQUAL 299
-    (APPLY 299
-      (REF 299 (NAME "has\_type" "") ())
-      (REF 299 (NAME "alice\_graph" "") ()))
-    (EXT 300
+(PRED 311
+  (EQUAL 311
+    (APPLY 311
+      (REF 311 (NAME "has\_type" "") ())
+      (REF 311 (NAME "alice\_graph" "") ()))
+    (EXT 312
       (LIST
-        (TUPLE 300
+        (TUPLE 312
           (LIST
-            (REF 300 (NAME "alice" "") ())
-            (REF 300 (NAME "foaf\_Person" "") ())))
-        (TUPLE 301
+            (REF 312 (NAME "alice" "") ())
+            (REF 312 (NAME "foaf\_Person" "") ())))
+        (TUPLE 313
           (LIST
-            (REF 301 (NAME "bob" "") ())
-            (REF 301 (NAME "foaf\_Person" "") ())))
-        (TUPLE 302
+            (REF 313 (NAME "bob" "") ())
+            (REF 313 (NAME "foaf\_Person" "") ())))
+        (TUPLE 314
           (LIST
-            (REF 302 (NAME "charlie" "") ())
-            (REF 302 (NAME "foaf\_Person" "") ())))))))
+            (REF 314 (NAME "charlie" "") ())
+            (REF 314 (NAME "foaf\_Person" "") ())))))))
 
-(AXDEF 307
-  (BODY 308
+(AXDEF 319
+  (BODY 320
     (LIST
-      (DECL 308
+      (DECL 320
         (LIST
           (NAME "backward" ""))
-        (INGEN 308
+        (INGEN 320
           (NAME "\fun" "")
-          (REF 308 (NAME "IRI" "") ())
-          (REF 308 (NAME "Neighbour" "") ()))))
+          (REF 320 (NAME "IRI" "") ())
+          (REF 320 (NAME "Neighbour" "") ()))))
     (LIST
-      (FORALL 310
-        (BODY 310
+      (FORALL 322
+        (BODY 322
           (LIST
-            (DECL 310
+            (DECL 322
               (LIST
                 (NAME "p" ""))
-              (REF 310 (NAME "IRI" "") ()))
-            (DECL 310
+              (REF 322 (NAME "IRI" "") ()))
+            (DECL 322
               (LIST
                 (NAME "g" ""))
-              (REF 310 (NAME "Graph" "") ())))
+              (REF 322 (NAME "Graph" "") ())))
           ())
-        (EQUAL 311
-          (APPLY 311
-            (APPLY 311
-              (REF 311 (NAME "backward" "") ())
-              (REF 311 (NAME "p" "") ()))
-            (REF 311 (NAME "g" "") ()))
-          (COMP 312
-            (BODY 312
+        (EQUAL 323
+          (APPLY 323
+            (APPLY 323
+              (REF 323 (NAME "backward" "") ())
+              (REF 323 (NAME "p" "") ()))
+            (REF 323 (NAME "g" "") ()))
+          (COMP 324
+            (BODY 324
               (LIST
-                (DECL 312
+                (DECL 324
                   (LIST
                     (NAME "o" "")
                     (NAME "s" ""))
-                  (APPLY 312
-                    (REF 312 (NAME "nodes" "") ())
-                    (REF 312 (NAME "g" "") ()))))
+                  (APPLY 324
+                    (REF 324 (NAME "nodes" "") ())
+                    (REF 324 (NAME "g" "") ()))))
               (LIST
-                (MEMBER 312
-                  (TUPLE 312
+                (MEMBER 324
+                  (TUPLE 324
                     (LIST
-                      (REF 312 (NAME "s" "") ())
-                      (REF 312 (NAME "p" "") ())
-                      (REF 312 (NAME "o" "") ())))
-                  (REF 312 (NAME "g" "") ()))))
+                      (REF 324 (NAME "s" "") ())
+                      (REF 324 (NAME "p" "") ())
+                      (REF 324 (NAME "o" "") ())))
+                  (REF 324 (NAME "g" "") ()))))
             (NOTHING 0)))))))
 
-(EQEQ 320
-  (LHS 320
+(EQEQ 332
+  (LHS 332
     (NAME "is\_known\_by" "")
     ())
-  (APPLY 320
-    (REF 320 (NAME "backward" "") ())
-    (REF 320 (NAME "foaf\_knows" "") ())))
+  (APPLY 332
+    (REF 332 (NAME "backward" "") ())
+    (REF 332 (NAME "foaf\_knows" "") ())))
 
-(PRED 330
-  (EQUAL 330
-    (APPLY 330
-      (REF 330 (NAME "is\_known\_by" "") ())
-      (REF 330 (NAME "alice\_graph" "") ()))
-    (EXT 331
+(PRED 342
+  (EQUAL 342
+    (APPLY 342
+      (REF 342 (NAME "is\_known\_by" "") ())
+      (REF 342 (NAME "alice\_graph" "") ()))
+    (EXT 343
       (LIST
-        (TUPLE 331
+        (TUPLE 343
           (LIST
-            (REF 331 (NAME "bob" "") ())
-            (REF 331 (NAME "alice" "") ())))
-        (TUPLE 331
+            (REF 343 (NAME "bob" "") ())
+            (REF 343 (NAME "alice" "") ())))
+        (TUPLE 343
           (LIST
-            (REF 331 (NAME "charlie" "") ())
-            (REF 331 (NAME "alice" "") ())))))))
+            (REF 343 (NAME "charlie" "") ())
+            (REF 343 (NAME "alice" "") ())))))))
 
-(AXDEF 337
-  (BODY 338
+(AXDEF 349
+  (BODY 350
     (LIST
-      (DECL 338
+      (DECL 350
         (LIST
           (NAME "values" ""))
-        (INGEN 338
+        (INGEN 350
           (NAME "\fun" "")
-          (CROSS 338
+          (CROSS 350
             (LIST
-              (REF 338 (NAME "Graph" "") ())
-              (REF 338 (NAME "TERM" "") ())
-              (REF 338 (NAME "Neighbour" "") ())))
-          (PREGEN 338
+              (REF 350 (NAME "Graph" "") ())
+              (REF 350 (NAME "TERM" "") ())
+              (REF 350 (NAME "Neighbour" "") ())))
+          (PREGEN 350
             (NAME "\finset" "")
-            (REF 338 (NAME "TERM" "") ())))))
+            (REF 350 (NAME "TERM" "") ())))))
     (LIST
-      (FORALL 340
-        (BODY 340
+      (FORALL 352
+        (BODY 352
           (LIST
-            (DECL 340
+            (DECL 352
               (LIST
                 (NAME "g" ""))
-              (REF 340 (NAME "Graph" "") ()))
-            (DECL 340
+              (REF 352 (NAME "Graph" "") ()))
+            (DECL 352
               (LIST
                 (NAME "x" ""))
-              (REF 340 (NAME "TERM" "") ()))
-            (DECL 340
+              (REF 352 (NAME "TERM" "") ()))
+            (DECL 352
               (LIST
                 (NAME "q" ""))
-              (REF 340 (NAME "Neighbour" "") ())))
+              (REF 352 (NAME "Neighbour" "") ())))
           ())
-        (EQUAL 341
-          (APPLY 341
-            (REF 341 (NAME "values" "") ())
-            (TUPLE 341
+        (EQUAL 353
+          (APPLY 353
+            (REF 353 (NAME "values" "") ())
+            (TUPLE 353
               (LIST
-                (REF 341 (NAME "g" "") ())
-                (REF 341 (NAME "x" "") ())
-                (REF 341 (NAME "q" "") ()))))
-          (COMP 341
-            (BODY 341
+                (REF 353 (NAME "g" "") ())
+                (REF 353 (NAME "x" "") ())
+                (REF 353 (NAME "q" "") ()))))
+          (COMP 353
+            (BODY 353
               (LIST
-                (DECL 341
+                (DECL 353
                   (LIST
                     (NAME "y" ""))
-                  (APPLY 341
-                    (REF 341 (NAME "nodes" "") ())
-                    (REF 341 (NAME "g" "") ()))))
+                  (APPLY 353
+                    (REF 353 (NAME "nodes" "") ())
+                    (REF 353 (NAME "g" "") ()))))
               (LIST
-                (MEMBER 341
-                  (TUPLE 341
+                (MEMBER 353
+                  (TUPLE 353
                     (LIST
-                      (REF 341 (NAME "x" "") ())
-                      (REF 341 (NAME "y" "") ())))
-                  (APPLY 341
-                    (REF 341 (NAME "q" "") ())
-                    (REF 341 (NAME "g" "") ())))))
+                      (REF 353 (NAME "x" "") ())
+                      (REF 353 (NAME "y" "") ())))
+                  (APPLY 353
+                    (REF 353 (NAME "q" "") ())
+                    (REF 353 (NAME "g" "") ())))))
             (NOTHING 0)))))))
 
-(PRED 352
-  (EQUAL 352
-    (APPLY 352
-      (REF 352 (NAME "values" "") ())
-      (TUPLE 352
+(PRED 364
+  (EQUAL 364
+    (APPLY 364
+      (REF 364 (NAME "values" "") ())
+      (TUPLE 364
         (LIST
-          (REF 352 (NAME "alice\_graph" "") ())
-          (REF 352 (NAME "alice" "") ())
-          (REF 352 (NAME "knows" "") ()))))
-    (EXT 352
+          (REF 364 (NAME "alice\_graph" "") ())
+          (REF 364 (NAME "alice" "") ())
+          (REF 364 (NAME "knows" "") ()))))
+    (EXT 364
       (LIST
-        (REF 352 (NAME "bob" "") ())
-        (REF 352 (NAME "charlie" "") ())))))
+        (REF 364 (NAME "bob" "") ())
+        (REF 364 (NAME "charlie" "") ())))))
 
-(EQEQ 366
-  (LHS 366
+(EQEQ 378
+  (LHS 378
     (NAME "Constraint" "")
     ())
-  (POWER 366
-    (REF 366 (NAME "Graph" "") ())))
+  (POWER 378
+    (REF 378 (NAME "Graph" "") ())))
 
-(AXDEF 371
-  (BODY 372
+(AXDEF 383
+  (BODY 384
     (LIST
-      (DECL 372
+      (DECL 384
         (LIST
           (NAME "small\_graphs" ""))
-        (REF 372 (NAME "Constraint" "") ())))
+        (REF 384 (NAME "Constraint" "") ())))
     (LIST
-      (EQUAL 374
-        (REF 374 (NAME "small\_graphs" "") ())
-        (COMP 374
-          (BODY 374
+      (EQUAL 386
+        (REF 386 (NAME "small\_graphs" "") ())
+        (COMP 386
+          (BODY 386
             (LIST
-              (DECL 374
+              (DECL 386
                 (LIST
                   (NAME "g" ""))
-                (REF 374 (NAME "Graph" "") ())))
+                (REF 386 (NAME "Graph" "") ())))
             (LIST
-              (INREL 374
+              (INREL 386
                 (NAME "\leq" "")
-                (APPLY 374
-                  (REF 374 (NAME "\#" "") ())
-                  (REF 374 (NAME "g" "") ()))
-                (NUMBER 374 "10"))))
+                (APPLY 386
+                  (REF 386 (NAME "\#" "") ())
+                  (REF 386 (NAME "g" "") ()))
+                (NUMBER 386 "10"))))
           (NOTHING 0))))))
 
-(PRED 382
-  (MEMBER 382
-    (REF 382 (NAME "alice\_graph" "") ())
-    (REF 382 (NAME "small\_graphs" "") ())))
+(PRED 394
+  (MEMBER 394
+    (REF 394 (NAME "alice\_graph" "") ())
+    (REF 394 (NAME "small\_graphs" "") ())))
 
-(EQEQ 390
-  (LHS 390
+(EQEQ 402
+  (LHS 402
     (NAME "ParameterizedConstraint" "")
     (LIST
       (NAME "X" "")))
-  (INGEN 390
+  (INGEN 402
     (NAME "\fun" "")
-    (REF 390 (NAME "X" "") ())
-    (REF 390 (NAME "Constraint" "") ())))
+    (REF 402 (NAME "X" "") ())
+    (REF 402 (NAME "Constraint" "") ())))
 
-(EQEQ 395
-  (LHS 395
+(EQEQ 407
+  (LHS 407
     (NAME "TermConstraint" "")
     ())
-  (REF 395 (NAME "ParameterizedConstraint" "")
+  (REF 407 (NAME "ParameterizedConstraint" "")
     (LIST
-      (REF 395 (NAME "TERM" "") ()))))
+      (REF 407 (NAME "TERM" "") ()))))
 
-(AXDEF 399
-  (BODY 400
+(AXDEF 411
+  (BODY 412
     (LIST
-      (DECL 400
+      (DECL 412
         (LIST
           (NAME "hasSubject" ""))
-        (REF 400 (NAME "TermConstraint" "") ())))
+        (REF 412 (NAME "TermConstraint" "") ())))
     (LIST
-      (FORALL 402
-        (BODY 402
+      (FORALL 414
+        (BODY 414
           (LIST
-            (DECL 402
+            (DECL 414
               (LIST
                 (NAME "x" ""))
-              (REF 402 (NAME "TERM" "") ())))
+              (REF 414 (NAME "TERM" "") ())))
           ())
-        (EQUAL 403
-          (APPLY 403
-            (REF 403 (NAME "hasSubject" "") ())
-            (REF 403 (NAME "x" "") ()))
-          (COMP 403
-            (BODY 403
+        (EQUAL 415
+          (APPLY 415
+            (REF 415 (NAME "hasSubject" "") ())
+            (REF 415 (NAME "x" "") ()))
+          (COMP 415
+            (BODY 415
               (LIST
-                (DECL 403
+                (DECL 415
                   (LIST
                     (NAME "g" ""))
-                  (REF 403 (NAME "Graph" "") ())))
+                  (REF 415 (NAME "Graph" "") ())))
               (LIST
-                (MEMBER 403
-                  (REF 403 (NAME "x" "") ())
-                  (APPLY 403
-                    (REF 403 (NAME "subjects" "") ())
-                    (REF 403 (NAME "g" "") ())))))
+                (MEMBER 415
+                  (REF 415 (NAME "x" "") ())
+                  (APPLY 415
+                    (REF 415 (NAME "subjects" "") ())
+                    (REF 415 (NAME "g" "") ())))))
             (NOTHING 0)))))))
 
-(EQEQ 408
-  (LHS 408
+(EQEQ 420
+  (LHS 420
     (NAME "hasPredicate" "")
     ())
-  (LAMBDA 408
-    (BODY 408
+  (LAMBDA 420
+    (BODY 420
       (LIST
-        (DECL 408
+        (DECL 420
           (LIST
             (NAME "x" ""))
-          (REF 408 (NAME "TERM" "") ())))
+          (REF 420 (NAME "TERM" "") ())))
       ())
-    (COMP 408
-      (BODY 408
+    (COMP 420
+      (BODY 420
         (LIST
-          (DECL 408
+          (DECL 420
             (LIST
               (NAME "g" ""))
-            (REF 408 (NAME "Graph" "") ())))
+            (REF 420 (NAME "Graph" "") ())))
         (LIST
-          (MEMBER 408
-            (REF 408 (NAME "x" "") ())
-            (APPLY 408
-              (REF 408 (NAME "predicates" "") ())
-              (REF 408 (NAME "g" "") ())))))
+          (MEMBER 420
+            (REF 420 (NAME "x" "") ())
+            (APPLY 420
+              (REF 420 (NAME "predicates" "") ())
+              (REF 420 (NAME "g" "") ())))))
       (NOTHING 0))))
 
-(EQEQ 410
-  (LHS 410
+(EQEQ 422
+  (LHS 422
     (NAME "hasObject" "")
     ())
-  (LAMBDA 410
-    (BODY 410
+  (LAMBDA 422
+    (BODY 422
       (LIST
-        (DECL 410
+        (DECL 422
           (LIST
             (NAME "x" ""))
-          (REF 410 (NAME "TERM" "") ())))
+          (REF 422 (NAME "TERM" "") ())))
       ())
-    (COMP 410
-      (BODY 410
+    (COMP 422
+      (BODY 422
         (LIST
-          (DECL 410
+          (DECL 422
             (LIST
               (NAME "g" ""))
-            (REF 410 (NAME "Graph" "") ())))
+            (REF 422 (NAME "Graph" "") ())))
         (LIST
-          (MEMBER 410
-            (REF 410 (NAME "x" "") ())
-            (APPLY 410
-              (REF 410 (NAME "objects" "") ())
-              (REF 410 (NAME "g" "") ())))))
+          (MEMBER 422
+            (REF 422 (NAME "x" "") ())
+            (APPLY 422
+              (REF 422 (NAME "objects" "") ())
+              (REF 422 (NAME "g" "") ())))))
       (NOTHING 0))))
 
-(EQEQ 412
-  (LHS 412
+(EQEQ 424
+  (LHS 424
     (NAME "hasNode" "")
     ())
-  (LAMBDA 412
-    (BODY 412
+  (LAMBDA 424
+    (BODY 424
       (LIST
-        (DECL 412
+        (DECL 424
           (LIST
             (NAME "x" ""))
-          (REF 412 (NAME "TERM" "") ())))
+          (REF 424 (NAME "TERM" "") ())))
       ())
-    (COMP 412
-      (BODY 412
+    (COMP 424
+      (BODY 424
         (LIST
-          (DECL 412
+          (DECL 424
             (LIST
               (NAME "g" ""))
-            (REF 412 (NAME "Graph" "") ())))
+            (REF 424 (NAME "Graph" "") ())))
         (LIST
-          (MEMBER 412
-            (REF 412 (NAME "x" "") ())
-            (APPLY 412
-              (REF 412 (NAME "nodes" "") ())
-              (REF 412 (NAME "g" "") ())))))
+          (MEMBER 424
+            (REF 424 (NAME "x" "") ())
+            (APPLY 424
+              (REF 424 (NAME "nodes" "") ())
+              (REF 424 (NAME "g" "") ())))))
       (NOTHING 0))))
 
-(PRED 421
-  (FORALL 421
-    (BODY 421
+(PRED 433
+  (FORALL 433
+    (BODY 433
       (LIST
-        (DECL 421
+        (DECL 433
           (LIST
             (NAME "x" ""))
-          (REF 421 (NAME "TERM" "") ())))
+          (REF 433 (NAME "TERM" "") ())))
       ())
-    (EQUAL 422
-      (APPLY 422
-        (REF 422 (NAME "hasNode" "") ())
-        (REF 422 (NAME "x" "") ()))
-      (INOP 422
+    (EQUAL 434
+      (APPLY 434
+        (REF 434 (NAME "hasNode" "") ())
+        (REF 434 (NAME "x" "") ()))
+      (INOP 434
         (NAME "\cup" "")
-        (APPLY 422
-          (REF 422 (NAME "hasSubject" "") ())
-          (REF 422 (NAME "x" "") ()))
-        (APPLY 422
-          (REF 422 (NAME "hasObject" "") ())
-          (REF 422 (NAME "x" "") ()))))))
+        (APPLY 434
+          (REF 434 (NAME "hasSubject" "") ())
+          (REF 434 (NAME "x" "") ()))
+        (APPLY 434
+          (REF 434 (NAME "hasObject" "") ())
+          (REF 434 (NAME "x" "") ()))))))
 
-(AXDEF 426
-  (BODY 427
+(AXDEF 438
+  (BODY 439
     (LIST
-      (DECL 427
+      (DECL 439
         (LIST
           (NAME "NodeConstraint" ""))
-        (POWER 427
-          (REF 427 (NAME "TermConstraint" "") ()))))
+        (POWER 439
+          (REF 439 (NAME "TermConstraint" "") ()))))
     (LIST
-      (EQUAL 429
-        (REF 429 (NAME "NodeConstraint" "") ())
-        (COMP 430
-          (BODY 430
+      (EQUAL 441
+        (REF 441 (NAME "NodeConstraint" "") ())
+        (COMP 442
+          (BODY 442
             (LIST
-              (DECL 430
+              (DECL 442
                 (LIST
                   (NAME "c" ""))
-                (REF 430 (NAME "TermConstraint" "") ())))
+                (REF 442 (NAME "TermConstraint" "") ())))
             (LIST
-              (FORALL 430
-                (BODY 430
+              (FORALL 442
+                (BODY 442
                   (LIST
-                    (DECL 430
+                    (DECL 442
                       (LIST
                         (NAME "x" ""))
-                      (REF 430 (NAME "TERM" "") ())))
+                      (REF 442 (NAME "TERM" "") ())))
                   ())
-                (FORALL 430
-                  (BODY 430
+                (FORALL 442
+                  (BODY 442
                     (LIST
-                      (DECL 430
+                      (DECL 442
                         (LIST
                           (NAME "g" ""))
-                        (APPLY 430
-                          (REF 430 (NAME "c" "") ())
-                          (REF 430 (NAME "x" "") ()))))
+                        (APPLY 442
+                          (REF 442 (NAME "c" "") ())
+                          (REF 442 (NAME "x" "") ()))))
                     ())
-                  (MEMBER 430
-                    (REF 430 (NAME "x" "") ())
-                    (APPLY 430
-                      (REF 430 (NAME "nodes" "") ())
-                      (REF 430 (NAME "g" "") ())))))))
+                  (MEMBER 442
+                    (REF 442 (NAME "x" "") ())
+                    (APPLY 442
+                      (REF 442 (NAME "nodes" "") ())
+                      (REF 442 (NAME "g" "") ())))))))
           (NOTHING 0))))))
 
-(PRED 438
-  (MEMBER 438
-    (REF 438 (NAME "hasNode" "") ())
-    (REF 438 (NAME "NodeConstraint" "") ())))
+(PRED 450
+  (MEMBER 450
+    (REF 450 (NAME "hasNode" "") ())
+    (REF 450 (NAME "NodeConstraint" "") ())))
 
-(AXDEF 444
-  (BODY 445
+(AXDEF 456
+  (BODY 457
     (LIST
-      (DECL 445
+      (DECL 457
         (LIST
           (NAME "is\_a\_person" ""))
-        (REF 445 (NAME "NodeConstraint" "") ())))
+        (REF 457 (NAME "NodeConstraint" "") ())))
     (LIST
-      (FORALL 447
-        (BODY 447
+      (FORALL 459
+        (BODY 459
           (LIST
-            (DECL 447
+            (DECL 459
               (LIST
                 (NAME "x" ""))
-              (REF 447 (NAME "TERM" "") ())))
+              (REF 459 (NAME "TERM" "") ())))
           ())
-        (EQUAL 448
-          (APPLY 448
-            (REF 448 (NAME "is\_a\_person" "") ())
-            (REF 448 (NAME "x" "") ()))
-          (COMP 449
-            (BODY 449
+        (EQUAL 460
+          (APPLY 460
+            (REF 460 (NAME "is\_a\_person" "") ())
+            (REF 460 (NAME "x" "") ()))
+          (COMP 461
+            (BODY 461
               (LIST
-                (DECL 449
+                (DECL 461
                   (LIST
                     (NAME "g" ""))
-                  (REF 449 (NAME "Graph" "") ())))
+                  (REF 461 (NAME "Graph" "") ())))
               (LIST
-                (MEMBER 449
-                  (TUPLE 449
+                (MEMBER 461
+                  (TUPLE 461
                     (LIST
-                      (REF 449 (NAME "x" "") ())
-                      (REF 449 (NAME "rdf\_type" "") ())
-                      (REF 449 (NAME "foaf\_Person" "") ())))
-                  (REF 449 (NAME "g" "") ()))))
+                      (REF 461 (NAME "x" "") ())
+                      (REF 461 (NAME "rdf\_type" "") ())
+                      (REF 461 (NAME "foaf\_Person" "") ())))
+                  (REF 461 (NAME "g" "") ()))))
             (NOTHING 0)))))))
 
-(PRED 462
-  (AND 463
-    (AND 462
-      (MEMBER 462
-        (REF 462 (NAME "alice\_graph" "") ())
-        (APPLY 462
-          (REF 462 (NAME "is\_a\_person" "") ())
-          (REF 462 (NAME "alice" "") ())))
-      (MEMBER 463
-        (REF 463 (NAME "alice\_graph" "") ())
-        (APPLY 463
-          (REF 463 (NAME "is\_a\_person" "") ())
-          (REF 463 (NAME "bob" "") ()))))
-    (MEMBER 464
-      (REF 464 (NAME "alice\_graph" "") ())
-      (APPLY 464
-        (REF 464 (NAME "is\_a\_person" "") ())
-        (REF 464 (NAME "charlie" "") ())))))
+(PRED 474
+  (AND 475
+    (AND 474
+      (MEMBER 474
+        (REF 474 (NAME "alice\_graph" "") ())
+        (APPLY 474
+          (REF 474 (NAME "is\_a\_person" "") ())
+          (REF 474 (NAME "alice" "") ())))
+      (MEMBER 475
+        (REF 475 (NAME "alice\_graph" "") ())
+        (APPLY 475
+          (REF 475 (NAME "is\_a\_person" "") ())
+          (REF 475 (NAME "bob" "") ()))))
+    (MEMBER 476
+      (REF 476 (NAME "alice\_graph" "") ())
+      (APPLY 476
+        (REF 476 (NAME "is\_a\_person" "") ())
+        (REF 476 (NAME "charlie" "") ())))))
 
-(AXDEF 468
-  (BODY 469
+(AXDEF 482
+  (BODY 483
     (LIST
-      (DECL 469
+      (DECL 483
         (LIST
           (NAME "has\_one\_name" ""))
-        (REF 469 (NAME "NodeConstraint" "") ())))
+        (REF 483 (NAME "NodeConstraint" "") ())))
     (LIST
-      (FORALL 471
-        (BODY 471
+      (FORALL 485
+        (BODY 485
           (LIST
-            (DECL 471
+            (DECL 485
               (LIST
                 (NAME "x" ""))
-              (REF 471 (NAME "TERM" "") ())))
+              (REF 485 (NAME "TERM" "") ())))
           ())
-        (EQUAL 472
-          (APPLY 472
-            (REF 472 (NAME "has\_one\_name" "") ())
-            (REF 472 (NAME "x" "") ()))
-          (COMP 473
-            (BODY 473
+        (EQUAL 486
+          (APPLY 486
+            (REF 486 (NAME "has\_one\_name" "") ())
+            (REF 486 (NAME "x" "") ()))
+          (COMP 487
+            (BODY 487
               (LIST
-                (DECL 473
+                (DECL 487
                   (LIST
                     (NAME "g" ""))
-                  (REF 473 (NAME "Graph" "") ())))
+                  (REF 487 (NAME "Graph" "") ())))
               (LIST
-                (EXISTS1 473
-                  (BODY 473
+                (EXISTS1 487
+                  (BODY 487
                     (LIST
-                      (DECL 473
+                      (DECL 487
                         (LIST
                           (NAME "y" ""))
-                        (REF 473 (NAME "TERM" "") ())))
+                        (REF 487 (NAME "TERM" "") ())))
                     ())
-                  (MEMBER 473
-                    (TUPLE 473
+                  (MEMBER 487
+                    (TUPLE 487
                       (LIST
-                        (REF 473 (NAME "x" "") ())
-                        (REF 473 (NAME "foaf\_name" "") ())
-                        (REF 473 (NAME "y" "") ())))
-                    (REF 473 (NAME "g" "") ())))))
+                        (REF 487 (NAME "x" "") ())
+                        (REF 487 (NAME "foaf\_name" "") ())
+                        (REF 487 (NAME "y" "") ())))
+                    (REF 487 (NAME "g" "") ())))))
             (NOTHING 0)))))))
 
-(PRED 486
-  (AND 487
-    (AND 486
-      (MEMBER 486
-        (REF 486 (NAME "alice\_graph" "") ())
-        (APPLY 486
-          (REF 486 (NAME "has\_one\_name" "") ())
-          (REF 486 (NAME "alice" "") ())))
-      (MEMBER 487
-        (REF 487 (NAME "alice\_graph" "") ())
-        (APPLY 487
-          (REF 487 (NAME "has\_one\_name" "") ())
-          (REF 487 (NAME "bob" "") ()))))
-    (MEMBER 488
-      (REF 488 (NAME "alice\_graph" "") ())
-      (APPLY 488
-        (REF 488 (NAME "has\_one\_name" "") ())
-        (REF 488 (NAME "charlie" "") ())))))
+(PRED 500
+  (AND 501
+    (AND 500
+      (MEMBER 500
+        (REF 500 (NAME "alice\_graph" "") ())
+        (APPLY 500
+          (REF 500 (NAME "has\_one\_name" "") ())
+          (REF 500 (NAME "alice" "") ())))
+      (MEMBER 501
+        (REF 501 (NAME "alice\_graph" "") ())
+        (APPLY 501
+          (REF 501 (NAME "has\_one\_name" "") ())
+          (REF 501 (NAME "bob" "") ()))))
+    (MEMBER 502
+      (REF 502 (NAME "alice\_graph" "") ())
+      (APPLY 502
+        (REF 502 (NAME "has\_one\_name" "") ())
+        (REF 502 (NAME "charlie" "") ())))))
 
-(AXDEF 492
-  (BODY 493
+(AXDEF 508
+  (BODY 509
     (LIST
-      (DECL 493
+      (DECL 509
         (LIST
           (NAME "is\_known\_by\_one" ""))
-        (REF 493 (NAME "NodeConstraint" "") ())))
+        (REF 509 (NAME "NodeConstraint" "") ())))
     (LIST
-      (FORALL 495
-        (BODY 495
+      (FORALL 511
+        (BODY 511
           (LIST
-            (DECL 495
+            (DECL 511
               (LIST
                 (NAME "x" ""))
-              (REF 495 (NAME "TERM" "") ())))
+              (REF 511 (NAME "TERM" "") ())))
           ())
-        (EQUAL 496
-          (APPLY 496
-            (REF 496 (NAME "is\_known\_by\_one" "") ())
-            (REF 496 (NAME "x" "") ()))
-          (COMP 497
-            (BODY 497
+        (EQUAL 512
+          (APPLY 512
+            (REF 512 (NAME "is\_known\_by\_one" "") ())
+            (REF 512 (NAME "x" "") ()))
+          (COMP 513
+            (BODY 513
               (LIST
-                (DECL 497
+                (DECL 513
                   (LIST
                     (NAME "g" ""))
-                  (REF 497 (NAME "Graph" "") ())))
+                  (REF 513 (NAME "Graph" "") ())))
               (LIST
-                (EXISTS1 497
-                  (BODY 497
+                (EXISTS1 513
+                  (BODY 513
                     (LIST
-                      (DECL 497
+                      (DECL 513
                         (LIST
                           (NAME "y" ""))
-                        (REF 497 (NAME "TERM" "") ())))
+                        (REF 513 (NAME "TERM" "") ())))
                     ())
-                  (MEMBER 497
-                    (TUPLE 497
+                  (MEMBER 513
+                    (TUPLE 513
                       (LIST
-                        (REF 497 (NAME "y" "") ())
-                        (REF 497 (NAME "foaf\_knows" "") ())
-                        (REF 497 (NAME "x" "") ())))
-                    (REF 497 (NAME "g" "") ())))))
+                        (REF 513 (NAME "y" "") ())
+                        (REF 513 (NAME "foaf\_knows" "") ())
+                        (REF 513 (NAME "x" "") ())))
+                    (REF 513 (NAME "g" "") ())))))
             (NOTHING 0)))))))
 
-(PRED 509
-  (AND 509
-    (MEMBER 509
-      (REF 509 (NAME "alice\_graph" "") ())
-      (APPLY 509
-        (REF 509 (NAME "is\_known\_by\_one" "") ())
-        (REF 509 (NAME "bob" "") ())))
-    (MEMBER 510
-      (REF 510 (NAME "alice\_graph" "") ())
-      (APPLY 510
-        (REF 510 (NAME "is\_known\_by\_one" "") ())
-        (REF 510 (NAME "charlie" "") ())))))
+(PRED 525
+  (AND 525
+    (MEMBER 525
+      (REF 525 (NAME "alice\_graph" "") ())
+      (APPLY 525
+        (REF 525 (NAME "is\_known\_by\_one" "") ())
+        (REF 525 (NAME "bob" "") ())))
+    (MEMBER 526
+      (REF 526 (NAME "alice\_graph" "") ())
+      (APPLY 526
+        (REF 526 (NAME "is\_known\_by\_one" "") ())
+        (REF 526 (NAME "charlie" "") ())))))
 
-(AXDEF 514
-  (BODY 515
+(AXDEF 530
+  (BODY 531
     (LIST
-      (DECL 515
+      (DECL 531
         (LIST
           (NAME "contact\_nc" ""))
-        (REF 515 (NAME "NodeConstraint" "") ())))
+        (REF 531 (NAME "NodeConstraint" "") ())))
     (LIST
-      (FORALL 517
-        (BODY 517
+      (FORALL 533
+        (BODY 533
           (LIST
-            (DECL 517
+            (DECL 533
               (LIST
                 (NAME "x" ""))
-              (REF 517 (NAME "TERM" "") ())))
+              (REF 533 (NAME "TERM" "") ())))
           ())
-        (EQUAL 518
-          (APPLY 518
-            (REF 518 (NAME "contact\_nc" "") ())
-            (REF 518 (NAME "x" "") ()))
-          (INOP 519
+        (EQUAL 534
+          (APPLY 534
+            (REF 534 (NAME "contact\_nc" "") ())
+            (REF 534 (NAME "x" "") ()))
+          (INOP 535
             (NAME "\cap" "")
-            (APPLY 519
-              (REF 519 (NAME "is\_a\_person" "") ())
-              (REF 519 (NAME "x" "") ()))
-            (APPLY 520
-              (REF 520 (NAME "has\_one\_name" "") ())
-              (REF 520 (NAME "x" "") ()))))))))
+            (APPLY 535
+              (REF 535 (NAME "is\_a\_person" "") ())
+              (REF 535 (NAME "x" "") ()))
+            (APPLY 536
+              (REF 536 (NAME "has\_one\_name" "") ())
+              (REF 536 (NAME "x" "") ()))))))))
 
-(PRED 533
-  (AND 534
-    (AND 533
-      (MEMBER 533
-        (REF 533 (NAME "alice\_graph" "") ())
-        (APPLY 533
-          (REF 533 (NAME "contact\_nc" "") ())
-          (REF 533 (NAME "alice" "") ())))
-      (MEMBER 534
-        (REF 534 (NAME "alice\_graph" "") ())
-        (APPLY 534
-          (REF 534 (NAME "contact\_nc" "") ())
-          (REF 534 (NAME "bob" "") ()))))
-    (MEMBER 535
-      (REF 535 (NAME "alice\_graph" "") ())
-      (APPLY 535
-        (REF 535 (NAME "contact\_nc" "") ())
-        (REF 535 (NAME "charlie" "") ())))))
+(PRED 549
+  (AND 550
+    (AND 549
+      (MEMBER 549
+        (REF 549 (NAME "alice\_graph" "") ())
+        (APPLY 549
+          (REF 549 (NAME "contact\_nc" "") ())
+          (REF 549 (NAME "alice" "") ())))
+      (MEMBER 550
+        (REF 550 (NAME "alice\_graph" "") ())
+        (APPLY 550
+          (REF 550 (NAME "contact\_nc" "") ())
+          (REF 550 (NAME "bob" "") ()))))
+    (MEMBER 551
+      (REF 551 (NAME "alice\_graph" "") ())
+      (APPLY 551
+        (REF 551 (NAME "contact\_nc" "") ())
+        (REF 551 (NAME "charlie" "") ())))))
 
-(AXDEF 539
-  (BODY 540
+(AXDEF 555
+  (BODY 556
     (LIST
-      (DECL 540
+      (DECL 556
         (LIST
           (NAME "associate\_nc" ""))
-        (REF 540 (NAME "NodeConstraint" "") ())))
+        (REF 556 (NAME "NodeConstraint" "") ())))
     (LIST
-      (FORALL 542
-        (BODY 542
+      (FORALL 558
+        (BODY 558
           (LIST
-            (DECL 542
+            (DECL 558
               (LIST
                 (NAME "x" ""))
-              (REF 542 (NAME "TERM" "") ())))
+              (REF 558 (NAME "TERM" "") ())))
           ())
-        (EQUAL 543
-          (APPLY 543
-            (REF 543 (NAME "associate\_nc" "") ())
-            (REF 543 (NAME "x" "") ()))
-          (INOP 544
+        (EQUAL 559
+          (APPLY 559
+            (REF 559 (NAME "associate\_nc" "") ())
+            (REF 559 (NAME "x" "") ()))
+          (INOP 560
             (NAME "\cap" "")
-            (INOP 544
+            (INOP 560
               (NAME "\cap" "")
-              (APPLY 544
-                (REF 544 (NAME "is\_a\_person" "") ())
-                (REF 544 (NAME "x" "") ()))
-              (APPLY 545
-                (REF 545 (NAME "has\_one\_name" "") ())
-                (REF 545 (NAME "x" "") ())))
-            (APPLY 546
-              (REF 546 (NAME "is\_known\_by\_one" "") ())
-              (REF 546 (NAME "x" "") ()))))))))
+              (APPLY 560
+                (REF 560 (NAME "is\_a\_person" "") ())
+                (REF 560 (NAME "x" "") ()))
+              (APPLY 561
+                (REF 561 (NAME "has\_one\_name" "") ())
+                (REF 561 (NAME "x" "") ())))
+            (APPLY 562
+              (REF 562 (NAME "is\_known\_by\_one" "") ())
+              (REF 562 (NAME "x" "") ()))))))))
 
-(PRED 558
-  (AND 558
-    (MEMBER 558
-      (REF 558 (NAME "alice\_graph" "") ())
-      (APPLY 558
-        (REF 558 (NAME "associate\_nc" "") ())
-        (REF 558 (NAME "bob" "") ())))
-    (MEMBER 559
-      (REF 559 (NAME "alice\_graph" "") ())
-      (APPLY 559
-        (REF 559 (NAME "associate\_nc" "") ())
-        (REF 559 (NAME "charlie" "") ())))))
+(PRED 574
+  (AND 574
+    (MEMBER 574
+      (REF 574 (NAME "alice\_graph" "") ())
+      (APPLY 574
+        (REF 574 (NAME "associate\_nc" "") ())
+        (REF 574 (NAME "bob" "") ())))
+    (MEMBER 575
+      (REF 575 (NAME "alice\_graph" "") ())
+      (APPLY 575
+        (REF 575 (NAME "associate\_nc" "") ())
+        (REF 575 (NAME "charlie" "") ())))))
 
-(GIVEN 588
+(GIVEN 610
   (LIST
     (NAME "NAME" "")))
 
-(AXDEF 592
-  (BODY 593
+(AXDEF 614
+  (BODY 615
     (LIST
-      (DECL 593
+      (DECL 615
         (LIST
           (NAME "contact" "")
           (NAME "associate" ""))
-        (REF 593 (NAME "NAME" "") ())))
+        (REF 615 (NAME "NAME" "") ())))
     (LIST
-      (INREL 595
+      (INREL 617
         (NAME "\neq" "")
-        (REF 595 (NAME "contact" "") ())
-        (REF 595 (NAME "associate" "") ())))))
+        (REF 617 (NAME "contact" "") ())
+        (REF 617 (NAME "associate" "") ())))))
 
-(SDEF 607
-  (SHEAD 607
+(SDEF 629
+  (SHEAD 629
     "NeighbourGraph"
     ())
-  (BODY 608
+  (BODY 630
     (LIST
-      (DECL 608
+      (DECL 630
         (LIST
           (NAME "names" ""))
-        (PREGEN 608
+        (PREGEN 630
           (NAME "\finset" "")
-          (REF 608 (NAME "NAME" "") ())))
-      (DECL 609
+          (REF 630 (NAME "NAME" "") ())))
+      (DECL 631
         (LIST
           (NAME "arcs" ""))
-        (PREGEN 609
+        (PREGEN 631
           (NAME "\finset" "")
-          (CROSS 609
+          (CROSS 631
             (LIST
-              (REF 609 (NAME "NAME" "") ())
-              (REF 609 (NAME "Neighbour" "") ())
-              (REF 609 (NAME "NAME" "") ()))))))
+              (REF 631 (NAME "NAME" "") ())
+              (REF 631 (NAME "Neighbour" "") ())
+              (REF 631 (NAME "NAME" "") ()))))))
     (LIST
-      (INREL 611
+      (INREL 633
         (NAME "\subseteq" "")
-        (REF 611 (NAME "arcs" "") ())
-        (CROSS 611
+        (REF 633 (NAME "arcs" "") ())
+        (CROSS 633
           (LIST
-            (REF 611 (NAME "names" "") ())
-            (REF 611 (NAME "Neighbour" "") ())
-            (REF 611 (NAME "names" "") ())))))))
+            (REF 633 (NAME "names" "") ())
+            (REF 633 (NAME "Neighbour" "") ())
+            (REF 633 (NAME "names" "") ())))))))
 
-(AXDEF 619
-  (BODY 620
+(AXDEF 641
+  (BODY 642
     (LIST
-      (DECL 620
+      (DECL 642
         (LIST
           (NAME "pim\_ng" ""))
-        (SEXPR 620
-          (SREF 620 "NeighbourGraph" "" () ()))))
+        (SEXPR 642
+          (SREF 642 "NeighbourGraph" "" () ()))))
     (LIST
-      (EQUAL 622
-        (SELECT 622
-          (REF 622 (NAME "pim\_ng" "") ())
+      (EQUAL 644
+        (SELECT 644
+          (REF 644 (NAME "pim\_ng" "") ())
           (NAME "names" ""))
-        (EXT 622
+        (EXT 644
           (LIST
-            (REF 622 (NAME "contact" "") ())
-            (REF 622 (NAME "associate" "") ()))))
-      (EQUAL 624
-        (SELECT 624
-          (REF 624 (NAME "pim\_ng" "") ())
-          (NAME "arcs" ""))
-        (EXT 625
-          (LIST
-            (TUPLE 625
-              (LIST
-                (REF 625 (NAME "contact" "") ())
-                (REF 625 (NAME "knows" "") ())
-                (REF 625 (NAME "associate" "") ())))
-            (TUPLE 626
-              (LIST
-                (REF 626 (NAME "associate" "") ())
-                (REF 626 (NAME "is\_known\_by" "") ())
-                (REF 626 (NAME "contact" "") ())))))))))
-
-(SDEF 630
-  (SHEAD 630
-    "PointedNeighbourGraph"
-    ())
-  (BODY 631
-    (LIST
-      (SDECL 631
-        (SREF 631 "NeighbourGraph" "" () ()))
-      (DECL 632
-        (LIST
-          (NAME "baseName" ""))
-        (REF 632 (NAME "NAME" "") ())))
-    (LIST
-      (MEMBER 634
-        (REF 634 (NAME "baseName" "") ())
-        (REF 634 (NAME "names" "") ())))))
-
-(AXDEF 643
-  (BODY 644
-    (LIST
-      (DECL 644
-        (LIST
-          (NAME "pim\_png" ""))
-        (SEXPR 644
-          (SREF 644 "PointedNeighbourGraph" "" () ()))))
-    (LIST
+            (REF 644 (NAME "contact" "") ())
+            (REF 644 (NAME "associate" "") ()))))
       (EQUAL 646
         (SELECT 646
-          (REF 646 (NAME "pim\_png" "") ())
-          (NAME "names" ""))
-        (SELECT 646
           (REF 646 (NAME "pim\_ng" "") ())
-          (NAME "names" "")))
-      (EQUAL 648
-        (SELECT 648
-          (REF 648 (NAME "pim\_png" "") ())
           (NAME "arcs" ""))
-        (SELECT 648
-          (REF 648 (NAME "pim\_ng" "") ())
-          (NAME "arcs" "")))
-      (EQUAL 650
-        (SELECT 650
-          (REF 650 (NAME "pim\_png" "") ())
-          (NAME "baseName" ""))
-        (REF 650 (NAME "contact" "") ())))))
+        (EXT 647
+          (LIST
+            (TUPLE 647
+              (LIST
+                (REF 647 (NAME "contact" "") ())
+                (REF 647 (NAME "knows" "") ())
+                (REF 647 (NAME "associate" "") ())))
+            (TUPLE 648
+              (LIST
+                (REF 648 (NAME "associate" "") ())
+                (REF 648 (NAME "is\_known\_by" "") ())
+                (REF 648 (NAME "contact" "") ())))))))))
 
-(EQEQ 655
-  (LHS 655
+(SDEF 652
+  (SHEAD 652
+    "PointedNeighbourGraph"
+    ())
+  (BODY 653
+    (LIST
+      (SDECL 653
+        (SREF 653 "NeighbourGraph" "" () ()))
+      (DECL 654
+        (LIST
+          (NAME "baseName" ""))
+        (REF 654 (NAME "NAME" "") ())))
+    (LIST
+      (MEMBER 656
+        (REF 656 (NAME "baseName" "") ())
+        (REF 656 (NAME "names" "") ())))))
+
+(AXDEF 665
+  (BODY 666
+    (LIST
+      (DECL 666
+        (LIST
+          (NAME "pim\_png" ""))
+        (SEXPR 666
+          (SREF 666 "PointedNeighbourGraph" "" () ()))))
+    (LIST
+      (EQUAL 668
+        (SELECT 668
+          (REF 668 (NAME "pim\_png" "") ())
+          (NAME "names" ""))
+        (SELECT 668
+          (REF 668 (NAME "pim\_ng" "") ())
+          (NAME "names" "")))
+      (EQUAL 670
+        (SELECT 670
+          (REF 670 (NAME "pim\_png" "") ())
+          (NAME "arcs" ""))
+        (SELECT 670
+          (REF 670 (NAME "pim\_ng" "") ())
+          (NAME "arcs" "")))
+      (EQUAL 672
+        (SELECT 672
+          (REF 672 (NAME "pim\_png" "") ())
+          (NAME "baseName" ""))
+        (REF 672 (NAME "contact" "") ())))))
+
+(EQEQ 677
+  (LHS 677
     (NAME "NamedNode" "")
     ())
-  (CROSS 655
+  (CROSS 677
     (LIST
-      (REF 655 (NAME "TERM" "") ())
-      (REF 655 (NAME "NAME" "") ()))))
+      (REF 677 (NAME "TERM" "") ())
+      (REF 677 (NAME "NAME" "") ()))))
 
-(PRED 663
-  (MEMBER 663
-    (TUPLE 663
+(PRED 685
+  (MEMBER 685
+    (TUPLE 685
       (LIST
-        (REF 663 (NAME "alice" "") ())
-        (REF 663 (NAME "contact" "") ())))
-    (REF 663 (NAME "NamedNode" "") ())))
+        (REF 685 (NAME "alice" "") ())
+        (REF 685 (NAME "contact" "") ())))
+    (REF 685 (NAME "NamedNode" "") ())))
 
-(AXDEF 669
-  (BODY 670
+(AXDEF 691
+  (BODY 692
     (LIST
-      (DECL 670
+      (DECL 692
         (LIST
           (NAME "requires" ""))
-        (INGEN 670
+        (INGEN 692
           (NAME "\fun" "")
-          (CROSS 670
+          (CROSS 692
             (LIST
-              (REF 670 (NAME "Graph" "") ())
-              (SEXPR 670
-                (SREF 670 "NeighbourGraph" "" () ()))))
-          (INGEN 670
+              (REF 692 (NAME "Graph" "") ())
+              (SEXPR 692
+                (SREF 692 "NeighbourGraph" "" () ()))))
+          (INGEN 692
             (NAME "\rel" "")
-            (REF 670 (NAME "NamedNode" "") ())
-            (REF 670 (NAME "NamedNode" "") ())))))
+            (REF 692 (NAME "NamedNode" "") ())
+            (REF 692 (NAME "NamedNode" "") ())))))
     (LIST
-      (FORALL 672
-        (BODY 672
+      (FORALL 694
+        (BODY 694
           (LIST
-            (DECL 672
+            (DECL 694
               (LIST
                 (NAME "g" ""))
-              (REF 672 (NAME "Graph" "") ()))
-            (DECL 672
+              (REF 694 (NAME "Graph" "") ()))
+            (DECL 694
               (LIST
                 (NAME "ng" ""))
-              (SEXPR 672
-                (SREF 672 "NeighbourGraph" "" () ()))))
+              (SEXPR 694
+                (SREF 694 "NeighbourGraph" "" () ()))))
           ())
-        (EQUAL 673
-          (APPLY 673
-            (REF 673 (NAME "requires" "") ())
-            (TUPLE 673
+        (EQUAL 695
+          (APPLY 695
+            (REF 695 (NAME "requires" "") ())
+            (TUPLE 695
               (LIST
-                (REF 673 (NAME "g" "") ())
-                (REF 673 (NAME "ng" "") ()))))
-          (COMP 674
-            (BODY 674
+                (REF 695 (NAME "g" "") ())
+                (REF 695 (NAME "ng" "") ()))))
+          (COMP 696
+            (BODY 696
               (LIST
-                (DECL 674
+                (DECL 696
                   (LIST
                     (NAME "x" "")
                     (NAME "y" ""))
-                  (APPLY 674
-                    (REF 674 (NAME "nodes" "") ())
-                    (REF 674 (NAME "g" "") ())))
-                (DECL 674
+                  (APPLY 696
+                    (REF 696 (NAME "nodes" "") ())
+                    (REF 696 (NAME "g" "") ())))
+                (DECL 696
                   (LIST
                     (NAME "a" "")
                     (NAME "b" ""))
-                  (REF 674 (NAME "NAME" "") ()))
-                (DECL 674
+                  (REF 696 (NAME "NAME" "") ()))
+                (DECL 696
                   (LIST
                     (NAME "q" ""))
-                  (REF 674 (NAME "Neighbour" "") ())))
+                  (REF 696 (NAME "Neighbour" "") ())))
               (LIST
-                (AND 675
-                  (MEMBER 675
-                    (TUPLE 675
+                (AND 697
+                  (MEMBER 697
+                    (TUPLE 697
                       (LIST
-                        (REF 675 (NAME "a" "") ())
-                        (REF 675 (NAME "q" "") ())
-                        (REF 675 (NAME "b" "") ())))
-                    (SELECT 675
-                      (REF 675 (NAME "ng" "") ())
+                        (REF 697 (NAME "a" "") ())
+                        (REF 697 (NAME "q" "") ())
+                        (REF 697 (NAME "b" "") ())))
+                    (SELECT 697
+                      (REF 697 (NAME "ng" "") ())
                       (NAME "arcs" "")))
-                  (MEMBER 676
-                    (TUPLE 676
+                  (MEMBER 698
+                    (TUPLE 698
                       (LIST
-                        (REF 676 (NAME "x" "") ())
-                        (REF 676 (NAME "y" "") ())))
-                    (APPLY 676
-                      (REF 676 (NAME "q" "") ())
-                      (REF 676 (NAME "g" "") ()))))))
-            (JUST 677
-              (INOP 677
+                        (REF 698 (NAME "x" "") ())
+                        (REF 698 (NAME "y" "") ())))
+                    (APPLY 698
+                      (REF 698 (NAME "q" "") ())
+                      (REF 698 (NAME "g" "") ()))))))
+            (JUST 699
+              (INOP 699
                 (NAME "\mapsto" "")
-                (TUPLE 677
+                (TUPLE 699
                   (LIST
-                    (REF 677 (NAME "x" "") ())
-                    (REF 677 (NAME "a" "") ())))
-                (TUPLE 677
+                    (REF 699 (NAME "x" "") ())
+                    (REF 699 (NAME "a" "") ())))
+                (TUPLE 699
                   (LIST
-                    (REF 677 (NAME "y" "") ())
-                    (REF 677 (NAME "b" "") ())))))))))))
+                    (REF 699 (NAME "y" "") ())
+                    (REF 699 (NAME "b" "") ())))))))))))
 
-(PRED 693
-  (EQUAL 693
-    (APPLY 693
-      (REF 693 (NAME "requires" "") ())
-      (TUPLE 693
+(PRED 715
+  (EQUAL 715
+    (APPLY 715
+      (REF 715 (NAME "requires" "") ())
+      (TUPLE 715
         (LIST
-          (REF 693 (NAME "alice\_graph" "") ())
-          (REF 693 (NAME "pim\_ng" "") ()))))
-    (EXT 694
+          (REF 715 (NAME "alice\_graph" "") ())
+          (REF 715 (NAME "pim\_ng" "") ()))))
+    (EXT 716
       (LIST
-        (INOP 694
+        (INOP 716
           (NAME "\mapsto" "")
-          (TUPLE 694
+          (TUPLE 716
             (LIST
-              (REF 694 (NAME "alice" "") ())
-              (REF 694 (NAME "contact" "") ())))
-          (TUPLE 694
+              (REF 716 (NAME "alice" "") ())
+              (REF 716 (NAME "contact" "") ())))
+          (TUPLE 716
             (LIST
-              (REF 694 (NAME "bob" "") ())
-              (REF 694 (NAME "associate" "") ()))))
-        (INOP 695
+              (REF 716 (NAME "bob" "") ())
+              (REF 716 (NAME "associate" "") ()))))
+        (INOP 717
           (NAME "\mapsto" "")
-          (TUPLE 695
+          (TUPLE 717
             (LIST
-              (REF 695 (NAME "alice" "") ())
-              (REF 695 (NAME "contact" "") ())))
-          (TUPLE 695
+              (REF 717 (NAME "alice" "") ())
+              (REF 717 (NAME "contact" "") ())))
+          (TUPLE 717
             (LIST
-              (REF 695 (NAME "charlie" "") ())
-              (REF 695 (NAME "associate" "") ()))))
-        (INOP 696
+              (REF 717 (NAME "charlie" "") ())
+              (REF 717 (NAME "associate" "") ()))))
+        (INOP 718
           (NAME "\mapsto" "")
-          (TUPLE 696
+          (TUPLE 718
             (LIST
-              (REF 696 (NAME "bob" "") ())
-              (REF 696 (NAME "associate" "") ())))
-          (TUPLE 696
+              (REF 718 (NAME "bob" "") ())
+              (REF 718 (NAME "associate" "") ())))
+          (TUPLE 718
             (LIST
-              (REF 696 (NAME "alice" "") ())
-              (REF 696 (NAME "contact" "") ()))))
-        (INOP 697
+              (REF 718 (NAME "alice" "") ())
+              (REF 718 (NAME "contact" "") ()))))
+        (INOP 719
           (NAME "\mapsto" "")
-          (TUPLE 697
+          (TUPLE 719
             (LIST
-              (REF 697 (NAME "charlie" "") ())
-              (REF 697 (NAME "associate" "") ())))
-          (TUPLE 697
+              (REF 719 (NAME "charlie" "") ())
+              (REF 719 (NAME "associate" "") ())))
+          (TUPLE 719
             (LIST
-              (REF 697 (NAME "alice" "") ())
-              (REF 697 (NAME "contact" "") ()))))))))
+              (REF 719 (NAME "alice" "") ())
+              (REF 719 (NAME "contact" "") ()))))))))
 
-(SDEF 701
-  (SHEAD 701
+(SDEF 723
+  (SHEAD 723
     "LabelledGraph"
     ())
-  (BODY 702
+  (BODY 724
     (LIST
-      (DECL 702
+      (DECL 724
         (LIST
           (NAME "graph" ""))
-        (REF 702 (NAME "Graph" "") ()))
-      (DECL 703
+        (REF 724 (NAME "Graph" "") ()))
+      (DECL 725
         (LIST
           (NAME "names" ""))
-        (POWER 703
-          (REF 703 (NAME "NAME" "") ())))
-      (DECL 704
+        (PREGEN 725
+          (NAME "\finset" "")
+          (REF 725 (NAME "NAME" "") ())))
+      (DECL 726
         (LIST
           (NAME "label" ""))
-        (INGEN 704
+        (INGEN 726
           (NAME "\pfun" "")
-          (REF 704 (NAME "TERM" "") ())
-          (POWER 704
-            (REF 704 (NAME "NAME" "") ())))))
+          (REF 726 (NAME "TERM" "") ())
+          (PREGEN 726
+            (NAME "\finset" "")
+            (REF 726 (NAME "NAME" "") ())))))
     (LIST
-      (MEMBER 706
-        (REF 706 (NAME "label" "") ())
-        (INGEN 706
+      (MEMBER 728
+        (REF 728 (NAME "label" "") ())
+        (INGEN 728
           (NAME "\fun" "")
-          (APPLY 706
-            (REF 706 (NAME "nodes" "") ())
-            (REF 706 (NAME "graph" "") ()))
-          (POWER 706
-            (REF 706 (NAME "names" "") ())))))))
+          (APPLY 728
+            (REF 728 (NAME "nodes" "") ())
+            (REF 728 (NAME "graph" "") ()))
+          (POWER 728
+            (REF 728 (NAME "names" "") ())))))))
 
-(AXDEF 713
-  (BODY 714
+(AXDEF 735
+  (BODY 736
     (LIST
-      (DECL 714
+      (DECL 736
         (LIST
           (NAME "alice\_lg" ""))
-        (SEXPR 714
-          (SREF 714 "LabelledGraph" "" () ()))))
+        (SEXPR 736
+          (SREF 736 "LabelledGraph" "" () ()))))
     (LIST
-      (EQUAL 716
-        (SELECT 716
-          (REF 716 (NAME "alice\_lg" "") ())
+      (EQUAL 738
+        (SELECT 738
+          (REF 738 (NAME "alice\_lg" "") ())
           (NAME "graph" ""))
-        (REF 716 (NAME "alice\_graph" "") ()))
-      (EQUAL 718
-        (SELECT 718
-          (REF 718 (NAME "alice\_lg" "") ())
+        (REF 738 (NAME "alice\_graph" "") ()))
+      (EQUAL 740
+        (SELECT 740
+          (REF 740 (NAME "alice\_lg" "") ())
           (NAME "names" ""))
-        (EXT 718
+        (EXT 740
           (LIST
-            (REF 718 (NAME "contact" "") ())
-            (REF 718 (NAME "associate" "") ()))))
-      (EQUAL 720
-        (SELECT 720
-          (REF 720 (NAME "alice\_lg" "") ())
+            (REF 740 (NAME "contact" "") ())
+            (REF 740 (NAME "associate" "") ()))))
+      (EQUAL 742
+        (SELECT 742
+          (REF 742 (NAME "alice\_lg" "") ())
           (NAME "label" ""))
-        (EXT 721
+        (EXT 743
           (LIST
-            (INOP 721
+            (INOP 743
               (NAME "\mapsto" "")
-              (REF 721 (NAME "alice" "") ())
-              (EXT 721
+              (REF 743 (NAME "alice" "") ())
+              (EXT 743
                 (LIST
-                  (REF 721 (NAME "contact" "") ()))))
-            (INOP 722
+                  (REF 743 (NAME "contact" "") ()))))
+            (INOP 744
               (NAME "\mapsto" "")
-              (REF 722 (NAME "bob" "") ())
-              (EXT 722
+              (REF 744 (NAME "bob" "") ())
+              (EXT 744
                 (LIST
-                  (REF 722 (NAME "associate" "") ()))))
-            (INOP 723
+                  (REF 744 (NAME "associate" "") ()))))
+            (INOP 745
               (NAME "\mapsto" "")
-              (REF 723 (NAME "charlie" "") ())
-              (EXT 723
+              (REF 745 (NAME "charlie" "") ())
+              (EXT 745
                 (LIST
-                  (REF 723 (NAME "associate" "") ()))))
-            (INOP 724
+                  (REF 745 (NAME "associate" "") ()))))
+            (INOP 746
               (NAME "\mapsto" "")
-              (REF 724 (NAME "Alice" "") ())
-              (REF 724 (NAME "\emptyset" "") ()))
-            (INOP 725
+              (REF 746 (NAME "Alice" "") ())
+              (REF 746 (NAME "\emptyset" "") ()))
+            (INOP 747
               (NAME "\mapsto" "")
-              (REF 725 (NAME "Bob" "") ())
-              (REF 725 (NAME "\emptyset" "") ()))
-            (INOP 726
+              (REF 747 (NAME "Bob" "") ())
+              (REF 747 (NAME "\emptyset" "") ()))
+            (INOP 748
               (NAME "\mapsto" "")
-              (REF 726 (NAME "Charlie" "") ())
-              (REF 726 (NAME "\emptyset" "") ()))
-            (INOP 727
+              (REF 748 (NAME "Charlie" "") ())
+              (REF 748 (NAME "\emptyset" "") ()))
+            (INOP 749
               (NAME "\mapsto" "")
-              (REF 727 (NAME "foaf\_Person" "") ())
-              (REF 727 (NAME "\emptyset" "") ()))))))))
+              (REF 749 (NAME "foaf\_Person" "") ())
+              (REF 749 (NAME "\emptyset" "") ()))))))))
 
-(SDEF 737
-  (SHEAD 737
+(SDEF 759
+  (SHEAD 759
     "LabelGraph"
     ())
-  (BODY 738
+  (BODY 760
     (LIST
-      (SDECL 738
-        (SREF 738 "PointedGraph" "" () ()))
-      (SDECL 739
-        (SREF 739 "PointedNeighbourGraph" "" () ()))
-      (SDECL 740
-        (SREF 740 "LabelledGraph" "" () ())))
+      (SDECL 760
+        (SREF 760 "PointedGraph" "" () ()))
+      (SDECL 761
+        (SREF 761 "PointedNeighbourGraph" "" () ()))
+      (SDECL 762
+        (SREF 762 "LabelledGraph" "" () ())))
     (LIST
-      (LETPRED 742
+      (LETPRED 764
         (LIST
-          (LETDEF 742
+          (LETDEF 764
             (NAME "ng" "")
-            (THETA 742
+            (THETA 764
               "NeighbourGraph"
               ""
               ())))
-        (LETPRED 743
+        (LETPRED 765
           (LIST
-            (LETDEF 743
+            (LETDEF 765
               (NAME "R" "")
-              (POSTOP 743
+              (POSTOP 765
                 (NAME "\star" "")
-                (APPLY 743
-                  (REF 743 (NAME "requires" "") ())
-                  (TUPLE 743
+                (APPLY 765
+                  (REF 765 (NAME "requires" "") ())
+                  (TUPLE 765
                     (LIST
-                      (REF 743 (NAME "graph" "") ())
-                      (REF 743 (NAME "ng" "") ())))))))
-          (EQUAL 744
-            (REF 744 (NAME "label" "") ())
-            (LAMBDA 744
-              (BODY 744
+                      (REF 765 (NAME "graph" "") ())
+                      (REF 765 (NAME "ng" "") ())))))))
+          (EQUAL 766
+            (REF 766 (NAME "label" "") ())
+            (LAMBDA 766
+              (BODY 766
                 (LIST
-                  (DECL 744
+                  (DECL 766
                     (LIST
                       (NAME "y" ""))
-                    (APPLY 744
-                      (REF 744 (NAME "nodes" "") ())
-                      (REF 744 (NAME "graph" "") ()))))
+                    (APPLY 766
+                      (REF 766 (NAME "nodes" "") ())
+                      (REF 766 (NAME "graph" "") ()))))
                 ())
-              (COMP 745
-                (BODY 745
+              (COMP 767
+                (BODY 767
                   (LIST
-                    (DECL 745
+                    (DECL 767
                       (LIST
                         (NAME "b" ""))
-                      (REF 745 (NAME "names" "") ())))
+                      (REF 767 (NAME "names" "") ())))
                   (LIST
-                    (INREL 745
+                    (INREL 767
                       (NAME "R" "")
-                      (TUPLE 745
+                      (TUPLE 767
                         (LIST
-                          (REF 745 (NAME "baseNode" "") ())
-                          (REF 745 (NAME "baseName" "") ())))
-                      (TUPLE 745
+                          (REF 767 (NAME "baseNode" "") ())
+                          (REF 767 (NAME "baseName" "") ())))
+                      (TUPLE 767
                         (LIST
-                          (REF 745 (NAME "y" "") ())
-                          (REF 745 (NAME "b" "") ()))))))
+                          (REF 767 (NAME "y" "") ())
+                          (REF 767 (NAME "b" "") ()))))))
                 (NOTHING 0)))))))))
 
-(PRED 760
-  (FORALL 760
-    (BODY 760
+(PRED 782
+  (FORALL 782
+    (BODY 782
       (LIST
-        (SDECL 760
-          (SREF 760 "LabelGraph" "" () ())))
+        (SDECL 782
+          (SREF 782 "LabelGraph" "" () ())))
       (LIST
-        (AND 761
-          (EQUAL 761
-            (THETA 761
+        (AND 783
+          (EQUAL 783
+            (THETA 783
               "PointedGraph"
               ""
               ())
-            (REF 761 (NAME "alice\_pg" "") ()))
-          (EQUAL 762
-            (THETA 762
+            (REF 783 (NAME "alice\_pg" "") ()))
+          (EQUAL 784
+            (THETA 784
               "PointedNeighbourGraph"
               ""
               ())
-            (REF 762 (NAME "pim\_png" "") ())))))
-    (EQUAL 763
-      (THETA 763
+            (REF 784 (NAME "pim\_png" "") ())))))
+    (EQUAL 785
+      (THETA 785
         "LabelledGraph"
         ""
         ())
-      (REF 763 (NAME "alice\_lg" "") ()))))
+      (REF 785 (NAME "alice\_lg" "") ()))))
 
-(SDEF 769
-  (SHEAD 769
+(SDEF 791
+  (SHEAD 791
     "NodeConstraints"
     ())
-  (BODY 770
+  (BODY 792
     (LIST
-      (DECL 770
+      (DECL 792
         (LIST
           (NAME "names" ""))
-        (PREGEN 770
+        (PREGEN 792
           (NAME "\finset" "")
-          (REF 770 (NAME "NAME" "") ())))
-      (DECL 771
+          (REF 792 (NAME "NAME" "") ())))
+      (DECL 793
         (LIST
           (NAME "constraint" ""))
-        (INGEN 771
+        (INGEN 793
           (NAME "\pfun" "")
-          (REF 771 (NAME "NAME" "") ())
-          (REF 771 (NAME "NodeConstraint" "") ()))))
+          (REF 793 (NAME "NAME" "") ())
+          (REF 793 (NAME "NodeConstraint" "") ()))))
     (LIST
-      (EQUAL 773
-        (APPLY 773
-          (REF 773 (NAME "\dom" "") ())
-          (REF 773 (NAME "constraint" "") ()))
-        (REF 773 (NAME "names" "") ())))))
+      (EQUAL 795
+        (APPLY 795
+          (REF 795 (NAME "\dom" "") ())
+          (REF 795 (NAME "constraint" "") ()))
+        (REF 795 (NAME "names" "") ())))))
 
-(AXDEF 780
-  (BODY 781
+(AXDEF 802
+  (BODY 803
     (LIST
-      (DECL 781
+      (DECL 803
         (LIST
           (NAME "pim\_ncs" ""))
-        (SEXPR 781
-          (SREF 781 "NodeConstraints" "" () ()))))
+        (SEXPR 803
+          (SREF 803 "NodeConstraints" "" () ()))))
     (LIST
-      (EQUAL 783
-        (SELECT 783
-          (REF 783 (NAME "pim\_ncs" "") ())
+      (EQUAL 805
+        (SELECT 805
+          (REF 805 (NAME "pim\_ncs" "") ())
           (NAME "names" ""))
-        (EXT 783
+        (EXT 805
           (LIST
-            (REF 783 (NAME "contact" "") ())
-            (REF 783 (NAME "associate" "") ()))))
-      (EQUAL 785
-        (SELECT 785
-          (REF 785 (NAME "pim\_ncs" "") ())
+            (REF 805 (NAME "contact" "") ())
+            (REF 805 (NAME "associate" "") ()))))
+      (EQUAL 807
+        (SELECT 807
+          (REF 807 (NAME "pim\_ncs" "") ())
           (NAME "constraint" ""))
-        (EXT 786
+        (EXT 808
           (LIST
-            (INOP 786
+            (INOP 808
               (NAME "\mapsto" "")
-              (REF 786 (NAME "contact" "") ())
-              (REF 786 (NAME "contact\_nc" "") ()))
-            (INOP 787
+              (REF 808 (NAME "contact" "") ())
+              (REF 808 (NAME "contact\_nc" "") ()))
+            (INOP 809
               (NAME "\mapsto" "")
-              (REF 787 (NAME "associate" "") ())
-              (REF 787 (NAME "associate\_nc" "") ()))))))))
+              (REF 809 (NAME "associate" "") ())
+              (REF 809 (NAME "associate\_nc" "") ()))))))))
 
-(SDEF 796
-  (SHEAD 796
+(SDEF 818
+  (SHEAD 818
     "ConstrainedGraph"
     ())
-  (BODY 797
+  (BODY 819
     (LIST
-      (DECL 797
+      (DECL 819
         (LIST
           (NAME "graph" ""))
-        (REF 797 (NAME "Graph" "") ()))
-      (DECL 798
+        (REF 819 (NAME "Graph" "") ()))
+      (DECL 820
         (LIST
           (NAME "constraints" ""))
-        (INGEN 798
+        (INGEN 820
           (NAME "\pfun" "")
-          (REF 798 (NAME "TERM" "") ())
-          (POWER 798
-            (REF 798 (NAME "NodeConstraint" "") ())))))
+          (REF 820 (NAME "TERM" "") ())
+          (POWER 820
+            (REF 820 (NAME "NodeConstraint" "") ())))))
     (LIST
-      (EQUAL 800
-        (APPLY 800
-          (REF 800 (NAME "\dom" "") ())
-          (REF 800 (NAME "constraints" "") ()))
-        (APPLY 800
-          (REF 800 (NAME "nodes" "") ())
-          (REF 800 (NAME "graph" "") ()))))))
+      (EQUAL 822
+        (APPLY 822
+          (REF 822 (NAME "\dom" "") ())
+          (REF 822 (NAME "constraints" "") ()))
+        (APPLY 822
+          (REF 822 (NAME "nodes" "") ())
+          (REF 822 (NAME "graph" "") ()))))))
 
-(AXDEF 807
-  (BODY 808
+(AXDEF 829
+  (BODY 830
     (LIST
-      (DECL 808
+      (DECL 830
         (LIST
           (NAME "alice\_cg" ""))
-        (SEXPR 808
-          (SREF 808 "ConstrainedGraph" "" () ()))))
+        (SEXPR 830
+          (SREF 830 "ConstrainedGraph" "" () ()))))
     (LIST
-      (EQUAL 810
-        (SELECT 810
-          (REF 810 (NAME "alice\_cg" "") ())
+      (EQUAL 832
+        (SELECT 832
+          (REF 832 (NAME "alice\_cg" "") ())
           (NAME "graph" ""))
-        (REF 810 (NAME "alice\_graph" "") ()))
-      (EQUAL 812
-        (SELECT 812
-          (REF 812 (NAME "alice\_cg" "") ())
+        (REF 832 (NAME "alice\_graph" "") ()))
+      (EQUAL 834
+        (SELECT 834
+          (REF 834 (NAME "alice\_cg" "") ())
           (NAME "constraints" ""))
-        (EXT 813
+        (EXT 835
           (LIST
-            (INOP 813
+            (INOP 835
               (NAME "\mapsto" "")
-              (REF 813 (NAME "alice" "") ())
-              (EXT 813
+              (REF 835 (NAME "alice" "") ())
+              (EXT 835
                 (LIST
-                  (REF 813 (NAME "contact\_nc" "") ()))))
-            (INOP 814
+                  (REF 835 (NAME "contact\_nc" "") ()))))
+            (INOP 836
               (NAME "\mapsto" "")
-              (REF 814 (NAME "bob" "") ())
-              (EXT 814
+              (REF 836 (NAME "bob" "") ())
+              (EXT 836
                 (LIST
-                  (REF 814 (NAME "associate\_nc" "") ()))))
-            (INOP 815
+                  (REF 836 (NAME "associate\_nc" "") ()))))
+            (INOP 837
               (NAME "\mapsto" "")
-              (REF 815 (NAME "charlie" "") ())
-              (EXT 815
+              (REF 837 (NAME "charlie" "") ())
+              (EXT 837
                 (LIST
-                  (REF 815 (NAME "associate\_nc" "") ()))))
-            (INOP 816
+                  (REF 837 (NAME "associate\_nc" "") ()))))
+            (INOP 838
               (NAME "\mapsto" "")
-              (REF 816 (NAME "Alice" "") ())
-              (REF 816 (NAME "\emptyset" "") ()))
-            (INOP 817
+              (REF 838 (NAME "Alice" "") ())
+              (REF 838 (NAME "\emptyset" "") ()))
+            (INOP 839
               (NAME "\mapsto" "")
-              (REF 817 (NAME "Bob" "") ())
-              (REF 817 (NAME "\emptyset" "") ()))
-            (INOP 818
+              (REF 839 (NAME "Bob" "") ())
+              (REF 839 (NAME "\emptyset" "") ()))
+            (INOP 840
               (NAME "\mapsto" "")
-              (REF 818 (NAME "Charlie" "") ())
-              (REF 818 (NAME "\emptyset" "") ()))
-            (INOP 819
+              (REF 840 (NAME "Charlie" "") ())
+              (REF 840 (NAME "\emptyset" "") ()))
+            (INOP 841
               (NAME "\mapsto" "")
-              (REF 819 (NAME "foaf\_Person" "") ())
-              (REF 819 (NAME "\emptyset" "") ()))))))))
+              (REF 841 (NAME "foaf\_Person" "") ())
+              (REF 841 (NAME "\emptyset" "") ()))))))))
 
-(SDEF 828
-  (SHEAD 828
+(SDEF 850
+  (SHEAD 850
     "ValidGraph"
     ())
-  (BODY 829
+  (BODY 851
     (LIST
-      (SDECL 829
-        (SREF 829 "ConstrainedGraph" "" () ())))
+      (SDECL 851
+        (SREF 851 "ConstrainedGraph" "" () ())))
     (LIST
-      (FORALL 831
-        (BODY 831
+      (FORALL 853
+        (BODY 853
           (LIST
-            (DECL 831
+            (DECL 853
               (LIST
                 (NAME "x" ""))
-              (APPLY 831
-                (REF 831 (NAME "nodes" "") ())
-                (REF 831 (NAME "graph" "") ()))))
+              (APPLY 853
+                (REF 853 (NAME "nodes" "") ())
+                (REF 853 (NAME "graph" "") ()))))
           ())
-        (FORALL 832
-          (BODY 832
+        (FORALL 854
+          (BODY 854
             (LIST
-              (DECL 832
+              (DECL 854
                 (LIST
                   (NAME "c" ""))
-                (APPLY 832
-                  (REF 832 (NAME "constraints" "") ())
-                  (REF 832 (NAME "x" "") ()))))
+                (APPLY 854
+                  (REF 854 (NAME "constraints" "") ())
+                  (REF 854 (NAME "x" "") ()))))
             ())
-          (MEMBER 833
-            (REF 833 (NAME "graph" "") ())
-            (APPLY 833
-              (REF 833 (NAME "c" "") ())
-              (REF 833 (NAME "x" "") ()))))))))
+          (MEMBER 855
+            (REF 855 (NAME "graph" "") ())
+            (APPLY 855
+              (REF 855 (NAME "c" "") ())
+              (REF 855 (NAME "x" "") ()))))))))
 
-(PRED 844
-  (MEMBER 844
-    (REF 844 (NAME "alice\_cg" "") ())
-    (SEXPR 844
-      (SREF 844 "ValidGraph" "" () ()))))
+(PRED 866
+  (MEMBER 866
+    (REF 866 (NAME "alice\_cg" "") ())
+    (SEXPR 866
+      (SREF 866 "ValidGraph" "" () ()))))
 
-(SDEF 849
-  (SHEAD 849
+(SDEF 871
+  (SHEAD 871
     "ConstrainGraph"
     ())
-  (BODY 850
+  (BODY 872
     (LIST
-      (SDECL 850
-        (SREF 850 "LabelledGraph" "" () ()))
-      (SDECL 851
-        (SREF 851 "NodeConstraints" "" () ()))
-      (SDECL 852
-        (SREF 852 "ConstrainedGraph" "" () ())))
+      (SDECL 872
+        (SREF 872 "LabelledGraph" "" () ()))
+      (SDECL 873
+        (SREF 873 "NodeConstraints" "" () ()))
+      (SDECL 874
+        (SREF 874 "ConstrainedGraph" "" () ())))
     (LIST
-      (FORALL 854
-        (BODY 854
+      (FORALL 876
+        (BODY 876
           (LIST
-            (DECL 854
+            (DECL 876
               (LIST
                 (NAME "x" ""))
-              (APPLY 854
-                (REF 854 (NAME "nodes" "") ())
-                (REF 854 (NAME "graph" "") ()))))
+              (APPLY 876
+                (REF 876 (NAME "nodes" "") ())
+                (REF 876 (NAME "graph" "") ()))))
           ())
-        (EQUAL 855
-          (APPLY 855
-            (REF 855 (NAME "constraints" "") ())
-            (REF 855 (NAME "x" "") ()))
-          (COMP 856
-            (BODY 856
+        (EQUAL 877
+          (APPLY 877
+            (REF 877 (NAME "constraints" "") ())
+            (REF 877 (NAME "x" "") ()))
+          (COMP 878
+            (BODY 878
               (LIST
-                (DECL 856
+                (DECL 878
                   (LIST
                     (NAME "a" ""))
-                  (APPLY 856
-                    (REF 856 (NAME "label" "") ())
-                    (REF 856 (NAME "x" "") ()))))
+                  (APPLY 878
+                    (REF 878 (NAME "label" "") ())
+                    (REF 878 (NAME "x" "") ()))))
               ())
-            (JUST 856
-              (APPLY 856
-                (REF 856 (NAME "constraint" "") ())
-                (REF 856 (NAME "a" "") ())))))))))
+            (JUST 878
+              (APPLY 878
+                (REF 878 (NAME "constraint" "") ())
+                (REF 878 (NAME "a" "") ())))))))))
 
-(PRED 874
-  (FORALL 874
-    (BODY 874
+(PRED 896
+  (FORALL 896
+    (BODY 896
       (LIST
-        (SDECL 874
-          (SREF 874 "ConstrainGraph" "" () ())))
+        (SDECL 896
+          (SREF 896 "ConstrainGraph" "" () ())))
       (LIST
-        (AND 875
-          (EQUAL 875
-            (THETA 875
+        (AND 897
+          (EQUAL 897
+            (THETA 897
               "LabelledGraph"
               ""
               ())
-            (REF 875 (NAME "alice\_lg" "") ()))
-          (EQUAL 876
-            (THETA 876
+            (REF 897 (NAME "alice\_lg" "") ()))
+          (EQUAL 898
+            (THETA 898
               "NodeConstraints"
               ""
               ())
-            (REF 876 (NAME "pim\_ncs" "") ())))))
-    (EQUAL 877
-      (THETA 877
+            (REF 898 (NAME "pim\_ncs" "") ())))))
+    (EQUAL 899
+      (THETA 899
         "ConstrainedGraph"
         ""
         ())
-      (REF 877 (NAME "alice\_cg" "") ()))))
+      (REF 899 (NAME "alice\_cg" "") ()))))
 
-(SDEF 883
-  (SHEAD 883
+(SDEF 905
+  (SHEAD 905
     "Shape"
     ())
-  (BODY 884
+  (BODY 906
     (LIST
-      (SDECL 884
-        (SREF 884 "NeighbourGraph" "" () ()))
-      (SDECL 885
-        (SREF 885 "NodeConstraints" "" () ())))
+      (SDECL 906
+        (SREF 906 "NeighbourGraph" "" () ()))
+      (SDECL 907
+        (SREF 907 "NodeConstraints" "" () ())))
     ()))
 
-(AXDEF 889
-  (BODY 890
+(AXDEF 911
+  (BODY 912
     (LIST
-      (DECL 890
+      (DECL 912
         (LIST
           (NAME "pim\_shape" ""))
-        (SEXPR 890
-          (SREF 890 "Shape" "" () ()))))
+        (SEXPR 912
+          (SREF 912 "Shape" "" () ()))))
     (LIST
-      (EQUAL 892
-        (SELECT 892
-          (REF 892 (NAME "pim\_shape" "") ())
-          (NAME "names" ""))
-        (EXT 892
-          (LIST
-            (REF 892 (NAME "contact" "") ())
-            (REF 892 (NAME "associate" "") ()))))
-      (EQUAL 894
-        (SELECT 894
-          (REF 894 (NAME "pim\_shape" "") ())
-          (NAME "arcs" ""))
-        (SELECT 894
-          (REF 894 (NAME "pim\_ng" "") ())
-          (NAME "arcs" "")))
-      (EQUAL 896
-        (SELECT 896
-          (REF 896 (NAME "pim\_shape" "") ())
-          (NAME "constraint" ""))
-        (SELECT 896
-          (REF 896 (NAME "pim\_ncs" "") ())
-          (NAME "constraint" ""))))))
-
-(SDEF 900
-  (SHEAD 900
-    "PointedShape"
-    ())
-  (BODY 901
-    (LIST
-      (SDECL 901
-        (SREF 901 "PointedNeighbourGraph" "" () ()))
-      (SDECL 902
-        (SREF 902 "NodeConstraints" "" () ())))
-    ()))
-
-(AXDEF 907
-  (BODY 908
-    (LIST
-      (DECL 908
-        (LIST
-          (NAME "pim\_ps" ""))
-        (SEXPR 908
-          (SREF 908 "PointedShape" "" () ()))))
-    (LIST
-      (EQUAL 910
-        (SELECT 910
-          (REF 910 (NAME "pim\_ps" "") ())
-          (NAME "names" ""))
-        (EXT 910
-          (LIST
-            (REF 910 (NAME "contact" "") ())
-            (REF 910 (NAME "associate" "") ()))))
-      (EQUAL 912
-        (SELECT 912
-          (REF 912 (NAME "pim\_ps" "") ())
-          (NAME "baseName" ""))
-        (REF 912 (NAME "contact" "") ()))
       (EQUAL 914
         (SELECT 914
-          (REF 914 (NAME "pim\_ps" "") ())
-          (NAME "arcs" ""))
-        (SELECT 914
-          (REF 914 (NAME "pim\_ng" "") ())
-          (NAME "arcs" "")))
+          (REF 914 (NAME "pim\_shape" "") ())
+          (NAME "names" ""))
+        (EXT 914
+          (LIST
+            (REF 914 (NAME "contact" "") ())
+            (REF 914 (NAME "associate" "") ()))))
       (EQUAL 916
         (SELECT 916
-          (REF 916 (NAME "pim\_ps" "") ())
-          (NAME "constraint" ""))
+          (REF 916 (NAME "pim\_shape" "") ())
+          (NAME "arcs" ""))
         (SELECT 916
-          (REF 916 (NAME "pim\_ncs" "") ())
+          (REF 916 (NAME "pim\_ng" "") ())
+          (NAME "arcs" "")))
+      (EQUAL 918
+        (SELECT 918
+          (REF 918 (NAME "pim\_shape" "") ())
+          (NAME "constraint" ""))
+        (SELECT 918
+          (REF 918 (NAME "pim\_ncs" "") ())
           (NAME "constraint" ""))))))
 
-(SDEF 921
-  (SHEAD 921
+(SDEF 922
+  (SHEAD 922
+    "PointedShape"
+    ())
+  (BODY 923
+    (LIST
+      (SDECL 923
+        (SREF 923 "PointedNeighbourGraph" "" () ()))
+      (SDECL 924
+        (SREF 924 "NodeConstraints" "" () ())))
+    ()))
+
+(AXDEF 929
+  (BODY 930
+    (LIST
+      (DECL 930
+        (LIST
+          (NAME "pim\_ps" ""))
+        (SEXPR 930
+          (SREF 930 "PointedShape" "" () ()))))
+    (LIST
+      (EQUAL 932
+        (SELECT 932
+          (REF 932 (NAME "pim\_ps" "") ())
+          (NAME "names" ""))
+        (EXT 932
+          (LIST
+            (REF 932 (NAME "contact" "") ())
+            (REF 932 (NAME "associate" "") ()))))
+      (EQUAL 934
+        (SELECT 934
+          (REF 934 (NAME "pim\_ps" "") ())
+          (NAME "baseName" ""))
+        (REF 934 (NAME "contact" "") ()))
+      (EQUAL 936
+        (SELECT 936
+          (REF 936 (NAME "pim\_ps" "") ())
+          (NAME "arcs" ""))
+        (SELECT 936
+          (REF 936 (NAME "pim\_ng" "") ())
+          (NAME "arcs" "")))
+      (EQUAL 938
+        (SELECT 938
+          (REF 938 (NAME "pim\_ps" "") ())
+          (NAME "constraint" ""))
+        (SELECT 938
+          (REF 938 (NAME "pim\_ncs" "") ())
+          (NAME "constraint" ""))))))
+
+(SDEF 943
+  (SHEAD 943
     "SatisfiesShape"
     ())
-  (BODY 922
+  (BODY 944
     (LIST
-      (SDECL 922
-        (SREF 922 "PointedShape" "" () ()))
-      (SDECL 923
-        (SREF 923 "PointedGraph" "" () ()))
-      (SDECL 924
-        (SREF 924 "LabelGraph" "" () ()))
-      (SDECL 925
-        (SREF 925 "ConstrainGraph" "" () ())))
+      (SDECL 944
+        (SREF 944 "PointedShape" "" () ()))
+      (SDECL 945
+        (SREF 945 "PointedGraph" "" () ()))
+      (SDECL 946
+        (SREF 946 "LabelGraph" "" () ()))
+      (SDECL 947
+        (SREF 947 "ConstrainGraph" "" () ())))
     (LIST
-      (SPRED 927
-        (SREF 927 "ValidGraph" "" () ())))))
+      (SPRED 949
+        (SREF 949 "ValidGraph" "" () ())))))
 
-(PRED 944
-  (EXISTS1 944
-    (BODY 944
+(PRED 966
+  (EXISTS1 966
+    (BODY 966
       (LIST
-        (SDECL 944
-          (SREF 944 "SatisfiesShape" "" () ())))
+        (SDECL 966
+          (SREF 966 "SatisfiesShape" "" () ())))
       ())
-    (AND 945
-      (EQUAL 945
-        (THETA 945
+    (AND 967
+      (EQUAL 967
+        (THETA 967
           "PointedShape"
           ""
           ())
-        (REF 945 (NAME "pim\_ps" "") ()))
-      (EQUAL 946
-        (THETA 946
+        (REF 967 (NAME "pim\_ps" "") ()))
+      (EQUAL 968
+        (THETA 968
           "PointedGraph"
           ""
           ())
-        (REF 946 (NAME "alice\_pg" "") ())))))
+        (REF 968 (NAME "alice\_pg" "") ())))))
 
-(AXDEF 950
-  (BODY 951
+(AXDEF 972
+  (BODY 973
     (LIST
-      (DECL 951
+      (DECL 973
         (LIST
           (NAME "shapeConstraint" ""))
-        (INGEN 951
+        (INGEN 973
           (NAME "\fun" "")
-          (SEXPR 951
-            (SREF 951 "PointedShape" "" () ()))
-          (REF 951 (NAME "NodeConstraint" "") ()))))
+          (SEXPR 973
+            (SREF 973 "PointedShape" "" () ()))
+          (REF 973 (NAME "NodeConstraint" "") ()))))
     (LIST
-      (FORALL 953
-        (BODY 953
+      (FORALL 975
+        (BODY 975
           (LIST
-            (DECL 953
+            (DECL 975
               (LIST
                 (NAME "ps" ""))
-              (SEXPR 953
-                (SREF 953 "PointedShape" "" () ())))
-            (DECL 953
+              (SEXPR 975
+                (SREF 975 "PointedShape" "" () ())))
+            (DECL 975
               (LIST
                 (NAME "x" ""))
-              (REF 953 (NAME "TERM" "") ())))
+              (REF 975 (NAME "TERM" "") ())))
           ())
-        (EQUAL 954
-          (APPLY 954
-            (APPLY 954
-              (REF 954 (NAME "shapeConstraint" "") ())
-              (REF 954 (NAME "ps" "") ()))
-            (REF 954 (NAME "x" "") ()))
-          (COMP 955
-            (BODY 955
+        (EQUAL 976
+          (APPLY 976
+            (APPLY 976
+              (REF 976 (NAME "shapeConstraint" "") ())
+              (REF 976 (NAME "ps" "") ()))
+            (REF 976 (NAME "x" "") ()))
+          (COMP 977
+            (BODY 977
               (LIST
-                (SDECL 955
-                  (SREF 955 "SatisfiesShape" "" () ())))
+                (SDECL 977
+                  (SREF 977 "SatisfiesShape" "" () ())))
               (LIST
-                (AND 955
-                  (EQUAL 955
-                    (REF 955 (NAME "ps" "") ())
-                    (THETA 955
+                (AND 977
+                  (EQUAL 977
+                    (REF 977 (NAME "ps" "") ())
+                    (THETA 977
                       "PointedShape"
                       ""
                       ()))
-                  (EQUAL 955
-                    (REF 955 (NAME "x" "") ())
-                    (REF 955 (NAME "baseNode" "") ())))))
-            (JUST 955
-              (REF 955 (NAME "graph" "") ()))))))))
+                  (EQUAL 977
+                    (REF 977 (NAME "x" "") ())
+                    (REF 977 (NAME "baseNode" "") ())))))
+            (JUST 977
+              (REF 977 (NAME "graph" "") ()))))))))
 
-(AXDEF 964
-  (BODY 965
+(AXDEF 986
+  (BODY 987
     (LIST
-      (DECL 965
+      (DECL 987
         (LIST
           (NAME "pim\_nc" ""))
-        (REF 965 (NAME "NodeConstraint" "") ())))
+        (REF 987 (NAME "NodeConstraint" "") ())))
     (LIST
-      (EQUAL 967
-        (REF 967 (NAME "pim\_nc" "") ())
-        (APPLY 967
-          (REF 967 (NAME "shapeConstraint" "") ())
-          (REF 967 (NAME "pim\_ps" "") ()))))))
+      (EQUAL 989
+        (REF 989 (NAME "pim\_nc" "") ())
+        (APPLY 989
+          (REF 989 (NAME "shapeConstraint" "") ())
+          (REF 989 (NAME "pim\_ps" "") ()))))))
 
-(PRED 975
-  (MEMBER 975
-    (REF 975 (NAME "alice\_graph" "") ())
-    (APPLY 975
-      (REF 975 (NAME "pim\_nc" "") ())
-      (REF 975 (NAME "alice" "") ()))))
+(PRED 997
+  (MEMBER 997
+    (REF 997 (NAME "alice\_graph" "") ())
+    (APPLY 997
+      (REF 997 (NAME "pim\_nc" "") ())
+      (REF 997 (NAME "alice" "") ()))))
 

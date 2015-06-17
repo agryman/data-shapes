@@ -2,6 +2,7 @@
 \usepackage{fuzz}
 \usepackage{url}
 \usepackage{listings}
+\usepackage{changebar}
 
 \lstset{numbers=left, language={}, basicstyle={\small\ttfamily}, tabsize=4, captionpos=b}
 
@@ -77,19 +78,20 @@ to readers who are unfamiliar with Z Notation.
 
 Consider a Linked Data \cite{tbl:ld} application for Personal Information Management (PIM).
 The application manages documents that contain information about a {\em contact} person and their {\em associates}.
-The application enforces the following constraints.
-Prefixes such as {\tt rdf:}\cite{w3c:rdf11} and {\tt foaf:}\cite{foaf:spec} have the usual meaning.
+\cbstart
+The application maintains the following integrity constraints where the
+prefixes {\tt rdf:}\cite{w3c:rdf11} and {\tt foaf:}\cite{foaf:spec} have the usual meanings.
+\cbend
 \begin{itemize}
 \item Each document contains information about exactly one contact person and zero or more of their associates.
 \item Each contact has type {\tt foaf:Person} and has exactly one name given by the property {\tt foaf:name}.
-\item The contact's associates are given by the property {\tt foaf:knows} and also have type {\tt foaf:Person}.
-\item Each associate has exactly one name given by {\tt foaf:name}
-and is known by exactly one contact given by following the property {\tt foaf:knows} in the backward direction, i.e. the associate is the object
-of the property and the contact is the subject.
+\item The contact's associates are given by the property {\tt foaf:knows} which may have zero or more values.
+\item Each associate has type {\tt foaf:Person} and has exactly one name given by {\tt foaf:name}.
+\item Each associate is known by exactly one contact given by following the property {\tt foaf:knows} in the backward direction, i.e. the associate is the object of the property and the contact is the subject.
 \end{itemize}
 
 Note that these constraints are circular since the definition of contact refers to the definition of associate, and conversely.
-We are obligated to give this circularity a precise meaning.
+We have an obligation to give this circularity a precise meaning.
 
 These constraints are illustrated by a valid document for Alice (Listing~\ref{alice}) and and invalid document for Bob (Listing~\ref{bob}).
 All RDF source code examples are written in Turtle format \cite{w3c:turtle11}.
@@ -474,7 +476,9 @@ For example, the Alice graph satisfies this constraint at the $alice$, $bob$, an
 %%	alice\_graph \in is\_a\_person(charlie)
 %%\end{zed}
 
-Both contact and associate nodes must have unique names.
+\cbstart
+Both contact and associate nodes must have exactly one name.
+\cbend
 \begin{axdef}
 	has\_one\_name: NodeConstraint
 \where
@@ -498,7 +502,9 @@ For example, the Alice graph satisfies this constraint at the $alice$, $bob$, an
 %%	alice\_graph \in has\_one\_name(charlie)
 %%\end{zed}
 
-Associate nodes must be known by a unique node.
+\cbstart
+Associate nodes must be known by exactly one node.
+\cbend
 \begin{axdef}
 	is\_known\_by\_one: NodeConstraint
 \where
@@ -590,8 +596,14 @@ SHACL-SPARQL allows node constraints to be expressed by arbitrary SPARQL 1.1 que
 allow explicit recursion.
 
 \subsection{Labelling Data Graph Nodes with Constraint Names}
-Recursion depends on the ability to name things and to refer to those things by name.
-Here we allow naming of node constraints.
+\cbstart
+%Recursion depends on the ability to name things and to refer to those things by name.
+%Here we allow naming of node constraints.
+A shape contains a set of named constraints.
+A constraint may refer to other constraints by name.
+This means that a constraint may refer directly or indirectly to itself, in which case the constraint is recursive.
+\cbend
+
 Shapes themselves may be represented as RDF graphs, so it is tempting to use IRIs to name node constraints.
 However, we introduce a new given set of names to emphasize that this set is logically independent of how we represent shapes.
 \begin{zed}
@@ -710,8 +722,8 @@ For example, the requires relation for the Alice graph in the PIM application is
 A {\em labelled graph} is a data graph whose nodes are each labelled by a, possibly empty, set of names.
 \begin{schema}{LabelledGraph}
 graph: Graph \\
-names: \power NAME \\
-label: TERM \pfun \power NAME
+names: \finset NAME \\
+label: TERM \pfun \finset NAME
 \where
 label \in nodes(graph) \fun \power names
 \end{schema}
@@ -758,7 +770,7 @@ Since there are a finite number of nodes and a finite number of names, this proc
 \item The label of a node $y$ is the set of names $b$ such that the named node $(y,b)$ is related to the 
 base named node $(baseNode,baseName)$ by $R$ the reflexive-transitive closure of the requires relation $requires(graph,shape)$.
 \item Note that this labelling process makes use of $R$, the reflexive-transitive closure of the requires relation.
-The explicit use of $R$ avoids difficulties associated with explicitly recursive definitions. 
+The use of $R$ avoids difficulties associated with explicitly recursive definitions. 
 We have, in effect, eliminated explicit recursion by computing a transitive closure of a finite binary relation.
 \item Note that the components of $LabelledGraph$ are uniquely determined by the components of $PointedGraph$
 and $PointedNeighbourGraph$. 
@@ -805,7 +817,7 @@ For example, the PIM application associates the following node constraints with 
 A {\em constrained graph} is an assignment of a, possibly empty, set of node constraints to each node of the graph.
 \begin{schema}{ConstrainedGraph}
 	graph: Graph \\
-	constraints: TERM \pfun \power NodeConstraint
+	constraints: TERM \pfun \finset NodeConstraint
 \where
 	\dom constraints = nodes(graph)
 \end{schema}
@@ -1014,7 +1026,7 @@ associate resource shapes is given a well-defined meaning.
 In Resource Shape 2.0, neighbour functions are limited to forward and backward path expressions.
 In fact, backward path expressions were missing from the original OSLC Resource Shape language and are a proposed
 extension in Resource Shape 2.0. The proposed syntax for backward path expressions uses the optional property
-{\tt oslc:isInverseProperty} but this design could improved to provide better compatibility with downlevel clients,
+{\tt oslc:isInverseProperty} but this design could be improved to provide better compatibility with downlevel clients,
 i.e. a downlevel client might silently ignore this new property and produce incorrect results.
 
 The following SPARQL query extracts the neighbour graph arcs from a set of resource shapes.
@@ -1082,6 +1094,19 @@ can be described using suitable neighbour functions, or if some new concept is r
 
 Finally, the limited form of recursion presented here could be added to the SHACL-SPARQL proposal to enhance its
 expressiveness.
+
+\cbstart
+\section*{Acknowledgements}
+
+Peter Patel-Schneider reviewed {\tt v1} of this article and provided valuable comments and criticisms.
+Holger Knublauch suggested the use of the Pollentini example as a better illustration of recursion.
+
+\section*{Change History}
+\begin{itemize}
+\item {\tt v1} May 19, 2015. Initial version.
+\item {\tt v2} June 17, 2015. Editorial improvements. Added Pollentini example.
+\end{itemize}
+\cbend
 
 \bibliography{shapes}
 
