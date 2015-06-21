@@ -59,7 +59,7 @@ that recursion could be added by using the definition proposed here as a top-lev
 \subsection{Organization of this Article}
 The remainder of this article is organized as follows.
 \begin{itemize}
-\item Section~\ref{sec-pim} introduces a running example in order to ground the following definitions.
+\item Section~\ref{sec-examples} introduces examples in order to ground the following definitions.
 \item Section~\ref{sec-basics} defines a few basic RDF concepts.
 \item Section~\ref{sec-neighbours} defines neighbour functions and graphs which form the basis for the following definition of recursion.
 \item Section~\ref{sec-constraints} defines constraints.
@@ -68,7 +68,14 @@ The remainder of this article is organized as follows.
 \item Section~\ref{sec-conclusion} concludes the article.
 \end{itemize}
 
-\section{Running Example: The PIM Application}
+\section{Examples}
+\label{sec-examples}
+
+This section defines two examples.
+The first is the Personal Information Management application, which is highly simplified, but illustrates the concepts and is easy to understand.
+The second is the ....
+
+\subsection{The Personal Information Management Application}
 \label{sec-pim}
 We use a highly simplified running example to illustrate the concepts defined in the following sections.
 Each formal definition is instantiated with data drawn from the running example in order to help the reader understand the
@@ -79,11 +86,21 @@ to readers who are unfamiliar with Z Notation.
 Consider a Linked Data \cite{tbl:ld} application for Personal Information Management (PIM).
 The application manages documents that contain information about a {\em contact} person and their {\em associates}.
 \cbstart
+As a Linked Data application, the PIM application provides a REST API for creating, retrieving, updating, and deleting constant information
+over HTTP using RDF representations of the data.
+Shapes are useful in this context for two main reasons.
+First, the PIM application may publish shapes that describe the contact information so that application developers who want to use
+the REST API understand the API contract.
+Second, the PIM application may internally use a shape engine that automatically validates the data, especially incoming creation and update requests.
+
 The application maintains the following integrity constraints where the
 prefixes {\tt rdf:}\cite{w3c:rdf11} and {\tt foaf:}\cite{foaf:spec} have the usual meanings.
 \cbend
 \begin{itemize}
 \item Each document contains information about exactly one contact person and zero or more of their associates.
+\cbstart
+A contact person is never an associate of themself.
+\cbend
 \item Each contact has type {\tt foaf:Person} and has exactly one name given by the property {\tt foaf:name}.
 \item The contact's associates are given by the property {\tt foaf:knows} which may have zero or more values.
 \item Each associate has type {\tt foaf:Person} and has exactly one name given by {\tt foaf:name}.
@@ -100,8 +117,118 @@ The following document about Alice satisfies all the constraints of the applicat
 \lstinputlisting[caption={Contact document for Alice},label=alice]{alice-contact.ttl}
 
 The following document about Bob violates some of the constraints of the application.
-Alice has no type and Charlie has no name.
 \lstinputlisting[caption={Contact document for Bob},label=bob]{bob-contact.ttl}
+
+\cbstart
+It is clear that the document about Bob is invalid, since Alice has no type and Charlie has no name.
+
+It is also intuitively clear that the document about Alice is valid.
+However, if we naively translate the PIM constraints into logical conditions on the document about Alice, then we run into a problem.
+All the constraints about types, names, and who knows who are satisfied and unproblematic, but the
+constraints about what it means to be a contact or an associate are circular.
+A naive translation of these constraints on the Alice document is as follows.
+\begin{itemize}
+\item If Bob is an associate and Charlie is an associate then Alice is a contact.
+\item If Alice is a contact then Bob is an associate.
+\item If Alice is a contact the Charlie is an associate.
+\end{itemize}
+
+Table~\ref{vars-meaning} introduces propositional variables to stand for statements about being a contact or associate
+in the Alice document.
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Variable			& Meaning \\
+\hline
+$A$	& Alice is a contact. \\
+$B$	& Bob is an associate. \\
+$C$	& Charlie is an associate. \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Meaning of propositional variables in the Alice document}
+\label{vars-meaning}
+\end{table}
+
+The PIM constraints on the Alice document translate to the following consistency condition.
+\[
+(B \land C \implies A) \land (A \implies B) \land (A \implies C)
+\]
+
+Unfortunately, this consistency condition does not uniquely determine the values of the propositional variables.
+In fact, this consistency condition has several solutions as shown in Table~\ref{sol-pim-constraints}.
+Only the solution in which all the propositional variable are true agrees with our intuition.
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$A$	& $B$	& $C$  \\
+\hline
+true	& true	& true \\
+false	& true	& false \\
+false	& false	& true \\
+false	& false	& false \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Solutions to PIM constraints in the Alice document}
+\label{sol-pim-constraints}
+\end{table}
+
+This analysis shows that the naive translation of the constraints about contacts and associates
+produces a necessary, but not sufficient, consistency condition on the meaning of these constraints.
+A precise definition for this type of constraint is given in Section~\ref{sec-shapes}. 
+A brief overview of this definition follows.
+
+The correct interpretation of the constraints is based on the observation that they specify two essentially different kinds of information. 
+One kind defines rules for labelling nodes with names.
+The other kind defines a set of conditions associated with each name and asserts that these conditions must hold at each node labelled with that name.
+
+In the PIM application, the names are {\em contact} and {\em associate}. 
+The rules for labelling the nodes in a document are as follows.
+\begin{enumerate}
+\item Initially, no node has any labels.
+\item Start with the node that corresponds to the person that the document is about, and label it as a contact.
+\item For each node labelled as a contact, find all the nodes they know, and add an associate label to each of them.
+\item For each node labelled as an associate, find all the nodes that they are known by and add a contact label each of them.
+\item Repeat the previous two steps until no new labels are added.
+\item Note that this procedure always terminates because the number of nodes is finite and the number of names is finite (2 in this case).
+\end{enumerate}
+
+In the Alice document, the labelling procedure results in the nodes being labelled as follows.
+\begin{itemize}
+\item Alice is labelled as a contact because the document is about Alice and Alice is known by Bob and Charlie.
+\item Bob is labelled as an associate because Alice knows Bob.
+\item Charlie is labelled as an associate because Alice knows Charlie.
+\end{itemize}
+
+Whenever a node gets labelled with a name, the conditions associated with the name must hold.
+No recursion is involved in this step.
+
+The conditions that must hold for nodes labelled with contact are as follows.
+\begin{itemize}
+\item A contact must be a person.
+\item A contact must have exactly one name.
+\item A contact must not know itself.
+\end{itemize}
+
+The conditions that must hold for nodes labelled with associate are as follows.
+\begin{itemize}
+\item An associate must be a person.
+\item An associate must have exactly one name.
+\item An associate must be known by exactly one node.
+\end{itemize}
+
+Although the statement of the PIM constraints uses recursion, the properties of the data in this case allow us to
+write an equivalent non-recursive statement\cite{peter:ml-2015-05-20}.
+Specifically, since a node is an associate only if it is known by a contact, and an associate must be known by exactly one
+contact, nothing more is gained by requiring that all nodes that know an associate must be contacts.
+Dropping this condition removes the recursion.
+However, in general we cannot convert a recursive constraint into an equivalent non-recursive constraint.
+The following example illustrates an essentially recursive constraint.
+
+\cbend
 
 \section{Basic RDF Concepts}
 \label{sec-basics}
@@ -274,11 +401,11 @@ A {\em neighbour function} is any mapping from graphs to pair of nodes.
 
 We say that the pair of nodes $(x,y)$ {\em matches} the neighbour function $q$ in the graph $g$ when $(x,y) \in q(g)$.
 
-\subsection{Path Expressions}
+\subsection{Simple Path Expressions}
 
-Path expressions define a very commonly used type of neighbour function.
+Simple path expressions define a very commonly used type of neighbour function.
 
-A predicate $p$ defines a path expression $forward(p)$ by traversing triples in the forward direction.
+A predicate $p$ defines a simple path expression $forward(p)$ by traversing triples in the forward direction.
 Forward path expressions are referred to as {\tt PredicatePath} expressions in SPARQL 1.1.
 \begin{axdef}
 	forward: IRI \fun Neighbour
@@ -288,7 +415,7 @@ Forward path expressions are referred to as {\tt PredicatePath} expressions in S
 \t2			\{~ s, o: nodes(g) | (s,p,o) \in g ~\}
 \end{axdef}
 \begin{itemize}
-\item The path expression $forward(p)$ matches all pairs $(s,o)$ such that $(s,p,o)$ is a triple in $g$.
+\item The simple path expression $forward(p)$ matches all pairs $(s,o)$ such that $(s,p,o)$ is a triple in $g$.
 \end{itemize}
 
 For example, the following are forward path expressions.
@@ -300,7 +427,7 @@ For example, the following are forward path expressions.
 	knows == forward(foaf\_knows)
 \end{zed}
 
-The path expression $has\_type$ matches the following pairs of nodes in the graph for Alice.
+The forward path expression $has\_type$ matches the following pairs of nodes in the graph for Alice.
 \[\vdash
 	has\_type(alice\_graph) = \\
 \t1		\{ (alice, foaf\_Person), \\
@@ -314,7 +441,7 @@ The path expression $has\_type$ matches the following pairs of nodes in the grap
 %%\t1		(charlie, foaf\_Person) \}
 %%\end{zed}
 
-Similarly, a predicate $p$ defines a path expression $backward(p)$ by traversing triples in the backward direction.
+Similarly, a predicate $p$ defines a simple path expression $backward(p)$ by traversing triples in the backward direction.
 Backward path expressions are referred to as {\tt InversePath} expressions in SPARQL 1.1.
 \begin{axdef}
 	backward: IRI \fun Neighbour
@@ -324,7 +451,7 @@ Backward path expressions are referred to as {\tt InversePath} expressions in SP
 \t2			\{~ o, s: nodes(g) | (s,p,o) \in g ~\}
 \end{axdef}
 \begin{itemize}
-\item The path expression $backward(p)$ matches all pairs $(o,s)$ such that $(s,p,o)$ is a triple in $g$.
+\item The simple path expression $backward(p)$ matches all pairs $(o,s)$ such that $(s,p,o)$ is a triple in $g$.
 \end{itemize}
 
 For example, the following is a backward path expression.
@@ -332,7 +459,7 @@ For example, the following is a backward path expression.
 	is\_known\_by == backward(foaf\_knows)
 \end{zed}
 
-The path expression $is\_known\_by$ matches the following pairs of nodes in the graph for Alice.
+The backward path expression $is\_known\_by$ matches the following pairs of nodes in the graph for Alice.
 \[\vdash 
 	is\_known\_by(alice\_graph) = \\
 \t1		\{ (bob, alice), \\
@@ -356,7 +483,7 @@ values: Graph \cross TERM \cross Neighbour \fun \finset TERM
 \item The node $y$ is in $values(g,x,q)$ when $(x,y)$ matches $q$ in $g$.
 \end{itemize}
 
-For example, in the graph for Alice the node $alice$ and path expression $knows$ have the following values.
+For example, in the graph for Alice the node $alice$ and forward path expression $knows$ have the following values.
 \[\vdash 
 	values(alice\_graph, alice, knows) = \{bob, charlie\}
 \]
@@ -636,8 +763,8 @@ arcs are labelled by neighbour functions.
 \item The nodes are names and the arcs are labelled by neighbour functions.
 \end{itemize}
 
-For example, in the PIM application, contacts are related to associates by the $knows$ path expression, and associates
-are related to contacts by the $is\_known\_by$ path expression.
+For example, in the PIM application, contacts are related to associates by the $knows$ forward path expression, and associates
+are related to contacts by the $is\_known\_by$ backward path expression.
 \begin{axdef}
 	pim\_ng : NeighbourGraph
 \where
