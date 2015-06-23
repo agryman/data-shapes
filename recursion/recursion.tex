@@ -71,11 +71,17 @@ The remainder of this article is organized as follows.
 \section{Examples}
 \label{sec-examples}
 
-This section defines two examples.
-The first is the Personal Information Management application, which is highly simplified, but illustrates the concepts and is easy to understand.
-The second is the ....
+This section introduces two examples of recursive shapes.
 
-\subsection{The Personal Information Management Application}
+The first recursive shape describes the data in a Personal Information Management application.
+This application is highly simplified and easy to understand. 
+It is used as a running example to illustrate the formal definitions.
+Although this shape is written using recursion, it can be re-written as an equivalent, non-recursive shape.
+
+The second recursive shape describes what it means to be a Polentoni \cite{peter:polentoni}.
+This shape is also highly simplified but cannot be re-written as non-recursive using the Resource Shape 2.0 specification.
+
+\subsection{Example: Personal Information Management}
 \label{sec-pim}
 We use a highly simplified running example to illustrate the concepts defined in the following sections.
 Each formal definition is instantiated with data drawn from the running example in order to help the reader understand the
@@ -221,12 +227,90 @@ The conditions that must hold for nodes labelled with associate are as follows.
 \end{itemize}
 
 Although the statement of the PIM constraints uses recursion, the properties of the data in this case allow us to
-write an equivalent non-recursive statement\cite{peter:ml-2015-05-20}.
+write an equivalent non-recursive statement \cite{peter:re-recursion}.
 Specifically, since a node is an associate only if it is known by a contact, and an associate must be known by exactly one
 contact, nothing more is gained by requiring that all nodes that know an associate must be contacts.
 Dropping this condition removes the recursion.
 However, in general we cannot convert a recursive constraint into an equivalent non-recursive constraint.
-The following example illustrates an essentially recursive constraint.
+The next example illustrates an essentially recursive constraint.
+
+\subsection{Example: Polentoni}
+\label{sec-polentoni}
+Consider the following definition of what it means to be a Polentoni \cite{peter:polentoni}.
+\begin{itemize}
+\item A Polentoni lives in exactly one place and that place is Northern Italy.
+\item A Polentoni only knows other Polentoni.
+\end{itemize}
+
+The definition of Polentoni refers to itself and is therefore recursive.
+However, we can give it a precise meaning using the labelling procedure described above.
+
+In this example, the only label name is Polentoni. The labelling procedure is as follows.
+\begin{enumerate}
+\item Initially, no node has any labels.
+\item Start with the node to be checked for being a Polentoni, and label it as a Polentoni.
+\item For each node labelled as a Polentoni, find all the nodes they know, and add a Polentoni label to each of them.
+\item Repeat the previous step until no new labels are added.
+\item Note that this procedure always terminates because the number of nodes is finite and the number of names is finite (1 in this case).
+\end{enumerate}
+
+The condition that must hold for nodes labelled with Polentoni is as follows.
+\begin{itemize}
+\item A Polentoni must live in Northern Italy.
+\end{itemize}
+
+Listing~\ref{polentoni-data} contains some sample data.
+\lstinputlisting[caption={Polentoni Data},label=polentoni-data]{polentoni-data.ttl}
+
+Checking Enrico results in Enrico, John, and Maurizio being labelled as Polentoni. 
+However, Maurizio lives in Southern Italy so Enrico is not a Polentoni.
+
+Checking Diego results in Diego, Alessandro, and Sergio begin labelled as Polentoni.
+They all live in Northern Italy so Diego is a Polentoni.
+
+Note that we can rewrite the definition of Polentoni to avoid recursion as follows.
+\begin{itemize}
+\item A Polentoni lives in Northern Italy (and nowhere else).
+\item Everyone that a Polentoni knows, directly or indirectly, lives in Northern Italy (and nowhere else).
+\end{itemize}
+The price paid for eliminating recursion is that now we have introduced the transitive closure of the {\em knows} relation, which is beyond the expressive power of the Resource Shape 2.0 specification.
+
+Transitive closure is, however, expressible using SPARQL property paths.
+In fact, all the Polentoni constraints can be expressed by a single SPARQL query.
+Listing~\ref{polentoni-rq} contains a SPARQL query that finds all non-Polentoni people in a graph,
+where we assume that a person lives somewhere, or knows someone, or is known by someone.
+Note the use of the property path {\tt ex:knows*} which is referred to as a {\tt ZeroOrMorePath} expression.
+\lstinputlisting[caption={SPARQL query for non-Polentoni people},label=polentoni-rq]{polentoni.rq}
+
+Table~\ref{polentoni-results} gives the results of running the non-Polenoni query on the data contained in Listing~\ref{polentoni-data}.
+\begin{table}[h]
+\begin{center}
+\begin{tt}
+\begin{tabular}{|c|}
+\hline
+this \\
+\hline
+http://example.org/polentoni\#Maurizio \\
+http://example.org/polentoni\#John \\
+http://example.org/polentoni\#Enrico \\
+\hline
+\end{tabular}
+\end{tt}
+\end{center}
+\caption{SPARQL query results for non-Polentoni people}
+\label{polentoni-results}
+\end{table}
+\begin{itemize}
+\item Maurizio is non-Polentoni because he lives in Southern Italy.
+\item John is non-Polentoni because he knows Maurizio.
+\item Enrico is non-Polentoni because he knows John.
+\end{itemize}
+
+One might therefore contemplate avoiding the issue of recursion by adding powerful path expressions to the shape language.
+However, it is unclear that path expressions alone are sufficiently powerful to cover all the cases currently expressible in Resource Shape 2.0.
+Furthermore, even if that were true, translating recursive references into property path expressions would impose a severe burden on the shape author.
+The use of recursion allows concise and intuitively clear descriptions so, as long as recursion can be given a precise definition, 
+there is good reason to include in future shape languages.
 
 \cbend
 
@@ -1137,9 +1221,14 @@ such as property occurrence, range, and allowed values. These are uncontentious 
 As mentioned above, Resource Shape 2.0 also allows recursive shapes via the property {\tt oslc:valueShape}.
 The preceding formalism was motivated by Resource Shape 2.0 and, not surprisingly, provides a precise
 description of the meaning of recursive shapes in that language.
-The following listings illustrate the use of {\tt oslc:valueShape} for the running example.
+
+\subsubsection{Example: Personal Information Management}
+The following listings illustrate the use of {\tt oslc:valueShape} for the running PIM example.
 
 Listing~\ref{contact} contains the resource shape for contacts.
+\cbstart
+Note that Resource Shape 2.0 is incapable of expressing the constraint that a contact must not have itself as an associate.
+\cbend
 \lstinputlisting[caption={Resource shape for contacts}, label=contact]{contact-shape.ttl}
 
 Listing~\ref{associate} contains the resource shape for associates.
@@ -1179,6 +1268,13 @@ a			& direction	& p			& b \\
 \end{table}
 
 The query correctly extracts the neighbour graph $pim\_ng$ of the PIM shape.
+
+\subsubsection{Example: Polentoni}
+Listing~\ref{polentoni-shape} contains the resource shape for Polentoni.
+\lstinputlisting[caption={Resource shape for Polentoni}, label=polentoni-shape]{polentoni-shape.ttl}
+
+This resource shape is clearly recursive since it refers to itself.
+However, as shown above, this recursion has a well-defined meaning and causes no difficulties.
 
 \subsection{Relation to ShEx}
 

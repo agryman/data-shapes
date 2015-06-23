@@ -1,0 +1,24 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:oslc="http://open-services.net/ns/core#"
+    xmlns:ex="http://example.org/polentoni#" > 
+  <rdf:Description rdf:about="http://example.org/shapes/contact#knows">
+    <oslc:valueShape rdf:resource="http://example.org/shapes/polentoni"/>
+    <oslc:propertyDefinition rdf:resource="http://example.org/polentoni#knows"/>
+    <oslc:occurs rdf:resource="http://open-services.net/ns/core#Zero-or-many"/>
+    <oslc:name>knows</oslc:name>
+    <rdf:type rdf:resource="http://open-services.net/ns/core#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/shapes/polentoni#livesIn">
+    <oslc:allowedValue rdf:resource="http://example.org/polentoni#NorthernItaly"/>
+    <oslc:propertyDefinition rdf:resource="http://example.org/polentoni#livesIn"/>
+    <oslc:occurs rdf:resource="http://open-services.net/ns/core#Exactly-one"/>
+    <oslc:name>livesIn</oslc:name>
+    <rdf:type rdf:resource="http://open-services.net/ns/core#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/shapes/polentoni">
+    <oslc:property rdf:resource="http://example.org/shapes/polentoni#knows"/>
+    <oslc:property rdf:resource="http://example.org/shapes/polentoni#livesIn"/>
+    <rdf:type rdf:resource="http://open-services.net/ns/core#ResourceShape"/>
+  </rdf:Description>
+</rdf:RDF>

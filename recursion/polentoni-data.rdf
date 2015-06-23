@@ -1,0 +1,27 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:ex="http://example.org/polentoni#" > 
+  <rdf:Description rdf:about="http://example.org/polentoni#Alessandro">
+    <ex:knows rdf:resource="http://example.org/polentoni#Sergio"/>
+    <ex:knows rdf:resource="http://example.org/polentoni#Diego"/>
+    <ex:livesIn rdf:resource="http://example.org/polentoni#NorthernItaly"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/polentoni#Enrico">
+    <ex:knows rdf:resource="http://example.org/polentoni#John"/>
+    <ex:livesIn rdf:resource="http://example.org/polentoni#NorthernItaly"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/polentoni#Diego">
+    <ex:knows rdf:resource="http://example.org/polentoni#Alessandro"/>
+    <ex:livesIn rdf:resource="http://example.org/polentoni#NorthernItaly"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/polentoni#Maurizio">
+    <ex:livesIn rdf:resource="http://example.org/polentoni#SouthernItaly"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/polentoni#Sergio">
+    <ex:livesIn rdf:resource="http://example.org/polentoni#NorthernItaly"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/polentoni#John">
+    <ex:knows rdf:resource="http://example.org/polentoni#Maurizio"/>
+    <ex:livesIn rdf:resource="http://example.org/polentoni#NorthernItaly"/>
+  </rdf:Description>
+</rdf:RDF>

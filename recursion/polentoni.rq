@@ -1,0 +1,34 @@
+# polentoni.rq
+
+prefix ex: <http://example.org/polentoni#>
+
+# finds all non-Polentoni person nodes ?this in the graph
+select distinct ?this
+where {
+	{
+		# binds each person node to ?this
+		select distinct ?this
+		where {
+			{?this ex:livesIn ?region}
+			union
+			{?this ex:knows ?person}
+			union
+			{?person ex:knows ?this}
+		}
+	}
+
+	# binds ?this, and each person ?this knows, to ?person
+	?this ex:knows* ?person .
+
+	# ?person must not live in and only in Northern Italy
+	{
+		# ?person lives nowhere
+		filter not exists {?person ex:livesIn ?region}
+	}
+	union
+	{
+		# ?person lives somewhere not Northern Italy
+		?person ex:livesIn ?region.
+		filter (?region != ex:NorthernItaly)
+	}
+}

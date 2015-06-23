@@ -49,6 +49,8 @@
 		<ttl2xml model="bob-contact" />
 		<ttl2xml model="contact-shape" />
 		<ttl2xml model="associate-shape" />
+		<ttl2xml model="polentoni-data" />
+		<ttl2xml model="polentoni-shape" />
 	</target>
 
 	<target name="pim-shape.ttl" description="Catenates shapes into single file.">
